@@ -46,7 +46,7 @@
 						             });
 								</script>
 								
-								<div class="text-center forgotpass"><a href="forgot-password.html">Forgot Passworddd?</a></div>
+								<div class="text-center forgotpass"><a href="forgot-password.html">Forgot Password?</a></div>
 								
 							</div>
 						</div>
