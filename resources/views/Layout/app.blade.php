@@ -8,19 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="{{asset('assets/img/favicon.png')}}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
 
     <!-- Linearicon Font -->
-    <link rel="stylesheet" href="assets/css/lnr-icon.css">
+    <link rel="stylesheet" href="{{asset('assets/css/lnr-icon.css')}}">
 
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
     <title>Dashboard Page</title>
 
