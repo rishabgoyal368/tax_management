@@ -130,7 +130,7 @@
                                         <span class="media align-items-center">
                                             <span class="lnr lnr-users mr-3"></span>
                                             <span class="media-body text-truncate text-left">
-                                                <span class="text-truncate text-left">Employees</span>
+                                                <span class="text-truncate text-left">Job Listing Websites</span>
                                             </span>
                                         </span>
                                     </a>
