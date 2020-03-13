@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+Route::get('/Job-listing-websites','JobListingWebsiteController@show');
+Route::any('Add-job-listing-websites','JobListingWebsiteController@add');

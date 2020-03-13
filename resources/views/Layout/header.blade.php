@@ -20,7 +20,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                         <div class="logo my-3 my-sm-0">
-                            <a href="index.html">
+                            <a href="{{url('/')}}">
                                 <img src="assets/img/logo.png" alt="logo image" class="img-fluid" width="100">
                             </a>
                         </div>
@@ -195,7 +195,7 @@
                                         <span class="media align-items-center">
                                             <span class="lnr lnr-user mr-3"></span>
                                             <span class="media-body text-truncate text-left">
-                                                <span class="text-truncate text-left">Profiles</span>
+                                                <span class="text-truncate text-left">Profile</span>
                                             </span>
                                         </span>
                                     </a>
@@ -203,7 +203,7 @@
                                         <span class="media align-items-center">
                                             <span class="lnr lnr-power-switch mr-3"></span>
                                             <span class="media-body text-truncate text-left">
-                                                <span class="text-truncate text-left">Logoutabcdef</span>
+                                                <span class="text-truncate text-left">Logout</span>
                                             </span>
                                         </span>
                                     </a>

@@ -19,6 +19,8 @@
     <!-- Fontawesome CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
 
+    <link rel="stylesheet" href="{{asset('assets/plugins/select2/select2.min.css')}}">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!--validator css-->

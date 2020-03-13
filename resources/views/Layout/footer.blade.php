@@ -17,6 +17,11 @@
 <script src="{{asset('assets/plugins/theia-sticky-sidebar/ResizeSensor.js')}}"></script>
 <script src="{{asset('assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js')}}"></script>
 
+
+
+<!-- Select2-->
+<!-- <script src="{{asset('assets/plugins/plugins/select2/moment.min.js')}}"></script> -->
+<script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
 <!-- Custom Js -->
 <script src="{{asset('assets/js/script.js')}}"></script>
 
