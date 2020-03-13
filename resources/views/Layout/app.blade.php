@@ -22,7 +22,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
-    <title>Dashboard Page</title>
+    <title>@yield('title')</title>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -45,8 +45,9 @@
                 <div class="dot"></div>
             </div>
         </div>
+        @if(Request::segment(1) != 'login' )
         @include('Layout.header')
-
+        @endif
         @yield('content')
 
         @extends('Layout.footer')
