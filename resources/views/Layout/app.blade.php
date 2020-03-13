@@ -21,6 +21,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <!--validator css-->
+    <link rel="stylesheet" href="{{asset('assets/css/validate.css')}}">
 
     <title>@yield('title')</title>
 
@@ -33,6 +35,12 @@
 </head>
 
 <body>
+    <!--jquery validator-->
+<script src="{{asset('assets/js/jquery-3.2.1.min.js')}}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/query-validate/1.19.1/additional-methods.min.js"></script>
+
     <div class="inner-wrapper">
         <!-- Loader -->
         <div id="loader-wrapper">
