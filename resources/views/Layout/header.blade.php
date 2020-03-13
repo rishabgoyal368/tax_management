@@ -195,7 +195,7 @@
                                         <span class="media align-items-center">
                                             <span class="lnr lnr-user mr-3"></span>
                                             <span class="media-body text-truncate text-left">
-                                                <span class="text-truncate text-left">Profile</span>
+                                                <span class="text-truncate text-left">Profiles</span>
                                             </span>
                                         </span>
                                     </a>
