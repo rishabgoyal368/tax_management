@@ -203,7 +203,7 @@
                                         <span class="media align-items-center">
                                             <span class="lnr lnr-power-switch mr-3"></span>
                                             <span class="media-body text-truncate text-left">
-                                                <span class="text-truncate text-left">Logout</span>
+                                                <span class="text-truncate text-left">Logoutabcdef</span>
                                             </span>
                                         </span>
                                     </a>
