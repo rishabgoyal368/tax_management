@@ -12,15 +12,22 @@ Breadcrumbs::for('department', function ($trail) {
 });
 
 // Home > Blog
-Breadcrumbs::for('blog', function ($trail) {
+Breadcrumbs::for('Job-listing-websites', function ($trail) {
     $trail->parent('home');
-    $trail->push('Blog', route('blog'));
+    $trail->push('Job-listing-websites', route('Job-listing-websites'));
 });
 
 // Home > Blog > [Category]
-Breadcrumbs::for('category', function ($trail, $category) {
-    $trail->parent('blog');
-    $trail->push($category->title, route('category', $category->id));
+Breadcrumbs::for('Add-job-listing-websites', function ($trail) {
+    $trail->parent('Job-listing-websites');
+
+    $trail->push('Add-job-listing-websites', url('Add-job-listing-websites'));
+});
+
+Breadcrumbs::for('Edit-job-listing-websites', function ($trail) {
+    $trail->parent('Job-listing-websites');
+
+    $trail->push('Add-job-listing-websites', url('Add-job-listing-websites'));
 });
 
 // Home > Blog > [Category] > [Post]

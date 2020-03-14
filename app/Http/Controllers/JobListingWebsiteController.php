@@ -11,13 +11,12 @@ class JobListingWebsiteController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-
     }
 
     public function show()
     {
         $jobListing = JobListingWebsite::paginate(10);
-        return view('JobListingWebsite.list',compact('jobListing'));
+        return view('JobListingWebsite.list', compact('jobListing'));
     }
 
     public function add(Request $request)
@@ -32,17 +31,17 @@ class JobListingWebsiteController extends Controller
                 'email' => 'required',
                 'password' => 'required',
             ]);
-
             JobListingWebsite::add($request);
-            return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites added successfully']);
+            $response = @$request->id ? 'updated' : 'added';
+            return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
         }
     }
+    
     public function edit(Request $request, $id)
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $jobadd = JobListingWebsite::find($id);
-            return view('JobListingWebsite.add',compact('jobadd'));
+            return view('JobListingWebsite.add', compact('jobadd'));
         }
     }
 }

@@ -11,7 +11,6 @@ $(document).ready(function() {
             },
             password: {
                 required: true,
-                // passwordCheck: true
             },
         },
         messages: {
@@ -20,7 +19,6 @@ $(document).ready(function() {
             },
             password: {
                 required: "Please enter passsword",
-                // passwordCheck: "Password must be a minumum of 8 characters and contain a digit, upper-case, lower-case and non-alphanumeric character e.g. !@# with no leading or trailing spaces."
             },
         },
     });
