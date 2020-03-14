@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/login', function () {
+Route::get('/loginpage', function () {
     return view('login');
 });
+
+Route::post('login', [ 'as' => 'login', 'uses' => 'AdminController@index']);
+Route::any('login', 'AdminController@login');
+Route::get('/logout','AdminController@logout');
+
+
+
