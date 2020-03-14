@@ -1746,6 +1746,14 @@ fieldset[disabled] .form-control {
 	11. LOGIN
 -----------------------*/
 
+.margin-lt-15 {
+    margin-left: 15px;
+}
+
+.checkbox_custom .form-check-input {
+    margin-top: 0;
+}
+
 .login-body {
     display: table;
     height: 100vh;

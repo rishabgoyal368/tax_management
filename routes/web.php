@@ -13,10 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Auth::routes(['register' => false]);
 
-Route::get('/login', function () {
-    return view('login');
-});
+
+Route::get('/Job-listing-websites', 'JobListingWebsiteController@show')->name('Job-listing-websites');
+Route::any('Add-job-listing-websites','JobListingWebsiteController@add');
+Route::any('Edit-job-listing-websites/{id}','JobListingWebsiteController@edit');
+
+
+
+Route::post('/get-department-ajax', 'DepartmentController@getDepartment');
+
+
+Route::get('/designation', 'DesignationsController@show')->name('designation');
+Route::any('add-designation', 'DesignationsController@add');
+Route::any('edit-designation/{id}', 'DesignationsController@add');
+

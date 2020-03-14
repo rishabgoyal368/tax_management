@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminsTable extends Migration
+class CrateJobListingWebsiteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateAdminsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('job_listing_websites', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('website');
             $table->string('email');
-            $table->timestamp('email_verified_at');
-            $table->string('remember_token')->nullable();
             $table->string('password');
+            $table->integer('status');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateAdminsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admins');
+        //
     }
 }
