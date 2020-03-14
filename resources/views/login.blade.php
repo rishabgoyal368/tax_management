@@ -15,13 +15,13 @@
 								<p class="account-subtitle">Access to our dashboard</p>
 								
 								<!-- Form -->
-								<!-- http://dreamguys.co.in/demo/dleohr/dleohr-vertical/index.html -->
-								<form id="loginform" method="POST">
+								<form id="loginform" action="{{ route('login') }}" method="POST">
+									@csrf
 									<div class="form-group">
 										<input class="form-control" name="email" id="email" type="text" placeholder="Email">
 									</div>
 									<div class="form-group">
-										<input class="form-control" name="password" id="password"type="text" placeholder="Password">
+										<input class="form-control" name="password" id="password" type="password" placeholder="Password">
 									</div>
 									<div class="form-group">
 										<button class="btn btn-theme button-1 text-white ctm-border-radius btn-block" type="submit">Login</button>
@@ -29,21 +29,7 @@
 								</form>
 								<!-- /Form -->
 								<script>
-									$("#loginform").validate
-						              ({      
-						                rules: {
-						                   email: {
-						                        required: true,
-						                        email:true
-						                    },
-						                    password: {
-						                            required: true
-
-
-
-						                    }, 
-						                },
-						             });
+									
 								</script>
 								
 								<div class="text-center forgotpass"><a href="forgot-password.html">Forgot Password?</a></div>

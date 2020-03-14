@@ -80,7 +80,7 @@
                                                 <span class="media align-items-center">
                                                     <span class="lnr lnr-power-switch mr-3"></span>
                                                     <span class="media-body text-truncate">
-                                                        <span class="text-truncate">Logout</span>
+                                                       <a href="{{ url('/logout') }}"> <span class="text-truncate">Logout</span></a>
                                                     </span>
                                                 </span>
                                             </a>
