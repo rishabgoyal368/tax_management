@@ -51,7 +51,7 @@
                 <div class="dot"></div>
             </div>
         </div>
-        @if(Request::segment(1) != 'loginpage' )
+        @if(Request::segment(1) != 'login' && Request::segment(1) != 'password' )
         @include('Layout.header')
         @endif
         @yield('content')
