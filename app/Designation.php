@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Department extends Authenticatable
+class Designation extends Authenticatable
 {
     use Notifiable;
 
@@ -16,28 +16,24 @@ class Department extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'title', 'uploadBy'
+        'title', 'uploadBy', 'department_id'
     ];
 
     public static function addorUpdate($data)
     {
-        Department::updateOrCreate(
+        Designation::updateOrCreate(
             [
                 'id' => $data['id']
             ],
             [
-                'name' => $data['name'],
-                'uploadBy' => $data['uploadBy'],
-                'status' => $data['status'],
+                'title' => $data['title'],
+                'department_id' => $data['department_id'] ?: null,
             ]
         );
     }
 
-    public static function checkOrCreate($department)
+    public function getDepartment()
     {
-        $data =   Department::firstOrCreate([
-            'title' => $department
-        ]);
-        return $data['id'];
+        return $this->hasOne('App\Department','id','department_id');
     }
 }

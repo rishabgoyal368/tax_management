@@ -56,6 +56,8 @@ $(document).ready(function() {
         },
     });
 
+    // ====================> Job Listing Website ================>
+
     $("#joblist").validate({
         rules: {
             name: {

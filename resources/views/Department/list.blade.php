@@ -1,5 +1,5 @@
 @extends('Layout.app')
-@section('title','Deparment')
+@section('title','Designation')
 @section('content')
 <!-- Sidebar -->
 @include('Layout.sidebar')
@@ -11,9 +11,9 @@
                 <div class="card ctm-border-radius shadow-sm grow">
                     <div class="card-header">
                         <h4 class="card-title d-inline-block mb-0">
-                            Deparment
+                            Designation
                         </h4>
-                        <a href="{{url('/Add-deparment')}}" class="float-right add-doc text-primary">Add Deparment
+                        <a href="{{url('/add-designation')}}" class="float-right add-doc text-primary">Add Designation
                         </a>
                     </div>
                     <div class="card-body">
@@ -23,7 +23,8 @@
                                     <thead>
                                         <tr>
                                             <th>S.no</th>
-                                            <th>name</th>                                            
+                                            <th>name</th>
+                                            <th>Deparment</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -31,12 +32,9 @@
                                         @forelse($department as $key => $job_list)
                                         <tr>
                                             <td>{{($department->currentpage()-1) * $department->perpage() + $key + 1}}</td>
-                                            <td>{{$job_list->name}}</td>
-                                            <td>{{$job_list->website}}</td>
-                                            <td>{{$job_list->email}}</td>
-                                            <td>{{$job_list->status}}</td>
-                                            <td>{{$job_list->name}}</td>
-                                            <td>{{$job_list->name}}</td>
+                                            <td>{{$job_list->title}}</td>
+                                            <td>{{$job_list->getDepartment['title']}}</td>
+                                            <td><a href="{{url('edit-designation')}}/{{$job_list->id}}">Edit</a></td>
 
                                         </tr>
                                         @empty

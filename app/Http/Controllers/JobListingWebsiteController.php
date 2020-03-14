@@ -21,12 +21,13 @@ class JobListingWebsiteController extends Controller
 
     public function add(Request $request)
     {
+        
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             return view('JobListingWebsite.add');
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->validate($request, [
-                'name'  => 'required',
+                'name'  => 'required|alpha|max:100',
                 'websiteLink' => 'required',
                 'email' => 'required',
                 'password' => 'required',
@@ -36,7 +37,7 @@ class JobListingWebsiteController extends Controller
             return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
         }
     }
-    
+
     public function edit(Request $request, $id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
