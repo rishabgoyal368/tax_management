@@ -28,10 +28,6 @@
 									</div>
 								</form>
 								<!-- /Form -->
-								<script>
-									
-								</script>
-								
 								<div class="text-center forgotpass"><a href="forgot-password.html">Forgot Password?</a></div>
 								
 							</div>

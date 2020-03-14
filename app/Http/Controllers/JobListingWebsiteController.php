@@ -32,7 +32,15 @@ class JobListingWebsiteController extends Controller
             ]);
 
             JobListingWebsite::add($request);
-            return redirect()->back()->with(['success' => 'Job Listing Websites added successfully']);
+            return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites added successfully']);
+        }
+    }
+    public function edit(Request $request, $id)
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $jobadd = JobListingWebsite::find($id);
+            return view('JobListingWebsite.add',compact('jobadd'));
         }
     }
 }

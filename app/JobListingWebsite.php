@@ -21,13 +21,15 @@ class JobListingWebsite extends Authenticatable
 
     public static function add($data)
     {
-        JobListingWebsite::create([
-            'name' => $data['name'],
-            'website' => $data['websiteLink'],
-            'email' => $data['email'],
-            'password' => $data['password'],
-            'status' => $data['status'],
-        ]);
+        JobListingWebsite::updateOrCreate(
+            ['id' => $data['id']],
+
+                ['name' => $data['name'],
+                'website' => $data['websiteLink'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'status' => $data['status'],
+            ]);
     }
 
     public function getFirstNameAttribute()

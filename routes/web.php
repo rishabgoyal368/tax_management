@@ -23,6 +23,8 @@ Route::get('/loginpage', function () {
 
 Route::get('/Job-listing-websites','JobListingWebsiteController@show');
 Route::any('Add-job-listing-websites','JobListingWebsiteController@add');
+Route::any('Edit-job-listing-websites/{id}','JobListingWebsiteController@edit');
+
 Route::post('login', [ 'as' => 'login', 'uses' => 'AdminController@index']);
 Route::any('login', 'AdminController@login');
 Route::get('/logout','AdminController@logout');

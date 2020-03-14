@@ -35,5 +35,4 @@ class AdminController extends Controller
     	{
    			return redirect('/loginpage')->with('danger', 'credential not match');
 		}
-
 }
