@@ -13,17 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 Auth::routes(['register' => false]);
 
 
-
-
-
-
-
 Route::get('/Job-listing-websites', 'JobListingWebsiteController@show');
 Route::any('Add-job-listing-websites', 'JobListingWebsiteController@add');
+
+Route::get('/designations', 'DesignationsController@show');
+
+
+Route::get('/department', 'DepartmentController@show')->name('department');
+Route::any('Add-department', 'DepartmentController@add');
+

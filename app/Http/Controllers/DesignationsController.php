@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\JobListingWebsite;
 
 
-class JobListingWebsiteController extends Controller
+class DesignationsController extends Controller
 {
     public function __construct()
     {

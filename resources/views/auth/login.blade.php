@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <input class="form-control @error('password') is-invalid @enderror" name="password" id="password" type="password" placeholder="Password">
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row margin-lt-15 checkbox_custom">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">

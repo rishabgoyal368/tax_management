@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\JobListingWebsite;
+use App\Department;
 
 
-class JobListingWebsiteController extends Controller
+class DepartmentController extends Controller
 {
     public function __construct()
     {
@@ -16,8 +16,8 @@ class JobListingWebsiteController extends Controller
 
     public function show()
     {
-        $jobListing = JobListingWebsite::paginate(10);
-        return view('JobListingWebsite.list',compact('jobListing'));
+        $department = Department::paginate(env('PAGINATE'));
+        return view('Department.list',compact('department'));
     }
 
     public function add(Request $request)

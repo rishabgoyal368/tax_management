@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class JobListingWebsite extends Authenticatable
+class Department extends Authenticatable
 {
     use Notifiable;
 
@@ -16,19 +16,20 @@ class JobListingWebsite extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'website', 'email', 'password', 'status'
+        'name', 'uploadBy', 'status'
     ];
 
     public static function add($data)
     {
-        JobListingWebsite::create([
-            'name' => $data['name'],
-            'website' => $data['websiteLink'],
-            'email' => $data['email'],
-            'password' => $data['password'],
-            'status' => $data['status'],
-        ]);
+        Department::updateOrCreate(
+            [
+                'id' => $data['id']
+            ],
+            [
+                'name' => $data['name'],
+                'uploadBy' => $data['uploadBy'],
+                'status' => $data['status'],
+            ]
+        );
     }
-
-
 }

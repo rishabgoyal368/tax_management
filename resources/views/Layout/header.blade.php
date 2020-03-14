@@ -74,14 +74,12 @@
                                                 </span>
                                             </span>
                                         </a>
-                                        <a class="dropdown-item p-2" href="login.html">
+                                        <a class="dropdown-item p-2" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                             <span class="media align-items-center">
                                                 <span class="lnr lnr-power-switch mr-3"></span>
                                                 <span class="media-body text-truncate">
-                                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                        {{ __('Logout') }}
-                                                    </a>
+                                                    {{ __('Logout') }}
                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                         @csrf
                                                     </form>
