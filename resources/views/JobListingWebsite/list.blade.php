@@ -92,6 +92,7 @@
                                                         <td>{{$job_list->status}}</td>
                                                         <td>{{$job_list->name}}</td>
                                                         <td>{{$job_list->name}}</td>
+                                        <td><a href="{{url('/Edit-job-listing-websites')}}/{{$job_list->id}}" <button type="submit">edit</button></a></td>
 
                                                     </tr>
                                                     @empty
