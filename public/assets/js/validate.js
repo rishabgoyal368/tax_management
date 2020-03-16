@@ -60,6 +60,8 @@ $(document).ready(function() {
         rules: {
             name: {
                 required: true,
+                maxlength: 100,
+                lettersonly: true
             },
             websiteLink: {
                 required: true,

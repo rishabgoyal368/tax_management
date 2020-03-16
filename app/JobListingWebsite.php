@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Support\Facades\Hash;
 class JobListingWebsite extends Authenticatable
 {
     use Notifiable;
@@ -27,7 +27,7 @@ class JobListingWebsite extends Authenticatable
                 ['name' => $data['name'],
                 'website' => $data['websiteLink'],
                 'email' => $data['email'],
-                'password' => $data['password'],
+                'password' => Hash::make($data['password']),
                 'status' => $data['status'],
             ]);
     }

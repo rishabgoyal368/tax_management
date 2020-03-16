@@ -44,4 +44,17 @@ class JobListingWebsiteController extends Controller
             return view('JobListingWebsite.add', compact('jobadd'));
         }
     }
+    public function display(Request $request, $id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $jobshow = JobListingWebsite::find($id);
+            return view('JobListingWebsite.list', compact('jobshow'));
+        }
+    }
+    public function delete($id)
+    {        
+            $jobdelete = JobListingWebsite::find($id);
+            $jobdelete->delete();
+            return redirect('Job-listing-websites')->with(['success' => 'Record delete successfully']);
+    }
 }

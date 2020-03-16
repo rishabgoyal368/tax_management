@@ -23,8 +23,13 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
     <!--validator css-->
     <link rel="stylesheet" href="{{asset('assets/css/validate.css')}}">
+    
+    <!-- sweetaler css-->
+    <link rel="stylesheet" href="{{asset('assets/css/sweetalert.css')}}">
+
 
     <title>@yield('title')</title>
 

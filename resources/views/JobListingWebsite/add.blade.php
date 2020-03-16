@@ -49,7 +49,7 @@
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                                 @endif
-                                <input type="checkbox" onclick="myFunction()">Show Password
+                                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" onclick="myFunction()">
                             </div>
                             <div class="col-md-12 form-group mb-0">
                                 <select class="form-control select" name="status">                                   

@@ -9,8 +9,8 @@
                                 <div class="card-body py-4">
                                     <div class="row">
                                         <div class="col-md-12 mr-auto text-left">
-                                            {{ Breadcrumbs::render(Request::segment(1)) }}
-                                            <h4 class="text-dark">Admin Dashboard</h4>
+                                         {{ Breadcrumbs::render(Request::segment(1)) }}
+                                         <h4 class="text-dark">Admin Dashboard</h4>
                                         </div>
                                     </div>
                                 </div>

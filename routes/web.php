@@ -21,6 +21,10 @@ Auth::routes(['register' => false]);
 Route::get('/Job-listing-websites', 'JobListingWebsiteController@show')->name('Job-listing-websites');
 Route::any('Add-job-listing-websites','JobListingWebsiteController@add');
 Route::any('Edit-job-listing-websites/{id}','JobListingWebsiteController@edit');
+Route::any('Show-job-listing-websites/{id}','JobListingWebsiteController@display');
+Route::any('Delete-job-listing-websites/{id}','JobListingWebsiteController@delete');
+
+
 
 
 
