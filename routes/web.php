@@ -34,4 +34,5 @@ Route::post('/get-department-ajax', 'DepartmentController@getDepartment');
 Route::get('/designation', 'DesignationsController@show')->name('designation');
 Route::any('add-designation', 'DesignationsController@add');
 Route::any('edit-designation/{id}', 'DesignationsController@add');
+Route::delete('delete-designation', 'DesignationsController@delete');
 

@@ -29,13 +29,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($department as $key => $job_list)
+                                        @forelse($GetDepartment as $key => $department)
                                         <tr>
-                                            <td>{{($department->currentpage()-1) * $department->perpage() + $key + 1}}</td>
-                                            <td>{{$job_list->title}}</td>
-                                            <td>{{$job_list->getDepartment['title']}}</td>
-                                            <td><a href="{{url('edit-designation')}}/{{$job_list->id}}">Edit</a></td>
-
+                                            <td>{{($GetDepartment->currentpage()-1) * $GetDepartment->perpage() + $key + 1}}</td>
+                                            <td>{{$department->title}}</td>
+                                            <td>{{$department->getDepartment['title']}}</td>
+                                            <td>
+                                                <a href="{{url('/edit-designation')}}/{{$department->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
+                                                <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" class="common_delete" data-target=".common_delete_modal" data-url="{{url('/delete-designation')}}" data-back_url="{{url('/designation')}}" data-id="{{$department->id}}">
+                                                    <span class="lnr lnr-trash"></span>
+                                                </a>
+                                            </td>
                                         </tr>
                                         @empty
                                         <tr>
@@ -48,6 +52,7 @@
                             </div>
                         </div>
                     </div>
+                    {{$GetDepartment->links()}}
                 </div>
             </div>
         </div>

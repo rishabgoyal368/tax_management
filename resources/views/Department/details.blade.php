@@ -9,9 +9,9 @@
 <div class="col-xl-9 col-lg-8  col-md-12">
     <div class="row">
         <div class="col-xl-12 col-lg-8 col-md-12">
-            <form method="POST" name="joblist" id="joblist" action="{{url('/add-designation')}}">
+            <form method="POST" name="joblist" id="designation" action="{{url('/add-designation')}}">
                 @csrf
-                <input type="hidden" name="id" id="id" value="{{@$jobadd->id ?: old('id') }}">
+                <input type="hidden" name="id" id="id" value="{{@$department->id ?: old('id') }}">
                 <div class="card ctm-border-radius shadow-sm grow">
                     <div class="card-header">
                         <h4 class="card-title mb-0 d-inline-block">
@@ -25,7 +25,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                <input type="text" name="title" id="title" class="form-control" placeholder="Title*" value="{{@$jobadd->name ?: old('name') }}">
+                                <input type="text" name="title" id="title" class="form-control" placeholder="Title*" value="{{@$department->title ?: old('name') }}">
                                 @if ($errors->has('title'))
                                 <span class="siteLogo_error" role="alert">
                                     <strong>{{ $errors->first('title') }}</strong>
@@ -34,7 +34,7 @@
                             </div>
                             <div class="col-md-12 form-group">
                                 <input type="hidden" name="departmentId">
-                                <input type="text" name="department" id="department" class="form-control designationGet" autocomplete="off" data-url="{{url('/get-department-ajax')}}" placeholder="Department*" value="{{@$jobadd->website ?: old('websiteLink') }}">
+                                <input type="text" name="department" id="department" class="form-control designationGet" autocomplete="off" data-url="{{url('/get-department-ajax')}}" placeholder="Department*" value="{{@$department->getDepartment['title'] ?: old('websiteLink') }}">
                                 <ul id="textboxSelect" class="recentSearchDrop" style="display:none" aria>
                                 </ul>
                                 @if ($errors->has('department'))

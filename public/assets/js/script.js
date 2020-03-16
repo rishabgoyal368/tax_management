@@ -70,7 +70,7 @@
     }
 }());
 
-$(document).ready(function() {
+$(document).ready(function(e) {
 
     $('.loaderSubmit').click(function() {
         var form_id = $(this).data('id');
@@ -82,8 +82,10 @@ $(document).ready(function() {
         $('.alert').fadeOut('fast');
     }, 5000);
 
-    if ($(e.target).is($("#recentSearchDropFooter")) || $(e.target).is($(".designationGet"))) {} else {
-        $('.recentSearchDrop').css('display', 'none')
-    }
+    $('body').click(function(e) {
+        if ($(e.target).is($("#recentSearchDropFooter")) || $(e.target).is($(".input_press"))) {} else {
+            $('.recentSearchDrop').css('display', 'none')
+        }
+    })
 
 });

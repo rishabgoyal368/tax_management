@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Designation;
 use App\Department;
 
@@ -19,8 +20,8 @@ class DesignationsController extends Controller
 
     public function show()
     {
-        $department = Designation::paginate(env('PAGINATE'));
-        return view('Department.list', compact('department'));
+        $GetDepartment = Designation::latest()->paginate(env('PAGINATE'));
+        return view('Department.list', compact('GetDepartment'));
     }
 
     public function add(Request $request, $id = null)
@@ -44,6 +45,20 @@ class DesignationsController extends Controller
             Designation::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';
             return redirect('/designation')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        $data = $request->all();
+        $validator =  Validator::make($data, [
+            'id'  => 'required|exists:designations,id',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()]);
+        } else {
+            Designation::remove($request->id);
+            return response()->json(['success' => 'Designation deleted successfully.']);
         }
     }
 }

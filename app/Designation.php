@@ -5,10 +5,14 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Designation extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -32,8 +36,13 @@ class Designation extends Authenticatable
         );
     }
 
+    public static function remove($id)
+    {
+        return Designation::where('id', $id)->delete();
+    }
+
     public function getDepartment()
     {
-        return $this->hasOne('App\Department','id','department_id');
+        return $this->hasOne('App\Department', 'id', 'department_id');
     }
 }

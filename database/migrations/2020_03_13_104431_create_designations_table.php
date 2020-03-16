@@ -4,8 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 class CreateDesignationsTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -16,7 +18,8 @@ class CreateDesignationsTable extends Migration
         Schema::create('designations', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->unsignedBigInteger('department_id');            
+            $table->unsignedBigInteger('department_id');
+            $table->string('deleted_at')->nullable();
             $table->timestamps();
         });
     }

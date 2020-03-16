@@ -20,7 +20,7 @@ function getDataByType(url, val, appendText) {
                     // click on dropdown
                     var valInput = $(this).text();
                     appendText.value = $(this).text();
-                    $('#textboxSelect').prev().prev().val($(this).data('docid'))
+                    // $('#textboxSelect').prev().prev().val($(this).data('docid'))
                     $('#textboxSelect').css('display', 'none')
 
                 });
@@ -28,13 +28,38 @@ function getDataByType(url, val, appendText) {
                 // If no data found
                 $('.recentSearchDrop').css('display', 'none')
             }
-            console.log(data.length)
         },
         error: function(err) {}
     });
 }
-$(document).ready(function() {
 
+function commonDelete(url, id, back_url) {
+    $('#loader-wrapper').css('display', 'block')
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        dataType: 'JSON',
+        data: { 'id': id },
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function(data) {
+            console.log(data);
+            $('#loader-wrapper').css('display', 'none')
+            if (data['error']) {
+                $('.deleteError').text(data['error']).addClass('alert alert-danger')
+            }
+            if (data['success']) {
+                $('.deleteError').text(data['success']).addClass('alert alert-success')
+                setTimeout(function() { location.href = back_url }, 2000);
+
+            }
+        },
+        error: function(err) {
+            // alert('Something went wrong')
+        }
+    });
+}
+$(document).ready(function() {
+    // ===================> designation <=====================//
     $('.designationGet').keyup(function() {
         if ($(this).val().length > 2) {
             var searchValue = $(this).val();
@@ -49,6 +74,20 @@ $(document).ready(function() {
             var select = $(this).data('select');
             $('#' + select).prev().prev().val('')
         }
+    });
+
+    //================ COMMON FUNCTION <==================
+    $('.common_delete').click(function() {
+        $('.deleteList').attr('data-url', $(this).data('url')).attr('data-id', $(this).data('id')).attr('data-back_url', $(this).data('back_url'))
+    });
+
+    $(document).on('click', '.deleteList', function() {
+        var url = $(this).data('url');
+        var id = $(this).data('id');
+        var backUrl = $(this).data('back_url');
+        $(this).attr('disabled', true)
+        commonDelete(url, id, backUrl)
+
     });
 
 });

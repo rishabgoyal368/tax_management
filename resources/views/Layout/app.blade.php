@@ -30,7 +30,7 @@
     <!-- sweetaler css-->
     <link rel="stylesheet" href="{{asset('assets/css/sweetalert.css')}}">
 
-
+   
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 

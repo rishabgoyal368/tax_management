@@ -2157,3 +2157,43 @@ textarea.form-control {
         margin-bottom: 0;
     }
 }
+
+.recentSearchDrop {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    padding: 5px 0 10px;
+    margin: 2px 0 0;
+    font-size: 14px;
+    min-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 99%;
+    z-index: 999;
+    right: 0;
+    left: 4px;
+}
+
+.recentSearchDrop li {
+    margin: 0 15px;
+    color: #333333;
+    padding: 7px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ececec;
+}
+
+.recentSearchDrop li:hover {
+    background-color: #f6822d;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.recentSearchDrop li a {
+    color: #333;
+}
+
+.recentSearchDrop li:hover a {
+    color: #fff;
+}
