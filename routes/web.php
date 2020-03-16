@@ -28,9 +28,10 @@ Route::any('Delete-job-listing-websites/{id}','JobListingWebsiteController@delet
 
 
 
-Route::get('/designations', 'DesignationsController@show');
+Route::post('/get-department-ajax', 'DepartmentController@getDepartment');
 
 
-Route::get('/department', 'DepartmentController@show')->name('department');
-Route::any('Add-department', 'DepartmentController@add');
+Route::get('/designation', 'DesignationsController@show')->name('designation');
+Route::any('add-designation', 'DesignationsController@add');
+Route::any('edit-designation/{id}', 'DesignationsController@add');
 

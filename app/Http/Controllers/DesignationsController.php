@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\JobListingWebsite;
+use Illuminate\Support\Facades\Auth;
+use App\Designation;
+use App\Department;
+
 
 
 class DesignationsController extends Controller
@@ -11,30 +14,36 @@ class DesignationsController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-
     }
+
 
     public function show()
     {
-        $jobListing = JobListingWebsite::paginate(10);
-        return view('JobListingWebsite.list',compact('jobListing'));
+        $department = Designation::paginate(env('PAGINATE'));
+        return view('Department.list', compact('department'));
     }
 
-    public function add(Request $request)
+    public function add(Request $request, $id = null)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            return view('JobListingWebsite.add');
+            if ($id) {
+                #Update
+                $department = Designation::find($id);
+                return view('Department.details', compact('department'));
+            } else {
+                #Insert
+                return view('Department.details');
+            }
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->validate($request, [
-                'name'  => 'required',
-                'websiteLink' => 'required',
-                'email' => 'required',
-                'password' => 'required',
+                'title'  => 'required',
+                'department' => 'required',
             ]);
-
-            JobListingWebsite::add($request);
-            return redirect()->back()->with(['success' => 'Job Listing Websites added successfully']);
+            $request['department_id'] = Department::checkOrCreate($request->department);
+            Designation::addorUpdate($request);
+            $response = @$request->id ? 'updated' : 'added';
+            return redirect('/designation')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
         }
     }
 }

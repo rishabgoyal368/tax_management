@@ -9,8 +9,9 @@
                                 <div class="card-body py-4">
                                     <div class="row">
                                         <div class="col-md-12 mr-auto text-left">
-                                         {{ Breadcrumbs::render(Request::segment(1)) }}
-                                         <h4 class="text-dark">Admin Dashboard</h4>
+
+                                            {{ @Breadcrumbs::render(Request::segment(1)) }}
+                                            <h4 class="text-dark">Admin Dashboard</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -20,7 +21,7 @@
                     <div class="user-card card shadow-sm bg-white text-center ctm-border-radius grow">
                         <div class="user-info card-body">
                             <div class="user-avatar mb-4">
-                                <img src="assets/img/profiles/img-13.jpg" alt="User Avatar" class="img-fluid rounded-circle" width="100">
+                                <img src="{{asset('assets/img/profiles/img-13.jpg')}}" alt="User Avatar" class="img-fluid rounded-circle" width="100">
                             </div>
                             <div class="user-details">
                                 <h4><b>Welcome Admin</b></h4>
@@ -39,7 +40,7 @@
                                         <a href="{{url('/Job-listing-websites')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Job Listing Websites</span></a>
                                     </div>
                                     <div class="col-6 align-items-center shadow-none text-center">
-                                        <a href="{{url('/department')}}" class="text-dark p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-apartment pr-0 pb-lg-2 font-23"></span><span class="">Department</span></a>
+                                        <a href="{{url('/designation')}}" class="text-dark p-4 ctm-border-right ctm-border-left"><span class="lnr lnr-apartment pr-0 pb-lg-2 font-23"></span><span class="">Designation</span></a>
                                     </div>
                                     <div class="col-6 align-items-center shadow-none text-center">
                                         <a href="calendar.html" class="text-dark p-4 ctm-border-right"><span class="lnr lnr-calendar-full pr-0 pb-lg-2 font-23"></span><span class="">Calendar</span></a>

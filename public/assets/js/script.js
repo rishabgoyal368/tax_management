@@ -82,4 +82,8 @@ $(document).ready(function() {
         $('.alert').fadeOut('fast');
     }, 5000);
 
+    if ($(e.target).is($("#recentSearchDropFooter")) || $(e.target).is($(".designationGet"))) {} else {
+        $('.recentSearchDrop').css('display', 'none')
+    }
+
 });

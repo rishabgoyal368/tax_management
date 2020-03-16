@@ -25,10 +25,13 @@
 
 <!-- Custom Js -->
 <script src="{{asset('assets/js/script.js')}}"></script>
+<script src="{{asset('assets/js/custom.js')}}"></script>
+    <!--jquery validator-->
 
-<!--jquery validator-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+<script src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
+
+<script src="{{asset('assets/js/additional-methods.min.js')}}"></script>
+
 <script src="{{asset('assets/js/validate.js')}}"></script>
 
 <!--sweetalert js-->

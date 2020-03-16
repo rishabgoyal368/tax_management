@@ -31,6 +31,9 @@
     <link rel="stylesheet" href="{{asset('assets/css/sweetalert.css')}}">
 
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
     <title>@yield('title')</title>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

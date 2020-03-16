@@ -14,27 +14,8 @@ class DepartmentController extends Controller
 
     }
 
-    public function show()
+    public function getDepartment(Request $request)
     {
-        $department = Department::paginate(env('PAGINATE'));
-        return view('Department.list',compact('department'));
-    }
-
-    public function add(Request $request)
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            return view('JobListingWebsite.add');
-        }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->validate($request, [
-                'name'  => 'required',
-                'websiteLink' => 'required',
-                'email' => 'required',
-                'password' => 'required',
-            ]);
-
-            JobListingWebsite::add($request);
-            return redirect()->back()->with(['success' => 'Job Listing Websites added successfully']);
-        }
+        return Department::where('title', 'LIKE', "%{$request->name}%")->get();
     }
 }
