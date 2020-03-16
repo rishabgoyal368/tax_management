@@ -111,38 +111,3 @@ function myFunction() {
     }
 }
 
-// //show data
-function deleteHandler(data)
-    {
-        var _this = this;
-          var id = data.getAttribute("data-id");
-          var token = $("meta[name='csrf-token']").attr("content");
-          swal({
-              title: "Are you sure to delete the record?",
-              type: "warning",
-              showCancelButton: true,
-              confirmButtonClass: "btn-danger",
-              confirmButtonText: "Yes",
-              cancelButtonText: "No",
-              closeOnConfirm: false,
-              closeOnCancel: false
-            },
-              function(isConfirm) {
-                if (isConfirm) {
-                  $.ajax({
-                      url: 'Delete-job-listing-websites/'+id,
-                      type: "GET",
-                      error: function() {
-                              alert('Something is wrong');
-                           },
-                      success:function(data)
-                      {
-                        swal("Deleted!", "Your record has been deleted.", "success");
-     
-                      },
-                  });
-                } else {
-                  swal("Cancelled", "Your record not deleted :)", "error");
-                }
-              });
-    }

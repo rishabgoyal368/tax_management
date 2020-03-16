@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\JobListingWebsite;
 
 
@@ -50,5 +51,18 @@ class JobListingWebsiteController extends Controller
         $jobshow = JobListingWebsite::find($id);
         return view('JobListingWebsite.details', compact('jobshow'));
     }
-    
+    public function delete(Request $request)
+    {
+        $data = $request->all();
+        //return $data;
+        $validator =  Validator::make($data, [
+            'id'  => 'required|exists:job_listing_websites,id',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()]);
+        } else {
+            JobListingWebsite::remove($request->id);
+            return response()->json(['success' => 'JobListingWebsite deleted successfully.']);
+        }
+    }
 }

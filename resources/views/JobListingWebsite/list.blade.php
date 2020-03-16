@@ -46,9 +46,9 @@
                                             <td>--</td>
                                             <td><a href="{{url('/Edit-job-listing-websites')}}/{{$job_list->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
                                             
-                                            <a href="{{url('/Delete-job-listing-websites')}}/{{$job_list->id}}"> <span class="fa fa-minus position-relative" data-toggle="tooltip" title="Delete"></span></a>
+                                            <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" class="common_delete" data-target=".common_delete_modal" data-url="{{url('/Delete-job-listing-websites')}}" data-back_url="{{url('/Job-listing-websites')}}" data-id = "{{$job_list->id}}"> <span class="lnr lnr-trash position-relative" data-toggle="tooltip" title="Delete"></span></a>
                                             
-                                            <a href="{{url('/Show-job-listing-websites')}}/{{$job_list->id}}" target="_blank"> <i class="fa fa-fw fa-eye" style="color:blue;" data-toggle="tooltip" title="View"></i></a></td>
+                                            <a href="{{url('/Show-job-listing-websites')}}/{{$job_list->id}}" target="_blank" > <i class="fa fa-fw fa-eye" style="color:blue;" data-toggle="tooltip" title="View"></i></a></td>
                                         </tr>
                                         @empty
                                         <tr>
