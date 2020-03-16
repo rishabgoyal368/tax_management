@@ -16,7 +16,7 @@ class JobListingWebsiteController extends Controller
 
     public function show()
     {
-        $jobListing = JobListingWebsite::paginate(10);
+        $jobListing = JobListingWebsite::withTrashed()->latest()->paginate(10);
         return view('JobListingWebsite.list', compact('jobListing'));
     }
 
@@ -27,13 +27,14 @@ class JobListingWebsiteController extends Controller
             return view('JobListingWebsite.add');
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //return $request;
             $this->validate($request, [
                 'name'  => 'required|alpha|max:100',
                 'websiteLink' => 'required',
                 'email' => 'required',
                 'password' => 'required',
             ]);
-            JobListingWebsite::add($request);
+            JobListingWebsite::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';
             return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
         }
@@ -42,7 +43,7 @@ class JobListingWebsiteController extends Controller
     public function edit(Request $request, $id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $jobadd = JobListingWebsite::find($id);
+            $jobadd = JobListingWebsite::withTrashed()->find($id);
             return view('JobListingWebsite.add', compact('jobadd'));
         }
     }
