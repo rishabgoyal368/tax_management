@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Exports\DesignationExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Designation;
 use App\Department;
 
@@ -38,8 +41,10 @@ class DesignationsController extends Controller
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->validate($request, [
-                'title'  => 'required',
+                // 'title'  => 'required|'.($request->id ? 'unique:designations,title,Null,id' : 'unique:designations,title,' . $request->id . ',id'),
+                'title'  => 'required|unique:designations,title,' . $request->id . ',id',
                 'department' => 'required',
+                // 'departmentId' => 'nullable|exists:departments,id',
                 'status' => 'required',
             ]);
             // return $request;
@@ -73,5 +78,16 @@ class DesignationsController extends Controller
     public function Designation(Request $request)
     {
         return Designation::withTrashed()->where('title', 'LIKE', "%{$request->name}%")->get();
+    }
+
+    public function export()
+    {
+        $arr =  [
+            'name' => 'Povilas',
+            'surname' => 'Korop',
+            'email' => 'povilas@laraveldaily.com',
+            'twitter' => '@povilaskorop'
+        ];
+        return Excel::download(new DesignationExport($arr), 'invoices.xlsx');
     }
 }

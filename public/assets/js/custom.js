@@ -1,5 +1,4 @@
 function getDataByType(url, val, appendText) {
-    console.log(appendText)
     $.ajax({
         url: url,
         type: 'POST',
@@ -7,27 +6,25 @@ function getDataByType(url, val, appendText) {
         data: { 'name': val },
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
         success: function(data) {
+            // console.log(data)
             if (data.length > 0) {
-                $('#textboxSelect li').remove()
+                $(appendText).next('ul').empty()
                 var optionsAsString = "";
-                $('#textboxSelect').css('display', 'block')
+                $(appendText).next('ul').css('display', 'block')
                 $(data).each(function(index, value) {
                     $(value).each(function(i, j) {
                         optionsAsString += '<li class="selectDocId" data-docId="' + j.id + '">' + j.title + '</li>'
                     })
                 })
-                $('#textboxSelect').append(optionsAsString);
+                $(appendText).next('ul').append(optionsAsString);
                 $('.selectDocId').click(function() {
-                    // click on dropdown
-                    var valInput = $(this).text();
                     appendText.value = $(this).text();
-                    // $('#textboxSelect').prev().prev().val($(this).data('docid'))
-                    $('#textboxSelect').css('display', 'none')
-
+                    $(appendText).prev().val($(this).data('docid'))
+                    $(appendText).next('ul').css('display', 'none')
                 });
             } else {
                 // If no data found
-                $('.recentSearchDrop').css('display', 'none')
+                $(appendText).next('ul').css('display', 'none')
             }
         },
         error: function(err) {}
@@ -50,12 +47,11 @@ function commonDelete(url, id, back_url) {
             }
             if (data['success']) {
                 $('.deleteError').text(data['success']).addClass('alert alert-success')
-                setTimeout(function() { location.href = back_url }, 2000);
-
+                setTimeout(function() { location.href = back_url }, 500);
             }
         },
         error: function(err) {
-            // alert('Something went wrong')
+            alert('Something went wrong')
         }
     });
 }

@@ -2197,3 +2197,31 @@ textarea.form-control {
 .recentSearchDrop li:hover a {
     color: #fff;
 }
+
+.text-error strong {
+    color: #f73939;
+    font-size: 14px;
+}
+
+.action_block a {
+    font-size: 18px;
+    margin-right: 3px;
+    display: inline-block;
+}
+
+.edit_icon {
+    color: #0dc123 !important;
+}
+
+.trash-icon {
+    color: #ef2323 !important;
+}
+
+.eye_icon i {
+    color: #2ccdf1 !important;
+}
+
+.deleteError {
+    width: 100%;
+    margin: 10px 0;
+}

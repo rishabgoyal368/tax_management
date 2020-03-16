@@ -8,9 +8,10 @@
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title mb-4">Are You Sure Want to Delete?</h4>
-                <label for="error" class="deleteError"></label>
+                
                 <button type="button" class="btn btn-danger text-white text-center ctm-border-radius mb-2 mr-3" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-theme text-white text-center ctm-border-radius mb-2 button-1 deleteList" >Delete</button>
+                <label for="error" class="deleteError"></label>
             </div>
         </div>
     </div>

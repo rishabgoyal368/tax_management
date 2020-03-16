@@ -59,7 +59,10 @@ class Designation extends Authenticatable
 
     public static function remove($id)
     {
-        return Designation::where('id', $id)->delete();
+        Designation::withTrashed()->where('id', $id)->update([
+            'status' => 3
+        ]);
+        return Designation::withTrashed()->where('id', $id)->delete();
     }
 
     public function getDepartment()
