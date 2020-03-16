@@ -36,8 +36,14 @@ Breadcrumbs::for('Add-job-listing-websites', function ($trail) {
 });
 
 Breadcrumbs::for('Edit-job-listing-websites', function ($trail) {
-    $trail->parent('Job listing websites');
+    $trail->parent('Job-listing-websites');
 
-    $trail->push('Add job listing websites', url('Add-job-listing-websites'));
+    $trail->push('Edit job listing websites', url('edit-job-listing-websites'));
+});
+
+Breadcrumbs::for('Show-job-listing-websites', function ($trail) {
+    $trail->parent('Job-listing-websites');
+
+    $trail->push('Show job listing websites', url('show-job-listing-websites'));
 });
 

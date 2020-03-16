@@ -17,7 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 Auth::routes(['register' => false]);
 
-
+//==========> Job listing Website <===================//
 Route::get('/Job-listing-websites', 'JobListingWebsiteController@show')->name('Job-listing-websites');
 Route::any('Add-job-listing-websites', 'JobListingWebsiteController@add');
 Route::any('Edit-job-listing-websites/{id}', 'JobListingWebsiteController@edit');
@@ -32,3 +32,5 @@ Route::any('add-designation', 'DesignationsController@add');
 Route::any('edit-designation/{id}', 'DesignationsController@add');
 Route::get('view-designation/{id}', 'DesignationsController@view');
 Route::delete('delete-designation', 'DesignationsController@delete');
+
+
