@@ -22,6 +22,11 @@ Breadcrumbs::for('edit-designation', function ($trail) {
     $trail->push('Edit designation', url('edit-designation'));
 });
 
+Breadcrumbs::for('view-designation', function ($trail) {
+    $trail->parent('designation');
+    $trail->push('View designation', url('view-designation'));
+});
+
 // Home > Job-listing-websites
 Breadcrumbs::for('Job-listing-websites', function ($trail) {
     $trail->parent('home');

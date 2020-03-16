@@ -1,4 +1,5 @@
 function getDataByType(url, val, appendText) {
+    console.log(appendText)
     $.ajax({
         url: url,
         type: 'POST',
@@ -88,6 +89,22 @@ $(document).ready(function() {
         $(this).attr('disabled', true)
         commonDelete(url, id, backUrl)
 
+    });
+
+    $('.commonCustomSelect').keyup(function() {
+        if ($(this).val().length > 2) {
+            var searchValue = $(this).val();
+            var url = $(this).data('url');
+            // var select = $(this).data('select');
+            // $('#' + select).prev().prev().val('')
+            var appendText = this;
+            getDataByType(url, searchValue, appendText)
+        }
+        if ($('.commonCustomSelect').val().length < 2) {
+            $('.recentSearchDrop').css('display', 'none')
+            var select = $(this).data('select');
+            $('#' + select).prev().prev().val('')
+        }
     });
 
 });

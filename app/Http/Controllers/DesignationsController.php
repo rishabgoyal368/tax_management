@@ -20,8 +20,8 @@ class DesignationsController extends Controller
 
     public function show()
     {
-        $GetDepartment = Designation::latest()->paginate(env('PAGINATE'));
-        return view('Department.list', compact('GetDepartment'));
+        $GetDepartment = Designation::withTrashed()->latest()->paginate(env('PAGINATE'));
+        return view('Designation.list', compact('GetDepartment'));
     }
 
     public function add(Request $request, $id = null)
@@ -29,18 +29,20 @@ class DesignationsController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($id) {
                 #Update
-                $department = Designation::find($id);
-                return view('Department.details', compact('department'));
+                $department = Designation::withTrashed()->find($id);
+                return view('Designation.details', compact('department'));
             } else {
                 #Insert
-                return view('Department.details');
+                return view('Designation.details');
             }
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->validate($request, [
                 'title'  => 'required',
                 'department' => 'required',
+                'status' => 'required',
             ]);
+            // return $request;
             $request['department_id'] = Department::checkOrCreate($request->department);
             Designation::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';
@@ -60,5 +62,16 @@ class DesignationsController extends Controller
             Designation::remove($request->id);
             return response()->json(['success' => 'Designation deleted successfully.']);
         }
+    }
+
+    public function view($id)
+    {
+        $designation = Designation::withTrashed()->find($id);
+        return view('Designation.view', compact('designation'));
+    }
+
+    public function Designation(Request $request)
+    {
+        return Designation::withTrashed()->where('title', 'LIKE', "%{$request->name}%")->get();
     }
 }

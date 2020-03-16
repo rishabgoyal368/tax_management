@@ -20,21 +20,42 @@ class Designation extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'title', 'uploadBy', 'department_id'
+        'title', 'uploadBy', 'department_id', 'status'
     ];
 
     public static function addorUpdate($data)
     {
-        Designation::updateOrCreate(
-            [
-                'id' => $data['id']
-            ],
-            [
-                'title' => $data['title'],
-                'department_id' => $data['department_id'] ?: null,
-            ]
-        );
+        if($data['status'] == '3')
+        {
+            $data =  Designation::withTrashed()->updateOrCreate(
+                [
+                    'id' => $data['id']
+                ],
+                [
+                    'title' => $data['title'],
+                    'department_id' => $data['department_id'] ?: null,
+                    'status' => (int) $data['status'],
+                ]
+            );
+            Designation::where('id', $data['id'])->delete();
+        }
+        else{
+            Designation::withTrashed()->updateOrCreate(
+                [
+                    'id' => $data['id']
+                ],
+                [
+                    'title' => $data['title'],
+                    'department_id' => $data['department_id'] ?: null,
+                    'status' => (int) $data['status'],
+                ]
+            );
+            Designation::where('id', $data['id'])->restore();
+        }
+       
     }
+
+    
 
     public static function remove($id)
     {
