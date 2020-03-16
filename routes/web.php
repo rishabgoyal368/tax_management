@@ -21,17 +21,16 @@ Auth::routes(['register' => false]);
 Route::get('/Job-listing-websites', 'JobListingWebsiteController@show')->name('Job-listing-websites');
 Route::any('Add-job-listing-websites','JobListingWebsiteController@add');
 Route::any('Edit-job-listing-websites/{id}','JobListingWebsiteController@edit');
-Route::any('Show-job-listing-websites/{id}','JobListingWebsiteController@display');
-Route::any('Delete-job-listing-websites/{id}','JobListingWebsiteController@delete');
+Route::get('Show-job-listing-websites/{id}','JobListingWebsiteController@display');
+Route::get('Delete-job-listing-websites/{id}','JobListingWebsiteController@delete');
 
 
 
 
 
-Route::post('/get-department-ajax', 'DepartmentController@getDepartment');
+Route::get('/designations', 'DesignationsController@show');
 
 
-Route::get('/designation', 'DesignationsController@show')->name('designation');
-Route::any('add-designation', 'DesignationsController@add');
-Route::any('edit-designation/{id}', 'DesignationsController@add');
+Route::get('/department', 'DepartmentController@show')->name('department');
+Route::any('Add-department', 'DepartmentController@add');
 

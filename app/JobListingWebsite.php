@@ -27,10 +27,15 @@ class JobListingWebsite extends Authenticatable
                 ['name' => $data['name'],
                 'website' => $data['websiteLink'],
                 'email' => $data['email'],
-                'password' => Hash::make($data['password']),
+                'password' => $data['password'],
                 'status' => $data['status'],
             ]);
     }
+
+    public function setCompanyNameAttribute($value)
+{
+    $this->attributes['company_name'] = strtoupper($value);
+}
 
 
 }
