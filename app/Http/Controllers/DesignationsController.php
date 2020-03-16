@@ -29,7 +29,7 @@ class DesignationsController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($id) {
                 #Update
-                $department = Designation::withTrashed()->find($id);
+                $department = Designation::find($id);
                 return view('Designation.details', compact('department'));
             } else {
                 #Insert
@@ -40,9 +40,7 @@ class DesignationsController extends Controller
             $this->validate($request, [
                 'title'  => 'required',
                 'department' => 'required',
-                'status' => 'required',
             ]);
-            // return $request;
             $request['department_id'] = Department::checkOrCreate($request->department);
             Designation::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';
@@ -62,16 +60,5 @@ class DesignationsController extends Controller
             Designation::remove($request->id);
             return response()->json(['success' => 'Designation deleted successfully.']);
         }
-    }
-
-    public function view($id)
-    {
-        $designation = Designation::withTrashed()->find($id);
-        return view('Designation.view', compact('designation'));
-    }
-
-    public function Designation(Request $request)
-    {
-        return Designation::withTrashed()->where('title', 'LIKE', "%{$request->name}%")->get();
     }
 }

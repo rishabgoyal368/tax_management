@@ -39,7 +39,7 @@
                                             <td>
                                                 <a href="{{url('/edit-designation')}}/{{$department->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
                                                 <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" class="common_delete" data-target=".common_delete_modal" data-url="{{url('/delete-designation')}}" data-back_url="{{url('/designation')}}" data-id="{{$department->id}}">
-                                                    <span class="lnr lnr-trash"></span>
+                                                    <span class="lnr lnr-trash" data-toggle="tooltip" title="delete"></span>
                                                 </a>
                                                 <a href="{{url('/view-designation')}}/{{$department->id}}" target="_blank"> <i class="fa fa-fw fa-eye" style="color:blue;" data-toggle="tooltip" title="View"></i></a></td>
 
