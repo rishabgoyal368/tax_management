@@ -32,10 +32,8 @@ class JobListingWebsite extends Authenticatable
             ]);
     }
 
-    public function setCompanyNameAttribute($value)
-{
-    $this->attributes['company_name'] = strtoupper($value);
-}
-
-
+    public static function remove($id)
+    {
+       JobListingWebsite::where('id',$id)->delete(); 
+    }
 }
