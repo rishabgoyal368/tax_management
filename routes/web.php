@@ -28,6 +28,7 @@ Route::any('Delete-job-listing-websites/{id}', 'JobListingWebsiteController@dele
 Route::post('/get-department-ajax', 'DepartmentController@getDepartment');
 //==========> Designation <=================// 
 Route::get('/designation', 'DesignationsController@show')->name('designation');
+Route::post('/get-department-title', 'DesignationsController@Designation');
 Route::any('add-designation', 'DesignationsController@add');
 Route::any('edit-designation/{id}', 'DesignationsController@add');
 Route::get('view-designation/{id}', 'DesignationsController@view');

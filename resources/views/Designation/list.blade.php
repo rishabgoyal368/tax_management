@@ -25,6 +25,7 @@
                                             <th>S.no</th>
                                             <th>name</th>
                                             <th>Deparment</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -34,11 +35,14 @@
                                             <td>{{($GetDepartment->currentpage()-1) * $GetDepartment->perpage() + $key + 1}}</td>
                                             <td>{{$department->title}}</td>
                                             <td>{{$department->getDepartment['title']}}</td>
+                                            <td> <label class="{{statusClass($department->status)}}">{{status($department->status)}}</label></td>
                                             <td>
                                                 <a href="{{url('/edit-designation')}}/{{$department->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
                                                 <a href="javascript:void(0);" data-toggle="modal" data-backdrop="static" class="common_delete" data-target=".common_delete_modal" data-url="{{url('/delete-designation')}}" data-back_url="{{url('/designation')}}" data-id="{{$department->id}}">
                                                     <span class="lnr lnr-trash"></span>
                                                 </a>
+                                                <a href="{{url('/view-designation')}}/{{$department->id}}" target="_blank"> <i class="fa fa-fw fa-eye" style="color:blue;" data-toggle="tooltip" title="View"></i></a></td>
+
                                             </td>
                                         </tr>
                                         @empty
