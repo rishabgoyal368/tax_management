@@ -1,39 +1,42 @@
 <?php
-function status($status)
+
+namespace App\Helpers;
+
+class Helper
 {
-    switch ($status) {
-        case '1':
-            echo 'Active';
-            break;
-        case '2':
-            echo 'Deactivated';
-            break;
-        case '3':
-            echo 'Deleted';
-            break;
-        case '4':
-            echo 'Archive';
-            break;
+    public static function status($status)
+    {
+        switch ($status) {
+            case '1':
+                return 'Active';
+                break;
+            case '2':
+                return 'Deactivated';
+                break;
+            case '3':
+                return 'Deleted';
+                break;
+            case '4':
+                return 'Archive';
+                break;
+        }
+    }
+
+    public static function statusClass($status)
+    {
+        switch ($status) {
+            case '1':
+                return 'badge badge-success';
+                break;
+            case '2':
+                return 'badge badge-warning';
+                break;
+            case '3':
+                return 'badge badge-danger';
+                break;
+            case '4':
+                return 'badge badge-primary';
+                break;
+        }
     }
 }
-
-function statusClass($status)
-{
-    switch ($status) {
-        case '1':
-            echo 'badge badge-success';
-            break;
-        case '2':
-            echo 'badge badge-warning';
-            break;
-        case '3':
-            echo 'badge badge-danger';
-            break;
-        case '4':
-            echo 'badge badge-primary';
-            break;
-    }
-}
-
-
-?>
