@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 use App\Designation;
 use App\Department;
-
+use Helper;
 
 
 class DesignationsController extends Controller
@@ -23,8 +23,12 @@ class DesignationsController extends Controller
 
     public function show()
     {
-        $GetDepartment = Designation::withTrashed()->latest()->paginate(env('PAGINATE'));
-        return view('Designation.list', compact('GetDepartment'));
+        $result = Designation::withTrashed()->newQuery();
+        $resultIds = clone $result;
+        $id = $resultIds->pluck('id')->toArray();
+        $ids = implode(',', $id);
+        $GetDepartment = $result->latest()->paginate(env('PAGINATE'));
+        return view('Designation.list', compact('GetDepartment', 'ids'));
     }
 
     public function add(Request $request, $id = null)
@@ -81,12 +85,16 @@ class DesignationsController extends Controller
 
     public function export(Request $request)
     {
-        $arr =  [
-            'name' => 'Povilas',
-            'surname' => 'Korop',
-            'email' => 'povilas@laraveldaily.com',
-            'twitter' => '@povilaskorop'
-        ];
+        $ids =   explode(',', $request['id']);
+        $data =  Designation::withTrashed()->with('getDepartment')->whereIn('id', $ids)->latest()->get()->toArray();
+        foreach ($data as $value) {
+            $status =  Helper::status($value['status']);
+            $arr[] = array(
+                'title' => $value['title'],
+                'department' => $value['get_department']['title'],
+                'status' => $status,
+            );
+        }
         return Excel::download(new DesignationExport($arr), 'invoices.xlsx');
     }
 }

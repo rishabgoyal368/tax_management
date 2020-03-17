@@ -26,9 +26,8 @@ class DesignationExport implements FromCollection, WithHeadings
     {
         return [
             'Name',
-            'Surname',
-            'Email',
-            'Twitter',
+            'department',
+            'status',
         ];
     }
 }

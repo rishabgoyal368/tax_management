@@ -15,6 +15,13 @@
                         <a href="{{url('/export-designation')}}" class="float-right add-doc text-primary">Export</a><br>
                         <a href="{{url('/export-designation')}}" class="float-right add-doc text-primary">Import</a>
                     </div>                    
+                        <a href="{{url('/export-designation')}}" onclick="event.preventDefault();document.getElementById('document-export').submit();" class="float-right add-doc text-primary">Export</a><br>
+
+                        <form action="{{url('export-designation')}}" method="post" id="document-export" style='display:none'>
+                            @csrf
+                            <input type="hidden" name="id" value="{{$ids}}">
+                        </form>
+                    </div>
                     <div class="card-body">
                         <div class="employee-office-table">
                             <div class="table-responsive">
@@ -34,13 +41,13 @@
                                             <td>{{($GetDepartment->currentpage()-1) * $GetDepartment->perpage() + $key + 1}}</td>
                                             <td>{{$department->title}}</td>
                                             <td>{{$department->getDepartment['title']}}</td>
-                                            <td> <label class="{{statusClass($department->status)}}">{{status($department->status)}}</label></td>
+                                            <td> <label class="{{Helper::statusClass($department->status)}}">{{Helper::status($department->status)}}</label></td>
                                             <td>
                                                 <div class="action_block">
                                                     <a class="edit_icon" href="{{url('/edit-designation')}}/{{$department->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
-                                                    <a class="trash-icon common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static"  data-target=".common_delete_modal" data-url="{{url('/delete-designation')}}" data-back_url="{{url('/designation')}}" data-id="{{$department->id}}">
-                                                        <span class="lnr lnr-trash"  data-toggle="tooltip" title="Delete"></span>
-                                                     </a>
+                                                    <a class="trash-icon common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target=".common_delete_modal" data-url="{{url('/delete-designation')}}" data-back_url="{{url('/designation')}}" data-id="{{$department->id}}">
+                                                        <span class="lnr lnr-trash" data-toggle="tooltip" title="Delete"></span>
+                                                    </a>
                                                     <a class="eye_icon" href="{{url('/view-designation')}}/{{$department->id}}" target="_blank"> <i class="fa fa-fw fa-eye" data-toggle="tooltip" title="View"></i></a>
                                                 </div>
                                             </td>
