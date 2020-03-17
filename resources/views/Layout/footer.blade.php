@@ -59,3 +59,20 @@
 
 <!--sweetalert js-->
 <script src="{{asset('assets/js/sweetalert.min.js')}}"></script>
+
+<!--multipleselect-->
+ <script src="{{asset('assets/js/bootstrap-select.min.js')}}"></script>
+
+
+
+  <script>
+$(document).ready(function() {
+        $('#linkSelect').multiselect();
+        $('#emailSelect').multiselect();
+        $('#statusSelect').multiselect();
+    });
+</script>
+<script type="text/javascript">
+    $('select').selectpicker();
+
+</script>>

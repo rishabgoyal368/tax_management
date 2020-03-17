@@ -19,8 +19,64 @@
                         </h4>
                         <a href="{{url('/Add-job-listing-websites')}}" class="float-right add-doc text-primary">Add Job Listing Websites
                         </a>
+
                     </div>
                     <div class="card-body">
+                        <form method="post" action="{{url('/Job-listing-websites')}}">
+                        @csrf
+                        <div class="row">
+                            <div class="col-1 pt-3">
+                                <label><b>Search:</b></label>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <input type="text" name="master" value="{{old('master') ?: $master }}" class="form-control" placeholder="Document" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <select class="selectpicker" multiple data-live-search="true" name="webplateform[]" data-style="form-control btn-default btn-outline">
+                                    <option disabled>select Plateform</option>
+
+                                        @foreach($joblist as $value2)
+                                        <option value="{{$value2->id}}"  @if(!empty($link)) @if(in_array($value2->id,$link)) selected @endif @endif>{{$value2->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <select class="selectpicker" multiple data-live-search="true" id="emailSelect" name="webemail[]" data-style="form-control btn-default btn-outline">
+                                    <option disabled>select Email</option>
+                                    @foreach($joblist as $value3)
+                                    <option value="{{$value3->id }}" @if(!empty($email)) @if(in_array($value3->id,$email)) selected @endif @endif>{{$value3->email}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pb-5 border-bottom mb-5">
+                            <div class="col-1"></div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    
+                                    <select class="selectpicker" multiple data-live-search="true" id="statusSelect" name="webstatus[]" data-style="form-control btn-default btn-outline">
+                                        <option disabled>select Status</option>
+                                        @foreach($joblist as $value)
+                                        <option value="{{$value->id}}" @if(!empty($status)) @if(in_array($value->id,$status)) selected @endif @endif>{{status($value->status)}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info mr-10"> Search</button>
+                                    <a class="btn btn-danger" href="{{url('/Job-listing-websites')}}"> Reset</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                         <div class="employee-office-table">
                             <div class="table-responsive">
                                 <table class="table custom-table">
