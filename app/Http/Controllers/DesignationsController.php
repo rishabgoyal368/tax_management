@@ -79,7 +79,7 @@ class DesignationsController extends Controller
         return Designation::withTrashed()->where('title', 'LIKE', "%{$request->name}%")->get();
     }
 
-    public function export()
+    public function export(Request $request)
     {
         $arr =  [
             'name' => 'Povilas',
