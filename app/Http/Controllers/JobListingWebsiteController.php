@@ -14,10 +14,36 @@ class JobListingWebsiteController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function show()
+    public function show(Request $request)
     {
-        $jobListing = JobListingWebsite::withTrashed()->latest()->paginate(10);
-        return view('JobListingWebsite.list', compact('jobListing'));
+        //return $request;
+            $master = $request->master;
+            $link = $request->webplateform;
+            $email = $request->webemail;
+            $status = $request->webstatus;
+            $joblist = JobListingWebsite::withTrashed()->get(); 
+            $jobListing = JobListingWebsite::withTrashed()->where(function ($query) use ($master,$link,$email,$status) {
+            // if Name Search
+            if ($master) {
+            $query->where('name', 'LIKE', "%{$master}%");    
+                    $query->orWhere('email', 'LIKE', "%{$master}%");
+                    $query->orWhere('website', 'LIKE', "%{$master}%");
+            }
+            
+            if ($link) {
+            $query->whereIn('id', $link);
+            }
+            if ($email) {
+            $query->whereIn('id', $email);
+            }
+            if ($status) {
+            $query->whereIn('id', $status);
+            }
+
+            })->latest()->paginate(10);
+            return view('JobListingWebsite.list', compact('jobListing','joblist','plateform','link','email','status','master'));
+         
+
     }
 
     public function add(Request $request)

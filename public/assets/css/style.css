@@ -2197,3 +2197,13 @@ textarea.form-control {
 .recentSearchDrop li:hover a {
     color: #fff;
 }
+
+.dropdown.bootstrap-select.show-tick {
+    width: 100% !important;
+}
+.dropdown.bootstrap-select.show-tick .dropdown-menu.show {
+    min-width: auto !important;
+}
+.bootstrap-select .dropdown-toggle .filter-option-inner-inner {
+    text-overflow: ellipsis;
+}

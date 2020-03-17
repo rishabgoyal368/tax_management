@@ -51,4 +51,3 @@ Breadcrumbs::for('Show-job-listing-websites', function ($trail) {
 
     $trail->push('Show job listing websites', url('show-job-listing-websites'));
 });
-

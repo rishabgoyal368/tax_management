@@ -18,11 +18,12 @@ Route::get('/', 'HomeController@index')->name('home');
 Auth::routes(['register' => false]);
 
 //==========> Job listing Website <===================//
-Route::get('/Job-listing-websites', 'JobListingWebsiteController@show')->name('Job-listing-websites');
+Route::any('/Job-listing-websites', 'JobListingWebsiteController@show')->name('Job-listing-websites');
 Route::any('Add-job-listing-websites', 'JobListingWebsiteController@add');
 Route::any('Edit-job-listing-websites/{id}', 'JobListingWebsiteController@edit');
 Route::any('Show-job-listing-websites/{id}', 'JobListingWebsiteController@display');
 Route::any('Delete-job-listing-websites', 'JobListingWebsiteController@delete');
+
 
 //==========> Department <===================//
 Route::post('/get-department-ajax', 'DepartmentController@getDepartment');
