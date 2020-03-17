@@ -13,7 +13,7 @@
                         <h4 class="card-title d-inline-block mb-0">Designation</h4>
                         <a href="{{url('/add-designation')}}" class="float-right add-doc text-primary">Add Designation</a><br>
                         <a href="{{url('/export-designation')}}" class="float-right add-doc text-primary">Export</a><br>
-                        <!-- <a href="{{url('/export-designation')}}" class="float-right add-doc text-primary">Import</a> -->
+                        <a href="{{url('/export-designation')}}" class="float-right add-doc text-primary">Import</a>
                     </div>                    
                     <div class="card-body">
                         <div class="employee-office-table">
