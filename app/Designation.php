@@ -25,7 +25,7 @@ class Designation extends Authenticatable
 
     public static function addorUpdate($data)
     {
-        if($data['status'] == '3')
+        if($data['status'] == 'Deleted')
         {
             $data =  Designation::withTrashed()->updateOrCreate(
                 [

@@ -29,6 +29,7 @@ class JobListingWebsiteExport implements FromCollection, WithHeadings
             'website',
             'email',
             'status',
+            'Password'
         ];
     }
 }

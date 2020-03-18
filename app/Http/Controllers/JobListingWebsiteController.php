@@ -56,7 +56,7 @@ class JobListingWebsiteController extends Controller
             $result->orderBy('id', $searchemail);
         }
         if ($searchstatus) {
-            $result->orderBy('id', $searchstatus);
+            $result->orderBy('status', $searchstatus);
         }
         if ($searchlink) {
             $result->orderBy('id', $searchlink);
@@ -121,15 +121,15 @@ class JobListingWebsiteController extends Controller
         $data =  JobListingWebsite::withTrashed()->whereIn('id', $ids)->latest()->get()->toArray();
         //dd($data);
         foreach ($data as $value) {
-            // $status =  Helper::status($value['status']);
             $arr[] = array(
                 'name' => $value['name'],
                 'websitelink' => $value['website'],
                 'Email' => $value['email'],
                 'Status' => $value['status'],
+                'Password' => $value['password'],
             );
         }
-        return Excel::download(new JobListingWebsiteExport($arr), 'invoices.xlsx');
+        return Excel::download(new JobListingWebsiteExport($arr), 'Job_listing_website.xlsx');
        
     }
 }

@@ -23,23 +23,31 @@ class DesignationsController extends Controller
 
     public function show(Request $request)
     {
-
         $GetDepartment = Department::get();
         $Designation = Designation::withTrashed()->get();
         $master = $request->master;
         $status = $request->status;
         $department = $request->department;
-        $result = Designation::withTrashed()->orwhereHas('getDepartment', function ($query) use ($master) {
+
+        $departmentSort = $request->departmentSort;
+        $indexSort = $request->indexSort;
+        $titleSort = $request->titleSort;
+        $statusSort = $request->statusSort;
+
+        $result = Designation::withTrashed()->orwhereHas('getDepartment', function ($query) use ($master, $departmentSort) {
             //Designer               
             if ($master) {
                 $query->where('title', 'LIKE', "%{$master}%");
+            }
+            if ($departmentSort) {
+                $query->orderBy('title', $departmentSort);
             }
         })->orWhere(function ($query) use ($department, $status, $master) {
             // if Name Search
             if ($master) {
                 $query->where('title', 'LIKE', "%{$master}%");
                 $query->orWhere('status', 'LIKE', "%{$master}%");
-            }            
+            }
         })->where(function ($query) use ($department, $status, $master) {
             // If currency
             if ($department) {
@@ -50,12 +58,27 @@ class DesignationsController extends Controller
                 $query->whereIn('status', $status);
             }
         })->newQuery();
+        if ($indexSort) {
+            $result->orderBy('id', $indexSort);
+        }
+        // if ($departmentSort) {
+        //     $result->orderBy('id', $departmentSort);
+        // }
+
+        if ($statusSort) {
+            $result->orderBy('status', $statusSort);
+        }
+        if ($titleSort) {
+            $result->orderBy('title', $titleSort);
+        }
 
         $resultIds = clone $result;
         $id = $resultIds->pluck('id')->toArray();
         $ids = implode(',', $id);
-        $GetDesignation = $result->latest()->paginate(env('PAGINATE'));
-        return view('Designation.list', compact('GetDesignation', 'ids', 'GetDepartment', 'Designation', 'status', 'department','master'));
+        // return $GetDesignation = $result->toSql();
+
+        $GetDesignation = $result->paginate(env('PAGINATE'));
+        return view('Designation.list', compact('GetDesignation', 'ids', 'GetDepartment', 'Designation', 'status', 'department', 'master'));
     }
 
     public function add(Request $request, $id = null)
@@ -63,7 +86,7 @@ class DesignationsController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($id) {
                 #Update
-                $department = Designation::find($id);
+                $department = Designation::withTrashed()->find($id);
                 return view('Designation.details', compact('department'));
             } else {
                 #Insert
@@ -71,14 +94,13 @@ class DesignationsController extends Controller
             }
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $request['department_id'] = Department::checkOrCreate(@$request->department);
+
             $this->validate($request, [
-                // 'title'  => 'required|'.($request->id ? 'unique:designations,title,Null,id' : 'unique:designations,title,' . $request->id . ',id'),
-                'title'  => 'required|unique:designations,title,' . $request->id . ',id',
+                'title' =>  'required|unique:designations,title,' . $request['id'] . ',id,department_id,' . $request['department_id'] . ',deleted_at,NULL',
                 'department' => 'required',
-                // 'departmentId' => 'nullable|exists:departments,id',
                 'status' => 'required',
             ]);
-            // return $request;
             $request['department_id'] = Department::checkOrCreate($request->department);
             Designation::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';

@@ -22,17 +22,14 @@
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title mb-3" id='import_data_modal_head'> </h4>
-                <form action="" method="post" id='import_data_modal_form' enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <input type="hidden" name="type" value='' id="import_data_modal_type">
-                        <input type="file" name="import" class="form-control" id="import">
-                    </div>
-                    <label for="error" class="deleteError"></label>
+                <div class="form-group">
+                    <input type="hidden" name="type" value='' id="import_data_modal_type">
+                    <input type="file" name="import" class="form-control" id="import" accept=".xlsx">
+                </div>
+                <label for="error" class="deleteError"></label>
 
-                    <button type="button" class="btn btn-danger text-white ctm-border-radius float-right ml-3" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-theme button-1 text-white ctm-border-radius float-right">Add</button>
-                </form>
+                <button type="button" class="btn btn-danger text-white ctm-border-radius float-right ml-3" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-theme button-1 text-white ctm-border-radius float-right import_data_modal_form" data-url="" data-backurl="">Add</button>
             </div>
         </div>
     </div>

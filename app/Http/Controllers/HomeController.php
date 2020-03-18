@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Imports\DesignationImport;
+use App\Imports\JobListingWebsiteImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
@@ -40,9 +41,24 @@ class HomeController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()->first()]);
         } else {
-            Excel::import(new DesignationImport, $request->import);
-return redirect()->back();
+            $file_type =  $request->import->getClientOriginalExtension();
+            if ($file_type == 'xlsx') {
+                try {
+                    switch ($request->type) {
+                        case '1': # Designation 
+                            $model = new DesignationImport;
+                            break;
+                        case '2': #Job listing website
+                            $model = new JobListingWebsiteImport;
+                    }
+                    Excel::import($model, $request->import);
+                    return response()->json(['success' => 'Imported Successfully']);
+                } catch (\Exception $ex) {
+                    return response()->json(['error' => $ex->getMessage()]);
+                }
+            } else {
+                return response()->json(['error'=> 'The document must be a file of type: xlsx.']);
+            }
         }
-
     }
 }

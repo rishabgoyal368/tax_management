@@ -25,7 +25,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                <input type="text" name="title" id="title" class="form-control commonCustomSelect" autocomplete="off" data-url="{{url('/get-department-title')}}" placeholder="Title*" value="{{@$department->title ?: old('name') }}">
+                                <input type="text" name="title" id="title" class="form-control commonCustomSelect" autocomplete="off" data-url="{{url('/get-department-title')}}" placeholder="Title*" value="{{@$department->title ?: old('title') }}">
                                 <ul  class="recentSearchDrop" style="display:none" aria>
                                 </ul>
                                 @if ($errors->has('title'))
