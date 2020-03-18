@@ -53,7 +53,7 @@ class JobListingWebsiteController extends Controller
             return view('JobListingWebsite.add');
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            //return $request;
+            // return $request;
             $this->validate($request, [
                 'name'  => 'required|alpha|max:100',
                 'websiteLink' => 'required',

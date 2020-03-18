@@ -21,14 +21,41 @@ class DesignationsController extends Controller
     }
 
 
-    public function show()
+    public function show(Request $request)
     {
-        $result = Designation::withTrashed()->newQuery();
+
+        $GetDepartment = Department::get();
+        $Designation = Designation::withTrashed()->get();
+        $master = $request->master;
+        $status = $request->status;
+        $department = $request->department;
+        $result = Designation::withTrashed()->orwhereHas('getDepartment', function ($query) use ($master) {
+            //Designer               
+            if ($master) {
+                $query->where('title', 'LIKE', "%{$master}%");
+            }
+        })->orWhere(function ($query) use ($department, $status, $master) {
+            // if Name Search
+            if ($master) {
+                $query->where('title', 'LIKE', "%{$master}%");
+                $query->orWhere('status', 'LIKE', "%{$master}%");
+            }            
+        })->where(function ($query) use ($department, $status, $master) {
+            // If currency
+            if ($department) {
+                $query->whereIn('department_id', $department);
+            }
+            // If Signup
+            if ($status) {
+                $query->whereIn('status', $status);
+            }
+        })->newQuery();
+
         $resultIds = clone $result;
         $id = $resultIds->pluck('id')->toArray();
         $ids = implode(',', $id);
-        $GetDepartment = $result->latest()->paginate(env('PAGINATE'));
-        return view('Designation.list', compact('GetDepartment', 'ids'));
+        $GetDesignation = $result->latest()->paginate(env('PAGINATE'));
+        return view('Designation.list', compact('GetDesignation', 'ids', 'GetDepartment', 'Designation', 'status', 'department','master'));
     }
 
     public function add(Request $request, $id = null)
@@ -51,6 +78,7 @@ class DesignationsController extends Controller
                 // 'departmentId' => 'nullable|exists:departments,id',
                 'status' => 'required',
             ]);
+            // return $request;
             $request['department_id'] = Department::checkOrCreate($request->department);
             Designation::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';
@@ -88,11 +116,11 @@ class DesignationsController extends Controller
         $ids =   explode(',', $request['id']);
         $data =  Designation::withTrashed()->with('getDepartment')->whereIn('id', $ids)->latest()->get()->toArray();
         foreach ($data as $value) {
-            $status =  Helper::status($value['status']);
+            // $status =  Helper::status($value['status']);
             $arr[] = array(
                 'title' => $value['title'],
                 'department' => $value['get_department']['title'],
-                'status' => $status,
+                'status' => $value['status'],
             );
         }
         return Excel::download(new DesignationExport($arr), 'invoices.xlsx');

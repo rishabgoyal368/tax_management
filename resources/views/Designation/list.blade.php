@@ -12,9 +12,7 @@
                     <div class="card-header">
                         <h4 class="card-title d-inline-block mb-0">Designation</h4>
                         <a href="{{url('/add-designation')}}" class="float-right add-doc text-primary">Add Designation</a><br>
-                        <a href="{{url('/export-designation')}}" class="float-right add-doc text-primary">Export</a><br>
                         <a href="{{url('/export-designation')}}" class="float-right add-doc text-primary">Import</a>
-                    </div>                    
                         <a href="{{url('/export-designation')}}" onclick="event.preventDefault();document.getElementById('document-export').submit();" class="float-right add-doc text-primary">Export</a><br>
 
                         <form action="{{url('export-designation')}}" method="post" id="document-export" style='display:none'>
@@ -23,6 +21,52 @@
                         </form>
                     </div>
                     <div class="card-body">
+                        <form method="post" action="{{url('/designation')}}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-1 pt-3">
+                                    <label><b>Search:</b></label>
+                                </div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <input type="text" name="master" value="{{@$master }}" class="form-control" placeholder="Enter keywords" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <select class="selectpicker" multiple data-live-search="true" name="department[]" data-style="form-control btn-default btn-outline">
+                                            <option disabled>select Department</option>
+                                            @foreach($GetDepartment as $value)
+                                            <option value="{{$value->id}}" @if(!empty($department)) @if(in_array($value->id,$department)) selected @endif @endif>{{$value->title}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                <div class="form-group">
+                                    
+                                    <select class="selectpicker" multiple data-live-search="true" id="statusSelect" name="status[]" data-style="form-control btn-default btn-outline">
+                                        <option disabled>select Status</option>
+                                        @foreach($Designation->unique('status') as $value)
+                                        <option value="{{$value->status}}" @if(!empty($status)) @if(in_array($value->status,$status)) selected @endif @endif>{{($value->status)}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            </div>
+                            <div class="row pb-5 border-bottom mb-5">
+                                <div class="col-1"></div>
+
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info mr-10"> Search</button>
+                                        <a class="btn btn-danger" href="{{url('/designation')}}"> Reset</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <div class="employee-office-table">
                             <div class="table-responsive">
                                 <table class="table custom-table">
@@ -36,12 +80,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($GetDepartment as $key => $department)
+                                        @forelse($GetDesignation as $key => $department)
                                         <tr>
-                                            <td>{{($GetDepartment->currentpage()-1) * $GetDepartment->perpage() + $key + 1}}</td>
+                                            <td>{{($GetDesignation->currentpage()-1) * $GetDesignation->perpage() + $key + 1}}</td>
                                             <td>{{$department->title}}</td>
                                             <td>{{$department->getDepartment['title']}}</td>
-                                            <td> <label class="{{Helper::statusClass($department->status)}}">{{Helper::status($department->status)}}</label></td>
+                                            <td> <label class="{{Helper::statusClass($department->status)}}">{{($department->status)}}</label></td>
                                             <td>
                                                 <div class="action_block">
                                                     <a class="edit_icon" href="{{url('/edit-designation')}}/{{$department->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
@@ -65,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                    {{$GetDepartment->links()}}
+                    {{$GetDesignation->links()}}
                 </div>
             </div>
         </div>

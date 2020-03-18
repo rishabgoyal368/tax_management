@@ -34,7 +34,7 @@ class Designation extends Authenticatable
                 [
                     'title' => $data['title'],
                     'department_id' => $data['department_id'] ?: null,
-                    'status' => (int) $data['status'],
+                    'status' => $data['status'],
                 ]
             );
             Designation::where('id', $data['id'])->delete();
@@ -47,7 +47,7 @@ class Designation extends Authenticatable
                 [
                     'title' => $data['title'],
                     'department_id' => $data['department_id'] ?: null,
-                    'status' => (int) $data['status'],
+                    'status' =>  $data['status'],
                 ]
             );
             Designation::where('id', $data['id'])->restore();

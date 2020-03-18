@@ -48,10 +48,10 @@
                             <div class="col-md-12 form-group mb-0">
                                 <select class="form-control select" name="status">
                                     <option value="" selected disabled>Select Status</option>
-                                    <option @if((@$department->status || old('status')) == '1') selected @endif value="1">Active</option>
-                                    <option @if((@$department->status || old('status')) == '2') selected @endif value="2">Deactivated</option>
-                                    <option @if((@$department->status || old('status')) == '3') selected @endif value="3">Deleted</option>
-                                    <option @if((@$department->status || old('status')) == '4') selected @endif value="4">Archive</option>
+                                    <option @if((@$department->status ) == 'Active') selected @endif value="Active">Active</option>
+                                    <option @if((@$department->status ) == 'Deactivated') selected @endif value="Deactivated">Deactivated</option>
+                                    <option @if((@$department->status ) == 'Deleted') selected @endif value="Deleted">Deleted</option>
+                                    <option @if((@$department->status ) == 'Archive') selected @endif value="Archive">Archive</option>
                                 </select>
                                 @if ($errors->has('status'))
                                 <span class="siteLogo_error" role="alert">
