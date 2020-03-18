@@ -1,21 +1,43 @@
-<!-- Inner Wrapper -->
 <!--Delete The Modal -->
 <div class="modal fade common_delete_modal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-
-            <!-- Modal body -->
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title mb-4">Are You Sure Want to Delete?</h4>
-                
+
                 <button type="button" class="btn btn-danger text-white text-center ctm-border-radius mb-2 mr-3" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-theme text-white text-center ctm-border-radius mb-2 button-1 deleteList" >Delete</button>
+                <button type="button" class="btn btn-theme text-white text-center ctm-border-radius mb-2 button-1 deleteList">Delete</button>
                 <label for="error" class="deleteError"></label>
             </div>
         </div>
     </div>
 </div>
+<!-- End Delete the Modal -->
+<!-- Import Data Modal -->
+<div class="modal fade" id="addNewTeam">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title mb-3" id='import_data_modal_head'> </h4>
+                <form action="" method="post" id='import_data_modal_form' enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <input type="hidden" name="type" value='' id="import_data_modal_type">
+                        <input type="file" name="import" class="form-control" id="import">
+                    </div>
+                    <label for="error" class="deleteError"></label>
+
+                    <button type="button" class="btn btn-danger text-white ctm-border-radius float-right ml-3" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-theme button-1 text-white ctm-border-radius float-right">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Import Data Modal -->
 
 
 
@@ -61,18 +83,10 @@
 <script src="{{asset('assets/js/sweetalert.min.js')}}"></script>
 
 <!--multipleselect-->
- <script src="{{asset('assets/js/bootstrap-select.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap-select.min.js')}}"></script>
 
 
 
-  <!-- <script>
-$(document).ready(function() {
-        $('#linkSelect').multiselect();
-        $('#emailSelect').multiselect();
-        $('#statusSelect').multiselect();
-    });
-</script>
- -->
 <script type="text/javascript">
     $('select').selectpicker();
 </script>

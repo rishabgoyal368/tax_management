@@ -12,9 +12,8 @@
                     <div class="card-header">
                         <h4 class="card-title d-inline-block mb-0">Designation</h4>
                         <a href="{{url('/add-designation')}}" class="float-right add-doc text-primary">Add Designation</a><br>
-                        <a href="{{url('/export-designation')}}" class="float-right add-doc text-primary">Import</a>
+                        <a href="{{url('/export-designation')}}" class="float-right add-doc text-primary" id='importData' data-toggle="modal" data-target="#addNewTeam" data-model_name='Import Data in Designation' data-url="{{url('/import')}}" data-type="1">Import</a>
                         <a href="{{url('/export-designation')}}" onclick="event.preventDefault();document.getElementById('document-export').submit();" class="float-right add-doc text-primary">Export</a><br>
-
                         <form action="{{url('export-designation')}}" method="post" id="document-export" style='display:none'>
                             @csrf
                             <input type="hidden" name="id" value="{{$ids}}">

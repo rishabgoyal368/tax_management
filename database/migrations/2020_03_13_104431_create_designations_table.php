@@ -19,7 +19,7 @@ class CreateDesignationsTable extends Migration
             $table->id();
             $table->string('title');
             $table->unsignedBigInteger('department_id');
-            $table->string('status');
+            $table->enum('status', ['Active', 'Deactivated','Deleted','Archive'])->nullable();
             $table->string('deleted_at')->nullable();
             $table->timestamps();
         });

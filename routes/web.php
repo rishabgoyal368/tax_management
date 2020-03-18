@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
+Route::post('/import','HomeController@import');
 Auth::routes(['register' => false]);
 
 //==========> Job listing Website <===================//

@@ -31,6 +31,21 @@ function getDataByType(url, val, appendText) {
     });
 }
 
+function importData(url, type) {
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'JSON',
+        data: { 'type': type },
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function(data) {
+            console.log(data)
+
+        },
+        error: function(err) {}
+    });
+}
+
 function commonDelete(url, id, back_url) {
     $('#loader-wrapper').css('display', 'block')
     $.ajax({
@@ -61,8 +76,6 @@ $(document).ready(function() {
         if ($(this).val().length > 2) {
             var searchValue = $(this).val();
             var url = $(this).data('url');
-            // var select = $(this).data('select');
-            // $('#' + select).prev().prev().val('')
             var appendText = this;
             getDataByType(url, searchValue, appendText)
         }
@@ -102,8 +115,6 @@ $(document).ready(function() {
         if ($(this).val().length > 2) {
             var searchValue = $(this).val();
             var url = $(this).data('url');
-            // var select = $(this).data('select');
-            // $('#' + select).prev().prev().val('')
             var appendText = this;
             getDataByType(url, searchValue, appendText)
         }
@@ -112,6 +123,38 @@ $(document).ready(function() {
             var select = $(this).data('select');
             $('#' + select).prev().prev().val('')
         }
+    });
+
+    // Import Document
+    $('#importData').click(function() {
+        var url = $(this).data('url')
+        var modal_name = $(this).data('model_name')
+        var type = $(this).data('type')
+        $('#import_data_modal_type').val(type)
+        $('#import_data_modal_form').attr('action', url)
+        $('#import_data_modal_head').text(modal_name)
+    });
+
+    // Submit import data form
+    $("#import_data_modal_form").submit(function(e) {
+        var form = $(this);
+        var url = form.attr('action');
+        var total_file = document.getElementById("import").files[0];
+        var formData = new FormData();
+        formData.append('import', total_file);
+        formData.append('type', $('#import_data_modal_type').val());
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            success: function(data) {
+                console.log(data)
+            }
+        });
     });
 
 });
