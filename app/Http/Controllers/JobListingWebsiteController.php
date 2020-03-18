@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\JobListingWebsite;
+use App\Exports\JobListingWebsiteExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Helper;
 
 
 class JobListingWebsiteController extends Controller
@@ -58,8 +61,11 @@ class JobListingWebsiteController extends Controller
         if ($searchlink) {
             $result->orderBy('id', $searchlink);
         }
+        $resultIds = clone $result;
+        $id = $resultIds->pluck('id')->toArray();
+        $ids = implode(',', $id);
         $jobListing = $result->paginate(10);
-        return view('JobListingWebsite.list', compact('jobListing', 'joblist', 'link', 'email', 'status', 'master', 'index', 'searchplateform', 'searchemail', 'searchstatus', 'searchlink'));
+        return view('JobListingWebsite.list', compact('jobListing', 'joblist', 'link', 'email', 'status', 'master', 'index', 'searchplateform', 'searchemail', 'searchstatus', 'searchlink','ids'));
     }
 
     public function add(Request $request)
@@ -106,5 +112,24 @@ class JobListingWebsiteController extends Controller
             JobListingWebsite::remove($request->id);
             return response()->json(['success' => 'JobListingWebsite deleted successfully.']);
         }
+    }
+    //export
+    public function export(Request $request)
+    {
+        // dd($request->all());
+        $ids =   explode(',', $request['id']);
+        $data =  JobListingWebsite::withTrashed()->whereIn('id', $ids)->latest()->get()->toArray();
+        //dd($data);
+        foreach ($data as $value) {
+            // $status =  Helper::status($value['status']);
+            $arr[] = array(
+                'name' => $value['name'],
+                'websitelink' => $value['website'],
+                'Email' => $value['email'],
+                'Status' => $value['status'],
+            );
+        }
+        return Excel::download(new JobListingWebsiteExport($arr), 'invoices.xlsx');
+       
     }
 }

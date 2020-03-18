@@ -74,4 +74,6 @@ public static function addorUpdate($data)
     {
        JobListingWebsite::where('id',$id)->delete(); 
     }
+
+    
 }

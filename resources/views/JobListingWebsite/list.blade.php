@@ -19,6 +19,12 @@
                         </h4>
                         <a href="{{url('/Add-job-listing-websites')}}" class="float-right add-doc text-primary">Add Job Listing Websites
                         </a>
+                        <a href="{{url('/export-joblisting')}}" onclick="event.preventDefault();document.getElementById('documents-export').submit();" class="float-right add-doc text-primary">Export</a>
+                            
+                        <form action="{{url('export-joblisting')}}" method="post" id="documents-export">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$ids}}">
+                        </form>
 
                     </div>
                     <div class="card-body">
