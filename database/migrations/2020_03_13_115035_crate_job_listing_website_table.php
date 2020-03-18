@@ -19,7 +19,8 @@ class CrateJobListingWebsiteTable extends Migration
             $table->string('website');
             $table->string('email');
             $table->string('password');
-            $table->integer('status');
+            $table->string('status');
+            $table->string('deleted_at')->nullable();
             $table->timestamps();
         });
     }
