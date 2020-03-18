@@ -23,20 +23,19 @@ class Helper
     }
 
     public static function statusClass($status)
-    {
-        switch ($status) {
-            case '1':
-                return 'badge badge-success';
-                break;
-            case '2':
-                return 'badge badge-warning';
-                break;
-            case '3':
-                return 'badge badge-danger';
-                break;
-            case '4':
-                return 'badge badge-primary';
-                break;
-        }
+{
+    switch ($status) {
+        case 'Active':
+            echo 'badge badge-success';
+            break;
+        case 'Deleted':
+            echo 'badge badge-warning';
+            break;
+        case 'Deactivated':
+            echo 'badge badge-danger';
+            break;
+        case 'Archive':
+            echo 'badge badge-primary';
+            break;
     }
 }
