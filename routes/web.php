@@ -23,6 +23,8 @@ Route::any('Add-job-listing-websites', 'JobListingWebsiteController@add');
 Route::any('Edit-job-listing-websites/{id}', 'JobListingWebsiteController@edit');
 Route::any('Show-job-listing-websites/{id}', 'JobListingWebsiteController@display');
 Route::any('Delete-job-listing-websites', 'JobListingWebsiteController@delete');
+ROute::post('export-joblisting','JobListingWebsiteController@export');
+
 
 
 //==========> Department <===================//
