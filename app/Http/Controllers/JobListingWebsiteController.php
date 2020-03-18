@@ -99,7 +99,7 @@ class JobListingWebsiteController extends Controller
     }
     public function display(Request $request, $id)
     {
-        $jobshow = JobListingWebsite::find($id);
+        $jobshow = JobListingWebsite::withTrashed()->find($id);
         return view('JobListingWebsite.details', compact('jobshow'));
     }
     public function delete(Request $request)
@@ -130,7 +130,7 @@ class JobListingWebsiteController extends Controller
                 'Status' => $value['status'],
             );
         }
-        return Excel::download(new JobListingWebsiteExport($arr), 'invoices.xlsx');
+        return Excel::download(new JobListingWebsiteExport($arr), 'JobListingWebsite.xlsx');
        
     }
 }

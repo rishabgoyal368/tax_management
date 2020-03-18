@@ -27,7 +27,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title mb-3">Password verify</h4>
                         <div class="form-group">
-                            Email Id is: {{ Auth::user()->email }}
+                            Email Id is: {{ @Auth::user()->email }}
                             <form method="post" id="formpassword">
                                 @csrf
                                 <input type="Password" name="password" id="password">
