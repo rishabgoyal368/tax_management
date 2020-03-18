@@ -28,6 +28,8 @@ class JobListingWebsiteController extends Controller
         $searchemail = $request->Emailname;
         $searchstatus = $request->Statusname;
         $searchlink = $request->LinkName;
+        // $password = $request->password;
+
         $joblist = JobListingWebsite::withTrashed()->get();
         $result = JobListingWebsite::withTrashed()->where(function ($query) use ($master, $link, $email, $status) {
             // Master Search
@@ -50,21 +52,21 @@ class JobListingWebsiteController extends Controller
             $result->orderBy('id', $index);
         }
         if ($searchplateform) {
-            $result->orderBy('id', $searchplateform);
+            $result->orderBy('name', $searchplateform);
         }
         if ($searchemail) {
-            $result->orderBy('id', $searchemail);
+            $result->orderBy('email', $searchemail);
         }
         if ($searchstatus) {
-            $result->orderBy('id', $searchstatus);
+            $result->orderBy('status', $searchstatus);
         }
         if ($searchlink) {
-            $result->orderBy('id', $searchlink);
+            $result->orderBy('website', $searchlink);
         }
         $resultIds = clone $result;
         $id = $resultIds->pluck('id')->toArray();
         $ids = implode(',', $id);
-        $jobListing = $result->paginate(10);
+        $jobListing = $result->paginate(env('PAGINATE'));
         return view('JobListingWebsite.list', compact('jobListing', 'joblist', 'link', 'email', 'status', 'master', 'index', 'searchplateform', 'searchemail', 'searchstatus', 'searchlink','ids'));
     }
 
@@ -77,7 +79,7 @@ class JobListingWebsiteController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // return $request;
             $this->validate($request, [
-                'name'  => 'required|alpha|max:100',
+                'name'  => 'required|alpha_num|max:100',
                 'websiteLink' => 'required',
                 'email' => 'required',
                 'password' => 'required',
@@ -116,7 +118,6 @@ class JobListingWebsiteController extends Controller
     //export
     public function export(Request $request)
     {
-        // dd($request->all());
         $ids =   explode(',', $request['id']);
         $data =  JobListingWebsite::withTrashed()->whereIn('id', $ids)->latest()->get()->toArray();
         //dd($data);

@@ -14,7 +14,13 @@
                 <input type="hidden" name="id" id="id" value="{{@$jobadd->id ?: old('id') }}">
                 <div class="card ctm-border-radius shadow-sm grow">
                     <div class="card-header">
-                        <h4 class="card-title mb-0 d-inline-block">Add Job Listing Websites</h4>
+                        <h4 class="card-title mb-0 d-inline-block">
+                        @if(@$jobadd->id)
+                             Edit Job Listing Websites
+                         @else
+                            Add JOb Listing Website
+                        @endif
+                            </h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
