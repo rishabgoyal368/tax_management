@@ -77,6 +77,58 @@ $(document).ready(function() {
         }
     });
 
+//========================= JOB LISTING WEBSITE <===================//
+$('.sortCick').click(function(){
+var name = $(this).data('name')
+var value = $(this).data('value')
+var id = $(this).data('id')
+var submit = $(this).data('submit')
+$('#'+id).val(value).attr('name',name)
+$('#'+submit).trigger('click')
+});
+
+$('.sortplateform').click(function(){
+var name = $(this).data('name')
+var value = $(this).data('value')
+var id = $(this).data('id')
+var submit = $(this).data('submit')
+$('#'+id).val(value).attr('name',name)
+$('#'+submit).trigger('click')
+});
+
+$('.sortemail').click(function(){
+    var name = $(this).data('name');
+    var value = $(this).data('value');
+    var id = $(this).data('id');
+    var submit = $(this).data('submit');
+    $('#'+id).val(value).attr('name',name)
+    $('#'+submit).trigger('click');
+
+    //console.log(name);
+});
+
+$('.sortstatus').click(function(){
+    var name = $(this).data('name');
+    var value = $(this).data('value');
+    var id = $(this).data('id');
+    var submit = $(this).data('submit');
+    $('#'+id).val(value).attr('name',name)
+    $('#'+submit).trigger('click');
+
+});
+
+$('.sortlink').click(function(){
+    var name = $(this).data('name');
+    console.log(name);
+    var value = $(this).data('value');
+    var id = $(this).data('id');
+    var submit = $(this).data('submit');
+    $('#'+id).val(value).attr('name',name)
+    $('#'+submit).trigger('click');
+
+});
+
+
     //================ COMMON FUNCTION <==================
     $('.common_delete').click(function() {
         $('.deleteList').attr('data-url', $(this).data('url')).attr('data-id', $(this).data('id')).attr('data-back_url', $(this).data('back_url'))

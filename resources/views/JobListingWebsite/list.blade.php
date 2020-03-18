@@ -30,7 +30,8 @@
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    <input type="text" name="master" value="{{old('master') ?: $master }}" class="form-control" placeholder="Document" autocomplete="off">
+                                    <input type="text" name="master" value="{{ @$master }}" class="form-control" placeholder="Document" autocomplete="off">
+                                    <input type="hidden" value="">
                                 </div>
                             </div>
 
@@ -60,33 +61,41 @@
                             <div class="col-1"></div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    
                                     <select class="selectpicker" multiple data-live-search="true" id="statusSelect" name="webstatus[]" data-style="form-control btn-default btn-outline">
                                         <option disabled>select Status</option>
                                         @foreach($joblist as $value)
-                                        <option value="{{$value->id}}" @if(!empty($status)) @if(in_array($value->id,$status)) selected @endif @endif>{{status($value->status)}}</option>
+                                        <option value="{{$value->id}}" @if(!empty($status)) @if(in_array($value->id,$status)) selected @endif @endif>{{$value->status}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-3">
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-info mr-10"> Search</button>
+                                    <button type="submit" class="btn btn-info mr-10" id='job_list_submit'> Search</button>
                                     <a class="btn btn-danger" href="{{url('/Job-listing-websites')}}"> Reset</a>
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" value='{{@$index}}' name="" id='index'>
+                        <input type="hidden" value='{{@$searchplateform}}' name="" id='PlateformName'>
+                        <input type="hidden" value='{{@$searchemail}}' name="" id='Emailname' id="Emailname">
+                        <input type="hidden" value='{{@$searchstatus}}' name=""  id='Statusname'><input type="hidden" value='{{@$searchlink}}' name=""  id='LinkName'>
+
                     </form>
                         <div class="employee-office-table">
                             <div class="table-responsive">
                                 <table class="table custom-table">
                                     <thead>
                                         <tr>
-                                            <th>S.no</th>
-                                            <th>Platform name</th>
-                                            <th>Link to visit the platform</th>
-                                            <th>Email</th>
-                                            <th>Status</th>
+                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='index' data-id='index' data-submit='job_list_submit'></i>S.no<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='index' data-id='index' data-submit='job_list_submit'></i></th>
+
+                                            <th><i class="fa fa-fw fa-arrow-up sortplateform" data-value='asc' data-name='PlateformName' data-id='PlateformName' data-submit='job_list_submit'></i>Platform name<i class="fa fa-fw fa-arrow-down sortplateform" data-value='desc' data-name='PlateformName' data-id='PlateformName' data-submit='job_list_submit'></i></th>
+
+                                            <th><i class="fa fa-fw fa-arrow-up sortlink" data-value='asc' data-name='LinkName' data-id='LinkName' data-submit='job_list_submit'></i>Link to visit the platform<i class="fa fa-fw fa-arrow-down sortlink" data-value='desc' data-name='LinkName' data-id='LinkName' data-submit='job_list_submit'></i></th>
+
+                                            <th><i class="fa fa-fw fa-arrow-up sortemail" data-value='asc' data-name='Emailname' data-id='Emailname' data-submit='job_list_submit'></i>Email<i class="fa fa-fw fa-arrow-down sortemail" data-value='desc' data-name='Emailname' data-id='Emailname' data-submit='job_list_submit'></i></th>
+
+                                            <th><i class="fa fa-fw fa-arrow-up sortstatus" data-value='asc' data-name='Statusname' data-id='Statusname' data-submit='job_list_submit'></i>Status<i class="fa fa-fw fa-arrow-down sortstatus" data-value='desc' data-name='Statusname' data-id='Statusname' data-submit='job_list_submit'></i></th>
                                             <th>Active leads</th>
                                             <th>Actions</th>
                                         </tr>
@@ -98,7 +107,7 @@
                                             <td>{{$job_list->name}}</td>
                                             <td><a href="{{$job_list->website}}" target="_blank">{{$job_list->website}}</a></td>
                                             <td>{{$job_list->email}}</td>
-                                            <td><label class="{{statusClass($job_list->status)}}">{{status($job_list->status)}}</label></td>
+                                            <td><label class="{{statusClass($job_list->status)}}">{{$job_list->status}}</label></td>
                                             <td>--</td>
                                             <td><a href="{{url('/Edit-job-listing-websites')}}/{{$job_list->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
                                             

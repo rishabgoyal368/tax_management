@@ -35,4 +35,3 @@ Route::any('edit-designation/{id}', 'DesignationsController@add');
 Route::get('view-designation/{id}', 'DesignationsController@view');
 Route::delete('delete-designation', 'DesignationsController@delete');
 
-

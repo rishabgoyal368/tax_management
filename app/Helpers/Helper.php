@@ -20,16 +20,16 @@ function status($status)
 function statusClass($status)
 {
     switch ($status) {
-        case '1':
+        case 'Active':
             echo 'badge badge-success';
             break;
-        case '2':
+        case 'Deleted':
             echo 'badge badge-warning';
             break;
-        case '3':
+        case 'Deactivated':
             echo 'badge badge-danger';
             break;
-        case '4':
+        case 'Archive':
             echo 'badge badge-primary';
             break;
     }
