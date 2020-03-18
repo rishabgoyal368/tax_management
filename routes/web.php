@@ -34,8 +34,5 @@ Route::any('add-designation', 'DesignationsController@add');
 Route::any('edit-designation/{id}', 'DesignationsController@add');
 Route::get('view-designation/{id}', 'DesignationsController@view');
 Route::delete('delete-designation', 'DesignationsController@delete');
-<<<<<<< HEAD
 ROute::post('export-designation','DesignationsController@export');
-=======
->>>>>>> c864006c8c970db0dfa947e21724670cabcb4887
 
