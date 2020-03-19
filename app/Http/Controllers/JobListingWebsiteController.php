@@ -28,7 +28,6 @@ class JobListingWebsiteController extends Controller
         $searchemail = $request->Emailname;
         $searchstatus = $request->Statusname;
         $searchlink = $request->LinkName;
-        // $password = $request->password;
 
         $joblist = JobListingWebsite::withTrashed()->get();
         $result = JobListingWebsite::withTrashed()->where(function ($query) use ($master, $plateform, $email, $status) {
@@ -67,7 +66,7 @@ class JobListingWebsiteController extends Controller
         $id = $resultIds->pluck('id')->toArray();
         $ids = implode(',', $id);
         $jobListing = $result->paginate(env('PAGINATE'));
-        return view('JobListingWebsite.list', compact('jobListing', 'joblist', 'plateform', 'email', 'status', 'master', 'index', 'searchplateform', 'searchemail', 'searchstatus', 'searchlink','ids'));
+        return view('JobListingWebsite.list', compact('jobListing', 'joblist', 'plateform', 'email', 'status', 'master', 'index', 'searchplateform', 'searchemail', 'searchstatus', 'searchlink', 'ids'));
     }
 
     public function add(Request $request)
@@ -77,9 +76,8 @@ class JobListingWebsiteController extends Controller
             return view('JobListingWebsite.add');
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // return $request;
             $this->validate($request, [
-                'name'  => 'required|alpha_num|max:100',
+                'name' =>  'required|alpha_num|max:100|unique:job_listing_websites,name,' . $request['id'] . ',id,email,' . $request['email'] . ',deleted_at,NULL',
                 'websiteLink' => 'required',
                 'email' => 'required',
                 'password' => 'required',
@@ -97,11 +95,13 @@ class JobListingWebsiteController extends Controller
             return view('JobListingWebsite.add', compact('jobadd'));
         }
     }
+
     public function display(Request $request, $id)
     {
         $jobshow = JobListingWebsite::withTrashed()->find($id);
         return view('JobListingWebsite.details', compact('jobshow'));
     }
+
     public function delete(Request $request)
     {
         $data = $request->all();
@@ -115,12 +115,12 @@ class JobListingWebsiteController extends Controller
             return response()->json(['success' => 'JobListingWebsite deleted successfully.']);
         }
     }
+
     //export
     public function export(Request $request)
     {
         $ids =   explode(',', $request['id']);
         $data =  JobListingWebsite::withTrashed()->whereIn('id', $ids)->latest()->get()->toArray();
-        //dd($data);
         foreach ($data as $value) {
             $arr[] = array(
                 'name' => $value['name'],
@@ -131,6 +131,5 @@ class JobListingWebsiteController extends Controller
             );
         }
         return Excel::download(new JobListingWebsiteExport($arr), 'Job_listing_website.xlsx');
-       
     }
 }

@@ -18,18 +18,16 @@
                             Job Listing Websites
                         </h4>
                         <a href="{{url('/Add-job-listing-websites')}}" class="float-right add-doc text-primary">Add Job Listing Websites</a>
-                        <a  class="float-right add-doc text-primary" id='importData' data-toggle="modal" data-target="#addNewTeam" data-model_name='Import Data in Job listing website' data-url="{{url('/import')}}" data-back_url="{{url('/Job-listing-websites')}}" data-type="2">Import</a><br>
+                        <a class="float-right add-doc text-primary" id='importData' data-toggle="modal" data-target="#addNewTeam" data-backdrop="static" data-model_name='Import Data in Job listing website' data-url="{{url('/import')}}" data-back_url="{{url('/Job-listing-websites')}}" data-type="2">Import</a><br>
 
                         <a href="{{url('/export-joblisting')}}" onclick="event.preventDefault();document.getElementById('documents-export').submit();" class="float-right add-doc text-primary">Export</a>
 
-                        <!--view password-->                       
+                        <!--view password-->
 
-                        <span class="showPasswordModal" data-url="{{url('/reauthenticate')}}" data-back_url="{{url('/Job-listing-websites')}}" data-toggle="modal" data-target="#password">
+                        <span class="showPasswordModal" data-url="{{url('/reauthenticate')}}" data-back_url="{{url('/Job-listing-websites')}}" data-backdrop="static" data-toggle="modal" data-target="#password">
                             <a href="javascript:void(0)" class="btn btn-theme text-white ctm-border-radius"><i class="eye_icon fa fa-fw fa-eye fa-2x"></i></a>
                         </span>
-                        
-                        
-                            
+
                         <form action="{{url('export-joblisting')}}" method="post" id="documents-export">
                             @csrf
                             <input type="hidden" name="id" value="{{$ids}}">
@@ -97,7 +95,7 @@
                             <input type="hidden" value='{{@$searchstatus}}' name="" id='Statusname'><input type="hidden" value='{{@$searchlink}}' name="" id='LinkName'>
 
                         </form>
-                         <p>Showing {{$jobListing->firstItem()}} - {{$jobListing->lastItem()}} of {{@$jobListing->total()}}</p>
+                        <p>Showing {{$jobListing->firstItem()}} - {{$jobListing->lastItem()}} of {{@$jobListing->total()}}</p>
                         <div class="employee-office-table">
                             <div class="table-responsive">
                                 <table class="table custom-table">
@@ -127,14 +125,14 @@
                                             <td><label class="{{Helper::statusClass($job_list->status)}}">{{$job_list->status}}</label></td>
                                             <td>--</td>
                                             <td><a href="{{url('/Edit-job-listing-websites')}}/{{$job_list->id}}"> <span class="edit_icon lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
-                                            
-                                            <a class="common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target=".common_delete_modal" data-url="{{url('/Delete-job-listing-websites')}}" data-back_url="{{url('/Job-listing-websites')}}" data-id = "{{$job_list->id}}"> <span class="trash-icon lnr lnr-trash position-relative" data-toggle="tooltip" title="Delete"></span></a>
-                                            
-                                            <a  href="{{url('/Show-job-listing-websites')}}/{{$job_list->id}}" target="_blank" > <i class=" eye_icon fa fa-fw fa-eye" data-toggle="tooltip" title="View"></i></a></td>
+
+                                                <a class="common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target=".common_delete_modal" data-url="{{url('/Delete-job-listing-websites')}}" data-back_url="{{url('/Job-listing-websites')}}" data-id="{{$job_list->id}}"> <span class="trash-icon lnr lnr-trash position-relative" data-toggle="tooltip" title="Delete"></span></a>
+
+                                                <a href="{{url('/Show-job-listing-websites')}}/{{$job_list->id}}" target="_blank"> <i class=" eye_icon fa fa-fw fa-eye" data-toggle="tooltip" title="View"></i></a></td>
                                         </tr>
                                         @empty
                                         <tr>
-                                            {{env('NO_RECORDS_FOUND')}}
+                                            <td>{{env('NO_RECORDS_FOUND')}}</td>
                                         </tr>
                                         @endforelse
 

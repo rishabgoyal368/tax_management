@@ -52,10 +52,11 @@
                                 <input type="Password" name="password" id="apassword">
                                 <label for="error" class="passwordError"></label>
                                 
-                                <button type="button" class="btn btn-danger ctm-border-radius float-right ml-3" data-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-theme button-1 ctm-border-radius text-white float-right AuthenticateAdmin" data-url="{{url('/reauthenticate')}}" data-back_url="{{url('/Job-listing-websites')}}">verify</button>
 
                             </form>
+                            <button type="button" class="btn btn-danger ctm-border-radius float-right ml-3" data-dismiss="modal">Cancel</button>
+
                         </div>
                         
                     </div>
