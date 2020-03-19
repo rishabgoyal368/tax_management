@@ -102,16 +102,15 @@ function showpassword(url, data, back_url) {
         data: data,
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
         success: function(data) {
+            $('.passwordError').css('display','block')
             if (data['error']) {
                 $('.passwordError').text(data['error']).addClass('alert alert-danger')
+                // $("#formpassword")[0].reset();
             }
             if (data['success']) {
-                $('.passwordError').text(data['success']).addClass('alert alert-success')
-                $('.hidepassword').css('display', 'block');
-                $("#formpassword").replaceWith($('#formpassword', data));
-                // $('#password').modal.location.reload(true);
-                $("#formpassword")[0].reset();
-                // $('#password').modal('hide');
+                $('.hidepassword').css('display', 'block'); // show password row
+                $("#formpassword").hide(); //form hide
+                $('#password_verify').text(data['success']).addClass('alert alert-success') // Add success messgae
 
             }
         },
@@ -148,6 +147,9 @@ $(document).ready(function() {
     $('.showPasswordModal').click(function() {
         var url = $(this).data('url')
         var backUrl = $(this).data('back_url')
+                $("#formpassword")[0].reset();
+            $('.passwordError').css('display','none')
+
         $('.AuthenticateAdmin').attr('url', url).attr('data-back_url', backUrl)
     });
 
