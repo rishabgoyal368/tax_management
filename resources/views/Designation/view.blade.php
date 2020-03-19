@@ -21,7 +21,7 @@
                 <div class="card-body ">
                     <p class="card-text mb-3"><span class="text-primary font-weight-bold">Name : </span><b>{{ $designation->title  }}</b></p>
                     <p class="card-text mb-3"><span class="text-primary font-weight-bold">Deparment : </span>{{ $designation->getDepartment['title'] }}</p>
-                    <p class="card-text mb-3"><span class="text-primary font-weight-bold">Status : </span> {{Helper::status($designation->status)}} </p>
+                    <p class="card-text mb-3"><span class="text-primary font-weight-bold">Status : </span> {{($designation->status)}} </p>
 
 
                 </div>
