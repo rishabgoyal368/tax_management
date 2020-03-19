@@ -20,7 +20,7 @@ class JobListingWebsiteController extends Controller
     public function show(Request $request)
     {
         $master = $request->master;
-        $link = $request->webplateform;
+        $plateform = $request->webplateform;
         $email = $request->webemail;
         $status = $request->webstatus;
         $index = $request->index;
@@ -31,21 +31,21 @@ class JobListingWebsiteController extends Controller
         // $password = $request->password;
 
         $joblist = JobListingWebsite::withTrashed()->get();
-        $result = JobListingWebsite::withTrashed()->where(function ($query) use ($master, $link, $email, $status) {
+        $result = JobListingWebsite::withTrashed()->where(function ($query) use ($master, $plateform, $email, $status) {
             // Master Search
             if ($master) {
                 $query->where('name', 'LIKE', "%{$master}%");
                 $query->orWhere('email', 'LIKE', "%{$master}%");
                 $query->orWhere('website', 'LIKE', "%{$master}%");
             }
-            if ($link) {
-                $query->whereIn('id', $link);
+            if ($plateform) {
+                $query->whereIn('name', $plateform);
             }
             if ($email) {
-                $query->whereIn('id', $email);
+                $query->whereIn('email', $email);
             }
             if ($status) {
-                $query->whereIn('id', $status);
+                $query->whereIn('status', $status);
             }
         })->newQuery();
         if ($index) {
@@ -67,7 +67,7 @@ class JobListingWebsiteController extends Controller
         $id = $resultIds->pluck('id')->toArray();
         $ids = implode(',', $id);
         $jobListing = $result->paginate(env('PAGINATE'));
-        return view('JobListingWebsite.list', compact('jobListing', 'joblist', 'link', 'email', 'status', 'master', 'index', 'searchplateform', 'searchemail', 'searchstatus', 'searchlink','ids'));
+        return view('JobListingWebsite.list', compact('jobListing', 'joblist', 'plateform', 'email', 'status', 'master', 'index', 'searchplateform', 'searchemail', 'searchstatus', 'searchlink','ids'));
     }
 
     public function add(Request $request)
