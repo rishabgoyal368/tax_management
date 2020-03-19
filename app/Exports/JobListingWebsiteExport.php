@@ -25,10 +25,10 @@ class JobListingWebsiteExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'name',
-            'website',
-            'email',
-            'status',
+            'Platform Name',
+            'Link To Visit The Platform',
+            'Email',
+            'Status',
             'Password'
         ];
     }

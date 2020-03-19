@@ -58,7 +58,7 @@
                                 <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" onclick="myFunction()">
                             </div>
                             <div class="col-md-12 form-group mb-0">
-                                <select class="form-control select" name="status">                                   
+                                <select class="form-control" name="status">                                   
                                     <option value="" selected disabled>Select Status</option>
                                     <option @if(@$jobadd->status == 'Active') selected @endif value="Active">Active</option>
                                     <option @if(@$jobadd->status == 'Deactivated') selected @endif value="Deactivated">Deactivated</option>
@@ -87,9 +87,5 @@
 
     </div>
 </div>
-</div>
-</div>
-</div>
-
 
 @endsection

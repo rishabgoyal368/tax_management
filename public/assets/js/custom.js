@@ -59,6 +59,7 @@ function importData(url, formData, back_url) {
             if (data['success']) {
                 $('.deleteError').css('display', 'block').text(data['success']).addClass('alert alert-success')
                 setTimeout(function() { location.href = back_url }, 500);
+
             }
         }
     });
@@ -198,6 +199,7 @@ $(document).ready(function() {
         $('#import_data_modal_head').text(modal_name)
         $('.import_data_modal_form').data('data-backurl', backurl)
         $('.deleteError').css('display', 'none')
+        $('#import').val('');
 
     });
 

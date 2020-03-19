@@ -51,3 +51,15 @@ Breadcrumbs::for('Show-job-listing-websites', function ($trail) {
 
     $trail->push('Show job listing websites', url('show-job-listing-websites'));
 });
+
+Breadcrumbs::for('AdminProfile', function ($trail) {
+    $trail->parent('Job-listing-websites');
+
+    $trail->push('AdminProfile', url('AdminProfile'));
+});
+
+Breadcrumbs::for('updateprofile', function ($trail) {
+    $trail->parent('Job-listing-websites');
+
+    $trail->push('updateprofile', url('updateprofile'));
+});
