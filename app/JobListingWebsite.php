@@ -35,9 +35,9 @@ class JobListingWebsite extends Authenticatable
     //         ]);
     // }
 
-public static function addorUpdate($data)
+    public static function addorUpdate($data)
     {
-        if($data['status'] == '3')
+        if($data['status'] == 'Deleted')
         {
             $data =  JobListingWebsite::withTrashed()->updateOrCreate(
                 [
@@ -45,15 +45,14 @@ public static function addorUpdate($data)
                 ],
                 [
                     'name' => $data['name'],
-                    'website' => $data['website'],
+                    'website' => $data['websiteLink'],
                     'email' => $data['email'],
                     'password' => $data['password'],
                     'status' => $data['status'],
                 ]
             );
-                JobListingWebsite::where('id', $data['id'])->delete();
-        }
-        else{
+            JobListingWebsite::where('id', $data['id'])->delete();
+        } else {
             JobListingWebsite::withTrashed()->updateOrCreate(
                 [
                     'id' => $data['id']
@@ -68,12 +67,9 @@ public static function addorUpdate($data)
             );
             JobListingWebsite::where('id', $data['id'])->restore();
         }
-        
     }
     public static function remove($id)
     {
-       JobListingWebsite::where('id',$id)->delete(); 
+        JobListingWebsite::where('id', $id)->delete();
     }
-
-    
 }

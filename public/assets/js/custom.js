@@ -1,3 +1,9 @@
+/**
+ * 
+ * @param {url} url 
+ * @param {value} val 
+ * @param {*} appendText 
+ */
 function getDataByType(url, val, appendText) {
     $.ajax({
         url: url,
@@ -30,22 +36,39 @@ function getDataByType(url, val, appendText) {
         error: function(err) {}
     });
 }
-
-function importData(url, type) {
+/**
+ * 
+ * @param {url of import data} url 
+ * @param {form data} formData 
+ * @param {where to go after successfully response} back_url 
+ */
+function importData(url, formData, back_url) {
     $.ajax({
         url: url,
-        type: 'POST',
-        dataType: 'JSON',
-        data: { 'type': type },
+        type: "POST",
+        data: formData,
+        contentType: false,
+        cache: false,
+        processData: false,
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
         success: function(data) {
-            console.log(data)
-
-        },
-        error: function(err) {}
+            $('#loader-wrapper').css('display', 'none')
+            if (data['error']) {
+                $('.deleteError').css('display', 'block').text(data['error']).addClass('alert alert-danger')
+            }
+            if (data['success']) {
+                $('.deleteError').css('display', 'block').text(data['success']).addClass('alert alert-success')
+                setTimeout(function() { location.href = back_url }, 500);
+            }
+        }
     });
 }
-
+/**
+ * 
+ * @param {url} url 
+ * @param {id to delete} id 
+ * @param {where to go after successfully response} back_url 
+ */
 function commonDelete(url, id, back_url) {
     $('#loader-wrapper').css('display', 'block')
     $.ajax({
@@ -58,10 +81,10 @@ function commonDelete(url, id, back_url) {
             console.log(data);
             $('#loader-wrapper').css('display', 'none')
             if (data['error']) {
-                $('.deleteError').text(data['error']).addClass('alert alert-danger')
+                $('.deleteError').css('display', 'block').text(data['error']).addClass('alert alert-danger')
             }
             if (data['success']) {
-                $('.deleteError').text(data['success']).addClass('alert alert-success')
+                $('.deleteError').css('display', 'block').text(data['success']).addClass('alert alert-success')
                 setTimeout(function() { location.href = back_url }, 500);
             }
         },
@@ -70,21 +93,46 @@ function commonDelete(url, id, back_url) {
         }
     });
 }
+
+function showpassword(url, data, back_url) {
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function(data) {
+            $('.passwordError').css('display','block')
+            if (data['error']) {
+                $('.passwordError').text(data['error']).addClass('alert alert-danger')
+                // $("#formpassword")[0].reset();
+            }
+            if (data['success']) {
+                $('.hidepassword').css('display', 'block'); // show password row
+                $("#formpassword").hide(); //form hide
+                $('#password_verify').text(data['success']).addClass('alert alert-success') // Add success messgae
+
+            }
+        },
+    });
+};
+
+
 $(document).ready(function() {
     // ===================> designation <=====================//
-    $('.designationGet').keyup(function() {
-        if ($(this).val().length > 2) {
-            var searchValue = $(this).val();
-            var url = $(this).data('url');
-            var appendText = this;
-            getDataByType(url, searchValue, appendText)
-        }
-        if ($('.designationGet').val().length < 2) {
-            $('.recentSearchDrop').css('display', 'none')
-            var select = $(this).data('select');
-            $('#' + select).prev().prev().val('')
-        }
-    });
+    // $('.designationGet').keyup(function() {
+    //     if ($(this).val().length > 0) {
+    //         var searchValue = $(this).val();
+    //         var url = $(this).data('url');
+    //         var appendText = this;
+    //         getDataByType(url, searchValue, appendText)
+    //     }
+    //     if ($('.designationGet').val().length < 2) {
+    //         $('.recentSearchDrop').css('display', 'none')
+    //         var select = $(this).data('select');
+    //         $('#' + select).prev().prev().val('')
+    //     }
+    // });
 
     //========================= JOB LISTING WEBSITE <===================//
     $('.sortCick').click(function() {
@@ -96,6 +144,21 @@ $(document).ready(function() {
         $('#' + submit).trigger('click')
     });
 
+    $('.showPasswordModal').click(function() {
+        var url = $(this).data('url')
+        var backUrl = $(this).data('back_url')
+                $("#formpassword")[0].reset();
+            $('.passwordError').css('display','none')
+
+        $('.AuthenticateAdmin').attr('url', url).attr('data-back_url', backUrl)
+    });
+
+    $('.AuthenticateAdmin').click(function() {
+        var url = $(this).data('url')
+        var backUrl = $(this).data('back_url')
+        var data = $('#formpassword').serialize();
+        showpassword(url, data, backUrl)
+    });
 
     //================ COMMON FUNCTION <==================
     $('.common_delete').click(function() {
@@ -112,13 +175,12 @@ $(document).ready(function() {
     });
 
     $('.commonCustomSelect').keyup(function() {
-        if ($(this).val().length > 2) {
+        if ($(this).val().length > 0) {
             var searchValue = $(this).val();
             var url = $(this).data('url');
             var appendText = this;
             getDataByType(url, searchValue, appendText)
-        }
-        if ($('.commonCustomSelect').val().length < 2) {
+        } else {
             $('.recentSearchDrop').css('display', 'none')
             var select = $(this).data('select');
             $('#' + select).prev().prev().val('')
@@ -130,31 +192,32 @@ $(document).ready(function() {
         var url = $(this).data('url')
         var modal_name = $(this).data('model_name')
         var type = $(this).data('type')
+        var backurl = $(this).data('back_url')
         $('#import_data_modal_type').val(type)
-        $('#import_data_modal_form').attr('action', url)
+        $('.import_data_modal_form').attr('data-url', url)
         $('#import_data_modal_head').text(modal_name)
+        $('.import_data_modal_form').data('data-backurl', backurl)
+        $('.deleteError').css('display', 'none')
+
     });
 
     // Submit import data form
-    $("#import_data_modal_form").submit(function(e) {
-        var form = $(this);
-        var url = form.attr('action');
-        var total_file = document.getElementById("import").files[0];
+    $(".import_data_modal_form").click(function(e) {
+        var url = $(this).data('url');
+        console.log(url)
+
+        var import_file = document.getElementById("import").files[0];
         var formData = new FormData();
-        formData.append('import', total_file);
+        formData.append('import', import_file);
         formData.append('type', $('#import_data_modal_type').val());
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: formData,
-            contentType: false,
-            cache: false,
-            processData: false,
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            success: function(data) {
-                console.log(data)
-            }
-        });
+        var back_url = $(this).data('backurl')
+        if (import_file != undefined && import_file != undefined) {
+            $('#loader-wrapper').css('display', 'block')
+            importData(url, formData, back_url)
+        } else {
+            $('.deleteError').text('Please upload Import file').addClass('alert alert-danger')
+        }
+
     });
 
 });
