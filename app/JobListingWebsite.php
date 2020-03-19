@@ -37,7 +37,8 @@ class JobListingWebsite extends Authenticatable
 
     public static function addorUpdate($data)
     {
-        if ($data['status'] == 'Deleted') {
+        if($data['status'] == 'Deleted')
+        {
             $data =  JobListingWebsite::withTrashed()->updateOrCreate(
                 [
                     'id' => $data['id']

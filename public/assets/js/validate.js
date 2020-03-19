@@ -63,7 +63,8 @@ $(document).ready(function() {
             name: {
                 required: true,
                 maxlength: 100,
-                lettersonly: true
+                alphanumeric: true
+
             },
             websiteLink: {
                 required: true,

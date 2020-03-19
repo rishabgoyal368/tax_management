@@ -93,6 +93,33 @@ function commonDelete(url, id, back_url) {
         }
     });
 }
+
+function showpassword(url,data,back_url)
+    {
+        
+              $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                success:function(data){
+                  if (data['error']) {
+                $('.passwordError').text(data['error']).addClass('alert alert-danger')
+                }
+                if (data['success']) {
+                $('.passwordError').text(data['success']).addClass('alert alert-success')
+                $('.hidepassword').css('display', 'block');
+                $("#formpassword").replaceWith($('#formpassword', data));
+                // $('#password').modal.location.reload(true);
+                $("#formpassword")[0].reset();
+                // $('#password').modal('hide');
+
+                }
+                },
+              }); 
+    };
+   
+
 $(document).ready(function() {
     // ===================> designation <=====================//
     $('.designationGet').keyup(function() {
@@ -119,7 +146,19 @@ $(document).ready(function() {
         $('#' + submit).trigger('click')
     });
 
+    $('.showPasswordModal').click(function(){
+    var url = $(this).data('url')
+    var backUrl = $(this).data('back_url')
+    $('.AuthenticateAdmin').attr('url',url).attr('data-back_url',backUrl)
+    });
 
+    $('.AuthenticateAdmin').click(function(){
+      var  url = $(this).data('url')
+      var  backUrl = $(this).data('back_url')
+    var data = $('#formpassword').serialize();
+    showpassword(url,data,backUrl)
+    });
+    
     //================ COMMON FUNCTION <==================
     $('.common_delete').click(function() {
         $('.deleteList').attr('data-url', $(this).data('url')).attr('data-id', $(this).data('id')).attr('data-back_url', $(this).data('back_url'))
