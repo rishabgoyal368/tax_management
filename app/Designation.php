@@ -60,7 +60,7 @@ class Designation extends Authenticatable
     public static function remove($id)
     {
         Designation::withTrashed()->where('id', $id)->update([
-            'status' => 3
+            'status' => 'Deleted'
         ]);
         return Designation::withTrashed()->where('id', $id)->delete();
     }
