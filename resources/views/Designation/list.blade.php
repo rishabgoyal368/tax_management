@@ -36,8 +36,8 @@
                                     <div class="form-group">
                                         <select class="selectpicker" multiple data-live-search="true" name="department[]" data-style="form-control btn-default btn-outline">
                                             <option disabled>select Department</option>
-                                            @foreach($GetDepartment as $value)
-                                            <option value="{{$value->id}}" @if(!empty($department)) @if(in_array($value->id,$department)) selected @endif @endif>{{$value->title}}</option>
+                                            @foreach($Designation as $value)
+                                            <option value="{{$value->getDepartment['id']}}" @if(!empty($department)) @if(in_array($value->getDepartment['id'],$department)) selected @endif @endif>{{$value->getDepartment['title']}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -48,7 +48,7 @@
                                         <select class="selectpicker" multiple data-live-search="true" id="statusSelect" name="status[]" data-style="form-control btn-default btn-outline">
                                             <option disabled>select Status</option>
                                             @foreach($Designation->unique('status') as $value)
-                                            <option value="{{$value->status}}" @if(!empty($status)) @if(in_array($value->status,$status)) selected @endif @endif>{{($value->status)}}</option>
+                                            <option value="{{$value->status}}" @if(!empty($status)) @if(in_array($value->status,$status)) selected @endif @endif>{{$value->status}}</option>
                                             @endforeach
                                         </select>
                                     </div>

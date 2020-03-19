@@ -4,10 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
-class CreateDesignationsTable extends Migration
+class CreateUsersTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -15,11 +13,13 @@ class CreateDesignationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('designations', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->unsignedBigInteger('department_id');
-            $table->enum('status', ['Active','Archive', 'Deactivated','Deleted'])->nullable();
+            $table->string('name');
+            $table->string('website');
+            $table->string('email');
+            $table->string('password');
+            $table->string('status');
             $table->string('deleted_at')->nullable();
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateDesignationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('designations');
+        Schema::dropIfExists('users');
     }
 }

@@ -39,4 +39,6 @@ Route::any('edit-designation/{id}', 'DesignationsController@add');
 Route::get('view-designation/{id}', 'DesignationsController@view');
 Route::delete('delete-designation', 'DesignationsController@delete');
 ROute::post('export-designation','DesignationsController@export');
+//==========> Users Management <=================// 
+Route::any('/user-management', 'DesignationsController@show')->name('designation');
 
