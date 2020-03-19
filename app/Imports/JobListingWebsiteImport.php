@@ -19,19 +19,14 @@ class JobListingWebsiteImport implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
-            if (JobListingWebsite::where(['name' => $row['name'], 'email' => $row['email'], 'password' => $row['password']])->count() == 0) {
+            if (JobListingWebsite::withTrashed()->where(['name' => $row['name'], 'email' => $row['email'], 'password' => $row['password']])->count() == 0) {
                 $data['id'] = '';
                 $data['name'] = $row['name'];
-                $data['website'] = $row['website'];
+                $data['websiteLink'] = $row['website'];
                 $data['email'] = $row['email'];
                 $data['password'] = $row['password'];
                 $data['status'] = $row['status'];
                 JobListingWebsite::addorUpdate($data);
-                // JobListingWebsite::create([
-                //     'name'     => $row['designation'],
-                //     'department_id' => $department,
-                //     'status'    => $row['status'] ?: 'Active',
-                // ]);
             }
         }
     }

@@ -25,10 +25,9 @@ class DesignationExport implements FromCollection, WithHeadings
     public function headings(): array
     {
         return [
-            'name',
+            'Designation',
             'department',
             'status',
-            
         ];
     }
 }

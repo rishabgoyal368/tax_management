@@ -1,5 +1,5 @@
 @extends('Layout.app')
-@section('title','Add Designation')
+@section('title',@$label)
 @section('content')
 
 <!-- Sidebar -->
@@ -15,11 +15,7 @@
                 <div class="card ctm-border-radius shadow-sm grow">
                     <div class="card-header">
                         <h4 class="card-title mb-0 d-inline-block">
-                            @if(@$department->id)
-                            Edit Designation
-                            @else
-                            Add Designation
-                            @endif
+                            {{@$label}}
                         </h4>
                     </div>
                     <div class="card-body">
@@ -36,7 +32,7 @@
                             </div>
                             <div class="col-md-12 form-group">
                                 <input type="hidden" name="departmentId">
-                                <input type="text" name="department" id="department" class="form-control designationGet" autocomplete="off" data-url="{{url('/get-department-ajax')}}" placeholder="Department*" value="{{@$department->getDepartment['title'] ?: old('department') }}">
+                                <input type="text" name="department" id="department" class="form-control commonCustomSelect" autocomplete="off" data-url="{{url('/get-department-ajax')}}" placeholder="Department*" value="{{@$department->getDepartment['title'] ?: old('department') }}">
                                 <ul class="recentSearchDrop" style="display:none" aria>
                                 </ul>
                                 @if ($errors->has('department'))
@@ -46,8 +42,8 @@
                                 @endif
                             </div>
                             <div class="col-md-12 form-group mb-0">
-                                <select class="form-control select" name="status">
-                                    <option value="" selected disabled>Select Status</option>
+                                <select class="form-control " name="status">
+                                    <option value="default" selected disabled>Select Status</option>
                                     <option @if((@$department->status ) == 'Active') selected @endif value="Active">Active</option>
                                     <option @if((@$department->status ) == 'Deactivated') selected @endif value="Deactivated">Deactivated</option>
                                     <option @if((@$department->status ) == 'Deleted') selected @endif value="Deleted">Deleted</option>

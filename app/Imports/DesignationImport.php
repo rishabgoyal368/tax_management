@@ -21,12 +21,12 @@ class DesignationImport implements ToCollection, WithHeadingRow
     {
         foreach ($rows as $row) {
             $department = Department::checkOrCreate($row['department']);
-            if (Designation::where(['title' => $row['designation'], 'department_id' => $department])->count() == 0) {
-                Designation::create([
-                    'title'     => $row['designation'],
-                    'department_id' => $department,
-                    'status'    => $row['status'] ?: 'Active',
-                ]);
+            if (Designation::withTrashed()->where(['title' => $row['designation'], 'department_id' => $department])->count() == 0) {
+                $data['id'] = '';
+                $data['title'] = $row['designation'];
+                $data['department_id'] = $department;
+                $data['status'] = $row['status'] ?: 'Active';
+                Designation::addorUpdate($data);
             }
         }
     }

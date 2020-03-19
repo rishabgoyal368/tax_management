@@ -77,7 +77,7 @@ class DesignationsController extends Controller
         $ids = implode(',', $id);
         // return $GetDesignation = $result->toSql();
 
-        $GetDesignation = $result->paginate(env('PAGINATE'));
+        $GetDesignation = $result->latest()->paginate(env('PAGINATE'));
         return view('Designation.list', compact('GetDesignation', 'ids', 'GetDepartment', 'Designation', 'status', 'department', 'master'));
     }
 
@@ -87,10 +87,12 @@ class DesignationsController extends Controller
             if ($id) {
                 #Update
                 $department = Designation::withTrashed()->find($id);
-                return view('Designation.details', compact('department'));
+                $label = 'Edit Designation';
+                return view('Designation.details', compact('department','label'));
             } else {
                 #Insert
-                return view('Designation.details');
+                $label = 'Add Designation';
+                return view('Designation.details',compact('label'));
             }
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -104,7 +106,7 @@ class DesignationsController extends Controller
             $request['department_id'] = Department::checkOrCreate($request->department);
             Designation::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';
-            return redirect('/designation')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
+            return redirect('/designation')->with(['success' => 'Designation ' . $response . ' successfully']);
         }
     }
 
@@ -140,11 +142,11 @@ class DesignationsController extends Controller
         foreach ($data as $value) {
             // $status =  Helper::status($value['status']);
             $arr[] = array(
-                'title' => $value['title'],
+                'Designation' => $value['title'],
                 'department' => $value['get_department']['title'],
                 'status' => $value['status'],
             );
         }
-        return Excel::download(new DesignationExport($arr), 'invoices.xlsx');
+        return Excel::download(new DesignationExport($arr), 'designation.xlsx');
     }
 }
