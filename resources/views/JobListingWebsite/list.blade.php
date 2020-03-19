@@ -22,14 +22,11 @@
 
                         <a href="{{url('/export-joblisting')}}" onclick="event.preventDefault();document.getElementById('documents-export').submit();" class="float-right add-doc text-primary">Export</a>
 
-<<<<<<< HEAD
-=======
                         <!--view password-->
                         <span class="showPasswordModal" data-url="{{url('/reauthenticate')}}" data-back_url="{{url('/Job-listing-websites')}}" data-toggle="modal" data-target="#password">
                             <a href="javascript:void(0)" class="btn btn-theme text-white ctm-border-radius"><i class="eye_icon fa fa-fw fa-eye fa-2x"></i></a>
                         </span>
                             
->>>>>>> 15ccb9777fc46e3afd6bd584de00559782099328
                         <form action="{{url('export-joblisting')}}" method="post" id="documents-export">
                             @csrf
                             <input type="hidden" name="id" value="{{$ids}}">
