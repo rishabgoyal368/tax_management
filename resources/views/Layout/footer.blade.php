@@ -43,16 +43,17 @@
                 <div class="modal-content passmodal">
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title mb-3">Password verify</h4>
+                        <button type="button" class="close closePassword" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title mb-3" id="password_verify">Password verify</h4>
                         <div class="form-group">
                             Email Id is: {{ @Auth::user()->email }}
                             <form method="post" id="formpassword">
                                 @csrf
-                                <input type="Password" name="password" id="password">
+                                <input type="Password" name="password" id="apassword">
+                                <label for="error" class="passwordError"></label>
+                                
                                 <button type="button" class="btn btn-danger ctm-border-radius float-right ml-3" data-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-theme button-1 ctm-border-radius text-white float-right AuthenticateAdmin" data-url="{{url('/reauthenticate')}}" data-back_url="{{url('/Job-listing-websites')}}">verify</button>
-                                <label for="error" class="passwordError"></label>
 
                             </form>
                         </div>

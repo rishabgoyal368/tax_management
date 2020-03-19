@@ -68,11 +68,19 @@ class HomeController extends Controller
     }
     public function reauthenticate(request $request)
     {  
+        $data = $request->all();
+        $validator =  Validator::make($data, [
+            'password'  => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()]);
+        } else {
         if (Auth::guard('admin')->attempt(['email' => Auth::user()->email, 'password' => $request->password]))
          {
             return response()->json(['success' => 'Password verified.']);
          } else {
             return response()->json(['error' => 'Invalid Password.']); 
          }
+     }
     }
 }
