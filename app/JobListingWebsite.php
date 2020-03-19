@@ -70,6 +70,9 @@ class JobListingWebsite extends Authenticatable
     }
     public static function remove($id)
     {
-        JobListingWebsite::where('id', $id)->delete();
+        Designation::withTrashed()->where('id', $id)->update([
+            'status' => 'Deleted'
+        ]);
+       return  JobListingWebsite::withTrashed()->where('id', $id)->delete();
     }
 }
