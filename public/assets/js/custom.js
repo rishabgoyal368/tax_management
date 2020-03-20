@@ -109,11 +109,33 @@ function showpassword(url, data, back_url) {
                 // $("#formpassword")[0].reset();
             }
             if (data['success']) {
-                $('.hidepassword').css('display', 'block'); // show password row
+                $('.hidepassword').css('display', 'block'); // show password column
                 $("#formpassword").hide(); //form hide
                 $('#password_verify').text(data['success']).addClass('alert alert-success') // Add success messgae
 
             }
+        },
+    });
+};
+
+function viewpassword(url,data)
+{
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function(data){
+            if (data['error'])
+            {
+                alert('false');
+            }
+            if(data['success'])
+            {
+                alert('true');      
+            }
+
         },
     });
 };
@@ -161,10 +183,12 @@ $(document).ready(function() {
         showpassword(url, data, backUrl)
     });
     
-    $('.hidepassword').click(function(){
+    $('.viewpassword').click(function(){
         
-        var id = $(this).data('back_url');
-        console.log(id);
+        var id = $(this).data('id');
+        var url = $(this).data('url');
+        var data = $('.displaypassword').serialize();
+viewpassword(url,data);
     });
         
     

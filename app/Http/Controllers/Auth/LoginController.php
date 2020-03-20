@@ -40,11 +40,11 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        // Admin::create([
+        //  Admin::create([
         //     'first_name' => 'Testing',
         //     'last_name' => 'xyz',
         //     'email' => 'testsoftuvo@gmail.com',
-        //     'password' => Hash::make('Admin@1234'),
+        //     'password' => Hash::make('Admin@1234');,
         // ]);
         $this->middleware('guest')->except('logout');
     }

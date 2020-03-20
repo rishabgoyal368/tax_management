@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/import','HomeController@import');
+Route::post('reauthenticate','HomeController@reauthenticate');
 Auth::routes(['register' => false]);
 
 //==========> Job listing Website <===================//
@@ -24,8 +25,9 @@ Route::any('Add-job-listing-websites', 'JobListingWebsiteController@add');
 Route::any('Edit-job-listing-websites/{id}', 'JobListingWebsiteController@edit');
 Route::any('Show-job-listing-websites/{id}', 'JobListingWebsiteController@display');
 Route::any('Delete-job-listing-websites', 'JobListingWebsiteController@delete');
-ROute::post('export-joblisting','JobListingWebsiteController@export');
-Route::post('reauthenticate','HomeController@reauthenticate');
+Route::post('export-joblisting','JobListingWebsiteController@export');
+Route::post('update-joblisting','JobListingWebsiteController@update');
+
 
 //==========> Admin  <===================//
 Route::any('/updateprofile','AdminController@update');

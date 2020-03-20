@@ -10,7 +10,7 @@ class Admin extends Authenticatable
     protected $guard = 'admin';
 
     protected $fillable = [
-        'first_name','last_name','email','image'
+        'first_name','last_name','email','image','password'
     ];
 
     protected $hidden = [
@@ -19,7 +19,7 @@ class Admin extends Authenticatable
 
 public static function Updates($data)
     {
-        Admin::updateOrCreate(
+        $data = Admin::updateOrCreate(
             ['id' => $data['id']],
 
                 ['first_name' => $data['first_name'],

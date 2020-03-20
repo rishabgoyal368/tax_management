@@ -138,4 +138,23 @@ class JobListingWebsiteController extends Controller
         }
         return Excel::download(new JobListingWebsiteExport($arr), 'Job_listing_website.xlsx');
     }
+
+    //---------------------------individualy passwword update--------------------------
+    
+    public function update(Request $request)
+    {
+        dd($request);
+        $data = $request->all();
+           $validator = Validator::make($data, [
+                'password' => 'required|min:6|max:20',
+            ]);
+            if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()]);
+        } else {
+            JobListingWebsite::Updatepassword($request);
+            return redirect('Job-listing-websites')->with(['success' => 'Password change successfully']);
+
+    }
+
+}
 }
