@@ -18,7 +18,8 @@ class JobOpening extends Model
      * @var array
      */
     protected $fillable = [
-        'JobTitle', 'DesignationId', 'DepartmentId', 'MinExperienceRequired', 'MaxExperienceRequired', 'MinSalary', 'MaxSalary', 'Position', 'Description', 'Time period',
+        'Job_title', 'Designation_id', 'Department_id', 'Min_experience_required', 'Max_experience_required',
+         'Min_salary', 'Max_salary', 'Position', 'Description', 'Time_period',
     ];
 
    
@@ -31,17 +32,16 @@ class JobOpening extends Model
                     'id' => $data['id']
                 ],
                 [
-                    'JobTitle' => $data['JobTitle'], 
-                    'DesignationId' => $data['DesignationId'], 
-                    'DepartmentId' => $data['DepartmentId'], 
-                    'MinExperienceRequired' => $data['MinExperienceRequired'], 
-                    'MaxExperienceRequired' => $data['MaxExperienceRequired'], 
-                    'MinSalary' => $data['MinSalary'], 
-                    'MaxSalary' => $data['MaxSalary'], 
-                    'Position' => $data['Position'], 
-                    'Description' => $data['Description'], 
-                    'TimePeriod' => $data['TimePeriod'],
-
+                    'Job_title' => $data['JobTitle'], 
+                    'Designation_id' => $data['designation_id'], 
+                    'Department_id' => $data['department_id'], 
+                    'Min_experience_required' => $data['minExperience'], 
+                    'Max_experience_required' => $data['maxExperience'], 
+                    'Min_salary' => $data['minSalary'], 
+                    'Max_salary' => $data['maxSalary'], 
+                    'Position' => $data['postion'], 
+                    'Description' => $data['description'], 
+                    'Time_period' => $data['date'],
                 ]
             );
             JobOpening::where('id', $data['id'])->delete();
@@ -51,16 +51,16 @@ class JobOpening extends Model
                     'id' => $data['id']
                 ],
                 [
-                    'JobTitle' => $data['JobTitle'], 
-                    'DesignationId' => $data['DesignationId'], 
-                    'DepartmentId' => $data['DepartmentId'], 
-                    'MinExperienceRequired' => $data['MinExperienceRequired'], 
-                    'MaxExperienceRequired' => $data['MaxExperienceRequired'], 
-                    'MinSalary' => $data['MinSalary'], 
-                    'MaxSalary' => $data['MaxSalary'], 
-                    'Position' => $data['Position'], 
-                    'Description' => $data['Description'], 
-                    'TimePeriod' => $data['TimePeriod'],
+                    'Job_title' => $data['JobTitle'], 
+                    'DesignationId' => $data['designation_id'], 
+                    'Department_id' => $data['department_id'], 
+                    'Min_experience_required' => $data['minExperience'], 
+                    'Max_experience_required' => $data['maxExperience'], 
+                    'Min_salary' => $data['MinSalary'], 
+                    'Max_salary' => $data['maxSalary'], 
+                    'Position' => $data['postion'], 
+                    'Description' => $data['description'], 
+                    'Time_period' => $data['date'],
                 ]
             );
             JobOpening::where('id', $data['id'])->restore();

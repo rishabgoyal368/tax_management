@@ -53,9 +53,8 @@
                                     <div class="form-group">
                                         <select class="selectpicker" multiple data-live-search="true" name="webplateform[]" data-style="form-control btn-default btn-outline">
                                             <option disabled>Select Plateform</option>
-
                                             @foreach($joblist->unique('name') as $value2)
-                                            <option value="{{$value2->name}}" @if(!empty($link)) @if(in_array($value2->name,$link)) selected @endif @endif>{{$value2->name}}</option>
+                                            <option value="{{$value2->name}}" @if(!empty($plateform)) @if(in_array($value2->name,$plateform)) selected @endif @endif>{{$value2->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -118,7 +117,7 @@
                                     <tbody>
                                         @forelse($jobListing as $key => $job_list)
                                         <tr>
-                                            <td>{{($jobListing->currentpage()-1) * $jobListing->perpage() + $key + 1}}</td>
+                                            <td>{{$job_list->id}}</td>
                                             <td>{{$job_list->name}}</td>
                                             <td><a href="{{$job_list->website}}" target="_blank">{{$job_list->website}}</a></td>
                                             <td>{{$job_list->email}}</td>

@@ -29,7 +29,7 @@ class JobListingWebsiteController extends Controller
         $searchemail = $request->Emailname;
         $searchstatus = $request->Statusname;
         $searchlink = $request->LinkName;
-
+// return $request;
         $joblist = JobListingWebsite::withTrashed()->get();
         $result = JobListingWebsite::withTrashed()->where(function ($query) use ($master, $plateform, $email, $status) {
             // Master Search
@@ -77,19 +77,22 @@ class JobListingWebsiteController extends Controller
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $request->all();
-           $validator = Validator::make($data, [
-                'name' =>  'required|alpha_num|max:100|unique:job_listing_websites,name,' . $request['id'] . ',id,email,' . $request['email'] . ',deleted_at,NULL',
-                'websiteLink' => 'required',
-                'email' => 'required|email',
-                'password' => 'required|min:6|max:20',
-            ]);
+            $validator =  Validator::make(
+                $data,
+                [
+                    'name' =>  'required|alpha_num|max:100|unique:job_listing_websites,name,' . $request['id'] . ',id,email,' . $request['email'] . ',deleted_at,NULL',
+                    'websiteLink' => 'required',
+                    'email' => 'required|email',
+                    'password' => 'required|min:6|max:20',
+                ]
+            );
             if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()->first()]);
-        } else {
-            JobListingWebsite::addorUpdate($request);
-            $response = @$request->id ? 'updated' : 'added';
-            return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
-        }
+                return response()->json(['error' => $validator->errors()->first()]);
+            } else {
+                JobListingWebsite::addorUpdate($request);
+                $response = @$request->id ? 'updated' : 'added';
+                return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
+            }
         }
     }
 

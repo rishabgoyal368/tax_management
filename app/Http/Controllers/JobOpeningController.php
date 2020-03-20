@@ -11,6 +11,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\JobOpening;
 use App\Designation;
 use App\Department;
+use Carbon\carbon;
+
 use Helper;
 
 
@@ -24,7 +26,7 @@ class JobOpeningController extends Controller
 
     public function show(Request $request)
     {
-        $Jobopening = [];
+        $Jobopening = JobOpening::get();
         return view('JobOpening.list', compact('Jobopening'));
     }
 
@@ -36,23 +38,33 @@ class JobOpeningController extends Controller
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // return $request;
-            $this->validate($request, [
-                'JobTitle' =>  'required|alpha_num|max:255',
-                'department' =>  'required|max:255',
-                'designation' =>  'required|max:255',
-                'minExperience' =>  'nullable|numeric|min:0',
-                'maxExperience' =>  'required|numeric|required_with:minExperience|min:1',
-                'minSalary' =>  'nullable|numeric|min:0',
-                'maxSalary' =>  'required|numeric|required_with:minSalary|min:1',
-                'postion' =>  'required|numeric|maxlength:3|min:1',
-                'description' =>  'required|alpha_num|max:255',
-                'timePeriod' =>  'required|max:255',
-            ]);
-            return $request;
-            $request['department_id'] = Designation::checkOrCreate(@$request->designation);
+            $this->validate(
+                $request,
+                [
+                    'JobTitle' =>  'required|string|max:255',
+                    'department' =>  'required|max:255',
+                    'designation' =>  'required|max:255',
+                    'minExperience' =>  'nullable|numeric|min:0',
+                    'maxExperience' =>  'required|numeric|required_with:minExperience|min:' . $request->minExperience,
+                    'minSalary' =>  'nullable|numeric|min:0',
+                    'maxSalary' =>  'required|numeric|required_with:minSalary|min:' . $request->minSalary,
+                    'postion' =>  'required|numeric|digits_between:1,3|min:1',
+                    'description' =>  'required|string|max:255',
+                    'timePeriod' =>  'required|max:255',
+                ],
+                [
+                    'maxExperience.min' => 'Maximum Experience is greater than minimum Experience',
+                    'maxSalary.min' => 'Maximum Salary is greater than minimum Salary',
+                ]
+            );
+            // return $request;
+            $request['designation_id'] = Designation::checkOrCreate(@$request->designation);
             $request['department_id'] = Department::checkOrCreate(@$request->department);
 
-            return $request;
+            $date =  Carbon::createFromFormat('d/m/Y', $request->timePeriod);
+            $request['date'] = strtotime($date);
+            // return $request;
+
             JobOpening::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';
             return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
@@ -65,5 +77,10 @@ class JobOpeningController extends Controller
 
     public function view($id)
     {
+    }
+
+    public function jobTitle(Request $request)
+    {
+        return JobOpening::where('JobTitle', 'LIKE', "%{$request->name}%")->get();
     }
 }
