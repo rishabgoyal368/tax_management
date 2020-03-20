@@ -64,7 +64,7 @@ class ForgotPasswordController extends Controller
             if (!empty($checkUser)) {
                 // return env('MAIL_USERNAME');
 
-                Mail::send('emails.admin.forget', $confirmed = array('user_info' => $data), function ($message) use ($email) {
+                Mail::send('emails.forget', $confirmed = array('user_info' => $data), function ($message) use ($email) {
                     $message->to($email)->from(env('MAIL_USERNAME'), env('APP_NAME'))->subject('Reset your password');
                 });
                 $message = 'Please check your email to reset password.';

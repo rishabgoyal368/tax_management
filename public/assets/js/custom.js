@@ -160,6 +160,15 @@ $(document).ready(function() {
         var data = $('#formpassword').serialize();
         showpassword(url, data, backUrl)
     });
+    
+    $('.hidepassword').click(function(){
+        
+        var id = $(this).data('back_url');
+        console.log(id);
+    });
+        
+    
+   
 
     //================ COMMON FUNCTION <==================
     $('.common_delete').click(function() {

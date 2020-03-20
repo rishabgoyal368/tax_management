@@ -10,29 +10,26 @@ class Admin extends Authenticatable
     protected $guard = 'admin';
 
     protected $fillable = [
-        'first_name','last_name','email', 'password',
+        'first_name','last_name','email','image'
     ];
 
     protected $hidden = [
         'password', 'remember_token',
     ];
 
+public static function Updates($data)
+    {
+        Admin::updateOrCreate(
+            ['id' => $data['id']],
 
-    // public static function Update($data)
-    // {
-        
-    //        $data =  Admin::updateOrCreate(
-    //             [
-    //                 'id' => $data['id']
-    //             ],
-    //             [
-    //                 'first_name' => $data['first_name'],
-    //                 'last_name' => $data['last_name'],
-    //                 'email' => $data['email'],
-    //                 'image' => $data['image'],
-    //             ]
-    //         );
-    //         Admin::where('id', $data['id'])->restore();
-    //     }
+                ['first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'image' => $data['image'],
+            ]);
+        Admin::where('id', $data['id'])->restore();
     }
+}
 
+   

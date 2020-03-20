@@ -62,7 +62,7 @@
                                             <span class="media align-items-center">
                                                 <span class="lnr lnr-user mr-3"></span>
                                                 <span class="media-body text-truncate">
-                                                    <a href="{{url('/AdminProfile')}}">Profile</a>
+                                                    <a href="{{url('/updateprofile')}}">Profile</a>
                                                 </span>
                                             </span>
                                         </a>

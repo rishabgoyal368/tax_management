@@ -10,7 +10,9 @@
 }, "letters numbers and space only");
 
     // ====================> Email================>
-
+//     jQuery.validator.addMethod("emailCheck", function(value, element) {
+//     return this.optional(element) || /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/i.test(value);
+// }, "check email format");
 
     // ====================> Admin Login================>
     $("#loginform").validate({
@@ -83,7 +85,8 @@
             },
             email: {
                 required: true,
-                email: true
+                email: true 
+
             },
             password: {
                 required: true,
@@ -98,7 +101,7 @@
         },
         messages: {
             name: {
-                required: "Please enter name of plateform",
+                required: "Please enter name of Platform",
             },
             websiteLink: {
                 required: "Please enter websitelink",
