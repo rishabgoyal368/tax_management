@@ -82,9 +82,10 @@ class JobListingWebsiteController extends Controller
                 'websiteLink' => 'required',
                 'email' => 'required|email',
                 'password' => 'required|min:6|max:20',
+                'status' => 'required',
             ]);
             if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()->first()]);
+            return redirect()->back()->withErrors($validator->errors());
         } else {
             JobListingWebsite::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';
@@ -114,7 +115,7 @@ class JobListingWebsiteController extends Controller
             'id'  => 'required|exists:job_listing_websites,id',
         ]);
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()->first()]);
+            return redirect()->back()->withErrors($validator->errors());
         } else {
             JobListingWebsite::remove($request->id);
             return response()->json(['success' => 'JobListingWebsite deleted successfully.']);
@@ -140,21 +141,20 @@ class JobListingWebsiteController extends Controller
     }
 
     //---------------------------individualy passwword update--------------------------
-    
+
     public function update(Request $request)
     {
-        dd($request);
+        return $request->all();
         $data = $request->all();
            $validator = Validator::make($data, [
                 'password' => 'required|min:6|max:20',
             ]);
             if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()->first()]);
-        } else {
+            return redirect()->back()->withErrors($validator->errors());
+             } else {
             JobListingWebsite::Updatepassword($request);
             return redirect('Job-listing-websites')->with(['success' => 'Password change successfully']);
+             }
 
     }
-
-}
 }

@@ -58,16 +58,16 @@
                                 <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" onclick="myFunction()">
                             </div>
                             <div class="col-md-12 form-group mb-0">
-                                <select class="form-control" name="status">                                   
+                                <select class="form-control" name="status" id="status">                                   
                                     <option value="" selected disabled>Select Status</option>
                                     <option @if(@$jobadd->status == 'Active') selected @endif value="Active">Active</option>
                                     <option @if(@$jobadd->status == 'Deactivated') selected @endif value="Deactivated">Deactivated</option>
                                     <option @if(@$jobadd->status == 'Deleted') selected @endif value="Deleted">Deleted</option>
                                     <option @if(@$jobadd->status == 'Archive') selected @endif value="Archive">Archive</option>
                                 </select>
-                                @if ($errors->has('password1'))
+                                 @if ($errors->has('status'))
                                 <span class="siteLogo_error" role="alert">
-                                    <strong>{{ $errors->first('password1') }}</strong>
+                                    <strong>{{ $errors->first('status') }}</strong>
                                 </span>
                                 @endif
                             </div>

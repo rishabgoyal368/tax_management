@@ -18,6 +18,15 @@
 											<h4 class="card-title mb-0">Admin Profile</h4>
 										</div>
 										<div class="card-body">
+											@if (isset($errors) && $errors->any())
+									        <div class="alert alert-danger">
+									            <ul>
+									                @foreach ($errors->all() as $error)
+									                    <li>{{ $error }}</li>
+									                @endforeach
+									            </ul>
+									        </div>
+											@endif 
 					                        <div class="row">
 					                        	<form  action="{{url('/updateprofile')}}" method="post">
 					                        		@csrf
@@ -33,9 +42,6 @@
 						                                <input type="text" name="email" id="email" class="form-control" value="{{ @Auth::user()->email }}">
 						                            </div>
 
-						                            <div class="col-md-12 form-group">
-						                                <input type="password" name="password" id="password" class="form-control" value="{{ @Auth::user()->password }}">
-						                            </div>
 						                            <input type="file" name="image" id="image">
 						                            <button class="btn btn-info" type="submit" >Edit</button>
 												</form>

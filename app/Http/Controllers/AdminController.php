@@ -24,12 +24,8 @@ class AdminController extends Controller
         //    return 'true';
         return view('index');
     }
-    //Admin Profile
-    public function profile()
-    {
-        return view('admin.adminprofile');
-    }
-    
+//----------------------------------update adminprofile------------------------------------------
+
     public function update(Request $request)
     {
         // return ($request->all());
@@ -42,11 +38,13 @@ class AdminController extends Controller
             'first_name' =>  'required',
                 'last_name' => 'required',
                 'email' => 'required',
-                'password' => 'required',
                 'image' => 'required',
         ]);
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()->first()]);
+            // return Redirect::back()
+            //     ->withErrors($validator);
+                return redirect()->back()->withErrors($validator->errors());
+
         } else {
            Admin::Updates($request);
             return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
