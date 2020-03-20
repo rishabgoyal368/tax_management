@@ -20,6 +20,7 @@
 										<div class="card-body">
 					                        <div class="row">
 					                        	<form  action="{{url('/updateprofile')}}" method="post">
+					                        		@csrf
 						                            <div class="col-md-12 form-group">
 						                                <input type="text" name="first_name" id="last_name" class="form-control" value="{{ @Auth::user()->first_name }}">
 						                            </div>
@@ -30,6 +31,10 @@
 						                            
 						                            <div class="col-md-12 form-group">
 						                                <input type="text" name="email" id="email" class="form-control" value="{{ @Auth::user()->email }}">
+						                            </div>
+
+						                            <div class="col-md-12 form-group">
+						                                <input type="password" name="password" id="password" class="form-control" value="{{ @Auth::user()->password }}">
 						                            </div>
 						                            <input type="file" name="image" id="image">
 						                            <button class="btn btn-info" type="submit" >Edit</button>

@@ -66,7 +66,7 @@ class JobListingWebsiteController extends Controller
         $resultIds = clone $result;
         $id = $resultIds->pluck('id')->toArray();
         $ids = implode(',', $id);
-        $jobListing = $result->paginate(env('PAGINATE'));
+        $jobListing = $result->paginate('10');
         return view('JobListingWebsite.list', compact('jobListing', 'joblist', 'plateform', 'email', 'status', 'master', 'index', 'searchplateform', 'searchemail', 'searchstatus', 'searchlink', 'ids'));
     }
 

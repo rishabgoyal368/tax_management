@@ -18,7 +18,7 @@
                             Job Listing Websites
                         </h4>
                         <a href="{{url('/Add-job-listing-websites')}}" class="float-right add-doc text-primary">Add Job Listing Websites</a><br>
-                        
+
                         <a class="float-right add-doc text-primary" id='importData' data-toggle="modal" data-target="#addNewTeam" data-backdrop="static" data-model_name='Import Data in Job listing website' data-url="{{url('/import')}}" data-back_url="{{url('/Job-listing-websites')}}" data-type="2">Import</a><br>
 
                         <a href="{{url('/export-joblisting')}}" onclick="event.preventDefault();document.getElementById('documents-export').submit();" class="float-right add-doc text-primary">Export</a>
@@ -122,7 +122,7 @@
                                             <td>{{$job_list->name}}</td>
                                             <td><a href="{{$job_list->website}}" target="_blank">{{$job_list->website}}</a></td>
                                             <td>{{$job_list->email}}</td>
-                                            <td class="hidepassword" style="display:none;">{{$job_list->password}}</td>
+                                            <td class="hidepassword" style="display:none;"><input type="text" value="{{$job_list->password}}"><i class="fa fa-fw fa-eye" id="hidepassword" data-id="{{$job_list->id}}" data-back_url="{{url('/Job-listing-websites')}}"></i></td>
                                             <td><label class="{{Helper::statusClass($job_list->status)}}">{{$job_list->status}}</label></td>
                                             <td>--</td>
                                             <td><a href="{{url('/Edit-job-listing-websites')}}/{{$job_list->id}}"> <span class="edit_icon lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
@@ -140,6 +140,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            {{$jobListing->links()}}
                         </div>
                     </div>
                 </div>
@@ -147,9 +148,4 @@
         </div>
     </div>
 </div>
-</div>
-</div>
-</div>
-
-
 @endsection
