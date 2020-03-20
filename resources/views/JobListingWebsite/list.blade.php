@@ -52,7 +52,7 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <select class="selectpicker" multiple data-live-search="true" name="webplateform[]" data-style="form-control btn-default btn-outline">
-                                            <option disabled>select Plateform</option>
+                                            <option disabled>Select Plateform</option>
 
                                             @foreach($joblist->unique('name') as $value2)
                                             <option value="{{$value2->name}}" @if(!empty($link)) @if(in_array($value2->name,$link)) selected @endif @endif>{{$value2->name}}</option>
@@ -63,7 +63,7 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <select class="selectpicker" multiple data-live-search="true" id="emailSelect" name="webemail[]" data-style="form-control btn-default btn-outline">
-                                            <option disabled>select Email</option>
+                                            <option disabled>Select Email</option>
                                             @foreach($joblist->unique('email') as $value3)
                                             <option value="{{$value3->email }}" @if(!empty($email)) @if(in_array($value3->email,$email)) selected @endif @endif>{{$value3->email}}</option>
                                             @endforeach
@@ -76,7 +76,7 @@
                                 <div class="col-3">
                                     <div class="form-group">
                                         <select class="selectpicker" multiple data-live-search="true" id="statusSelect" name="webstatus[]" data-style="form-control btn-default btn-outline">
-                                            <option disabled>select Status</option>
+                                            <option disabled>Select Status</option>
                                             @foreach($joblist->unique('status') as $value)
                                             <option value="{{$value->status}}" @if(!empty($status)) @if(in_array($value->status,$status)) selected @endif @endif>{{$value->status}}</option>
                                             @endforeach
