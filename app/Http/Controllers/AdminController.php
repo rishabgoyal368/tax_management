@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 use App\Admin;
 use Auth;
 
@@ -30,20 +32,26 @@ class AdminController extends Controller
     
     public function update(Request $request)
     {
-        return ($request->all());
-
-        // if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        //     return view('admin.adminprofile');
-        // }
-        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        //     $this->validate($request, [
-        //         'first_name' =>  'required',
-        //         'last_name' => 'required',
-        //         'email' => 'required',
-        //         'image' => 'required',
-        //     ]);
-        //     Admin::Update($request);
-        //     return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
-        // }
+        // return ($request->all());
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            return view('admin.adminprofile');
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = $request->all();
+        $validator =  Validator::make($data, [
+            'first_name' =>  'required',
+                'last_name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
+                'image' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()]);
+        } else {
+           Admin::Updates($request);
+            return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
+        }
+            
+        }
     }
 }
