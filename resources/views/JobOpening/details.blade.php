@@ -55,7 +55,7 @@
                             <div class="col-md-12 form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text"  name="minExperience" id="minExperience" class="form-control" autocomplete="off" placeholder="Min Experience" value="{{@$department->getDepartment['title'] ?: old('department') }}">
+                                        <input type="text"  name="minExperience" id="minExperience" class="form-control" autocomplete="off" placeholder="Min Experience" value="{{@$department->minExperience ?: old('minExperience') }}">
                                         @if ($errors->has('minExperience'))
                                         <span class="text-error" role="alert">
                                             <strong>{{ $errors->first('minExperience') }}</strong>
@@ -63,7 +63,7 @@
                                         @endif
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text"  name="maxExperience" id="maxExperience" class="form-control" autocomplete="off" placeholder="Max Experience*" value="{{@$department->getDepartment['title'] ?: old('maxExperience') }}">
+                                        <input type="text"  name="maxExperience" id="maxExperience" class="form-control" autocomplete="off" placeholder="Max Experience*" value="{{@$department->maxExperience ?: old('maxExperience') }}">
                                         @if ($errors->has('maxExperience'))
                                         <span class="text-error" role="alert">
                                             <strong>{{ $errors->first('maxExperience') }}</strong>
@@ -111,9 +111,9 @@
 
                             <div class="col-md-12 form-group">
                                 <input type="text" name="timePeriod" id="timePeriod" class="form-control datetimepicker" autocomplete="off" placeholder="Time Period*" value="{{@$department->getDepartment['title'] ?: old('timePeriod') }}">
-                                @if ($errors->has('postion'))
+                                @if ($errors->has('timePeriod'))
                                 <span class="text-error" role="alert">
-                                    <strong>{{ $errors->first('postion') }}</strong>
+                                    <strong>{{ $errors->first('timePeriod') }}</strong>
                                 </span>
                                 @endif
                             </div>

@@ -90,7 +90,7 @@
                                         @forelse($GetDesignation as $key => $department)
                                         <tr>
 
-                                            <td>{{($GetDesignation->currentpage()-1) * $GetDesignation->perpage() + $key + 1}}</td>
+                                            <td>{{$department->id}}</td>
                                             <td>{{$department->title}}</td>
                                             <td>{{$department->getDepartment['title']}}</td>
                                             <td> <label class="{{Helper::statusClass($department->status)}}">{{($department->status)}}</label></td>
