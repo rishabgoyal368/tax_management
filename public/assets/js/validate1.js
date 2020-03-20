@@ -2,9 +2,6 @@ $(document).ready(function() {
     $.validator.addMethod("passwordCheck", function(value, element) {
         return /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(value);
     });
-    $.validator.addMethod("valueNotEquals", function(value, element, arg) {
-        return arg !== value;
-    }, "Value must not equal arg.");
 
 
     // ====================> Designation ================>
@@ -19,7 +16,6 @@ $(document).ready(function() {
             },
             status: {
                 required: true
-
             }
         },
         messages: {
@@ -28,6 +24,84 @@ $(document).ready(function() {
             },
             department: {
                 required: "Please enter department",
+            },
+            status: {
+                required: "Please Select one option",
+            }
+        },
+    });
+
+    // ====================> Job Opening ================>
+
+    $('#jobOpening').validate({
+        rules: {
+            JobTitle: {
+                required: true,
+            },
+            designation: {
+                required: true
+            },
+            department: {
+                required: true
+            },
+            maxExperience: {
+                required: true,
+                digits: true,
+                min: 1
+            },
+            minExperience: {
+                digits: true,
+                min: 0
+            },
+            maxSalary: {
+                required: true,
+                digits: true,
+                min: 1
+            },
+            minSalary: {
+                digits: true,
+                min: 0
+            },
+            postion: {
+                required: true,
+                digits: true,
+                maxlength: 3,
+                min: 1
+            },
+            description: {
+                required: true
+            },
+            timePeriod: {
+                required: true
+            },
+            status: {
+                required: true
+            }
+        },
+        messages: {
+            JobTitle: {
+                required: "Please enter Title",
+            },
+            designation: {
+                required: "Please enter Designation",
+            },
+            department: {
+                required: "Please enter Department",
+            },
+            maxExperience: {
+                required: "Please enter Max Experience",
+            },
+            maxSalary: {
+                required: "Please enter Max Salary",
+            },
+            postion: {
+                required: "Please enter Postion",
+            },
+            description: {
+                required: "Please enter Description",
+            },
+            timePeriod: {
+                required: "Please enter Time Period",
             },
             status: {
                 required: "Please Select one option",

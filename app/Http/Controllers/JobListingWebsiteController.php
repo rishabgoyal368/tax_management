@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\JobListingWebsite;
 use App\Exports\JobListingWebsiteExport;
 use Maatwebsite\Excel\Facades\Excel;
+
+use App\JobListingWebsite;
 use Helper;
 
 
@@ -71,20 +72,24 @@ class JobListingWebsiteController extends Controller
 
     public function add(Request $request)
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             return view('JobListingWebsite.add');
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->validate($request, [
+            $data = $request->all();
+           $validator = Validator::make($data, [
                 'name' =>  'required|alpha_num|max:100|unique:job_listing_websites,name,' . $request['id'] . ',id,email,' . $request['email'] . ',deleted_at,NULL',
                 'websiteLink' => 'required',
-                'email' => 'required',
-                'password' => 'required',
+                'email' => 'required|email',
+                'password' => 'required|min:6|max:20',
             ]);
+            if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()]);
+        } else {
             JobListingWebsite::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';
             return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
+        }
         }
     }
 
@@ -116,11 +121,12 @@ class JobListingWebsiteController extends Controller
         }
     }
 
-    //export
+    //-----------------------------------export-------------------------------------------
+
     public function export(Request $request)
     {
         $ids =   explode(',', $request['id']);
-        $data =  JobListingWebsite::withTrashed()->whereIn('id', $ids)->latest()->get()->toArray();
+        $data =  JobListingWebsite::withTrashed()->whereIn('id', $ids)->get()->toArray();
         foreach ($data as $value) {
             $arr[] = array(
                 'name' => $value['name'],

@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('admin');
+        $this->middleware('auth:admin');
     }
     public function index(Request $request)
     {
@@ -22,16 +22,28 @@ class AdminController extends Controller
         //    return 'true';
         return view('index');
     }
-    public function login(Request $request)
+    //Admin Profile
+    public function profile()
     {
-        $ab = Admin::where('email', $request->email)->get();
-        return $ab;
-        if (Auth::guard('admin')->attempt(['email' == $request->email, 'password' == $request->password])) {
-            return 'login';
-        }
+        return view('admin.adminprofile');
     }
-    public function logout(Request $request)
+    
+    public function update(Request $request)
     {
-        return redirect('/loginpage')->with('danger', 'credential not match');
+        return ($request->all());
+
+        // if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        //     return view('admin.adminprofile');
+        // }
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //     $this->validate($request, [
+        //         'first_name' =>  'required',
+        //         'last_name' => 'required',
+        //         'email' => 'required',
+        //         'image' => 'required',
+        //     ]);
+        //     Admin::Update($request);
+        //     return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
+        // }
     }
 }

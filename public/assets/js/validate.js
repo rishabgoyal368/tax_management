@@ -1,7 +1,17 @@
-$(document).ready(function() {
+    $(document).ready(function() {
     $.validator.addMethod("passwordCheck", function(value, element) {
         return /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/.test(value);
     });
+
+    // ====================> alphanumeric================>
+
+    jQuery.validator.addMethod("letterswithspace", function(value, element) {
+    return this.optional(element) || /^^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/i.test(value);
+}, "letters numbers and space only");
+
+    // ====================> Email================>
+
+
     // ====================> Admin Login================>
     $("#loginform").validate({
         rules: {
@@ -27,7 +37,7 @@ $(document).ready(function() {
         rules: {
             email: {
                 required: true,
-                email: true
+                email: true,
             },
             password: {
                 required: true,
@@ -63,7 +73,7 @@ $(document).ready(function() {
             name: {
                 required: true,
                 maxlength: 100,
-                alphanumeric: true
+                letterswithspace :true
 
             },
             websiteLink: {
@@ -76,7 +86,11 @@ $(document).ready(function() {
                 email: true
             },
             password: {
-                required: true
+                required: true,
+                minlength: 6,
+                maxlength: 20,
+        
+
             },
             status: {
                 required: true

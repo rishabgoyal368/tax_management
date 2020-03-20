@@ -18,13 +18,11 @@
 											<h4 class="card-title mb-0">Basic Information</h4>
 										</div>
 										<div class="card-body ">
-											<p class="card-text mb-3"><span class="text-primary font-weight-bold">Plateform Name : </span>{{ $jobshow->name }}</p>
+											<p class="card-text mb-3"><span class="text-primary font-weight-bold">Platform Name : </span>{{ $jobshow->name }}</p>
 											<p class="card-text mb-3"><span class="text-primary font-weight-bold">Website Link : </span>{{ $jobshow->website }}</p>
 											<p class="card-text mb-3"><span class="text-primary font-weight-bold">Email : </span> {{ $jobshow->email }} </p>
 											<p class="card-text mb-3"><span class="text-primary font-weight-bold">Password 	 : </span><b>{{ $jobshow->password }}</b></p>
-											<p class="card-text mb-3"><span class="text-primary font-weight-bold">Status : </span> {{ $jobshow->status }} </p>
-											
-											
+											<p class="card-text mb-3"><span class="text-primary font-weight-bold">Status : </span> {{ $jobshow->status }} </p>											
 										</div>
 									</div>
 								</div>

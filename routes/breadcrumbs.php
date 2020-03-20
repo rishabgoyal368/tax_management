@@ -51,3 +51,32 @@ Breadcrumbs::for('Show-job-listing-websites', function ($trail) {
 
     $trail->push('Show job listing websites', url('show-job-listing-websites'));
 });
+
+// Home > job-opening
+Breadcrumbs::for('job-opening', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Job opening', url('job-opening'));
+});
+
+// job-opening > Add job-opening
+Breadcrumbs::for('add-job-opening', function ($trail) {
+    $trail->parent('job-opening');
+    $trail->push('Add job opening', url('add-job-opening'));
+});
+
+// job-opening > Edit job-opening
+Breadcrumbs::for('edit-job-opening', function ($trail) {
+    $trail->parent('job-opening');
+    $trail->push('Edit job opening', url('edit-job-opening'));
+});
+
+Breadcrumbs::for('AdminProfile', function ($trail) {
+    $trail->parent('Job-listing-websites');
+    $trail->push('AdminProfile', url('AdminProfile'));
+});
+
+Breadcrumbs::for('updateprofile', function ($trail) {
+    $trail->parent('Job-listing-websites');
+
+    $trail->push('updateprofile', url('updateprofile'));
+});
