@@ -34,22 +34,19 @@ class AdminController extends Controller
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $request->all();
-        $validator =  Validator::make($data, [
+            $validator =  Validator::make($data, [
             'first_name' =>  'required',
                 'last_name' => 'required',
                 'email' => 'required',
                 'image' => 'required',
-        ]);
+            ]);
         if ($validator->fails()) {
-            // return Redirect::back()
-            //     ->withErrors($validator);
-                return redirect()->back()->withErrors($validator->errors());
-
-        } else {
-           Admin::Updates($request);
-            return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
+            return redirect()->back()->withErrors($validator->errors());
         }
-            
+        
+
+        Admin::Updates($data);
+        return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
         }
     }
 }

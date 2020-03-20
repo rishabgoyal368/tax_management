@@ -19,18 +19,12 @@ class Admin extends Authenticatable
 
 public static function Updates($data)
     {
-        Admin::update(
-            [
-                'id' => $data['id']
-            ],
-            [
+        Admin::where('id',$data['id'])->update([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'email' => $data['email'],
                 'image' => $data['image'],
-            ]
-        );
-            // Admin::where('id', $data['id'])->restore();
+            ]);
     }
 
 

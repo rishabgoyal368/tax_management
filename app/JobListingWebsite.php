@@ -78,7 +78,6 @@ class JobListingWebsite extends Authenticatable
             ]
         );
         JobListingWebsite::where('id', $data['id'])->restore();
-
     } 
 
     public static function remove($id)

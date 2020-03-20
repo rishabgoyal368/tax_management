@@ -94,7 +94,7 @@
                     maxlength: 20,
                 },
                 status: {
-                    required: true
+                    required: true,
                 }
             },
             messages: {

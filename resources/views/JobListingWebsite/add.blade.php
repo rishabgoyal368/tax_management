@@ -1,5 +1,5 @@
 @extends('Layout.app')
-@section('title','Edit Job Listing Websites')
+@section('title','Add Job Listing Websites')
 @section('content')
 
 <!-- Sidebar -->
