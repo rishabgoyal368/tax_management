@@ -32,13 +32,17 @@ Route::post('reauthenticate','HomeController@reauthenticate');
 //==========> Department <===================//
 Route::post('/get-department-ajax', 'DepartmentController@getDepartment');
 //==========> Designation <=================// 
-Route::any('/designation', 'DesignationsController@show')->name('designation');
-Route::post('/get-department-title', 'DesignationsController@Designation');
-Route::any('add-designation', 'DesignationsController@add');
-Route::any('edit-designation/{id}', 'DesignationsController@add');
-Route::get('view-designation/{id}', 'DesignationsController@view');
-Route::delete('delete-designation', 'DesignationsController@delete');
-ROute::post('export-designation','DesignationsController@export');
+Route::any('/designation', 'DesignationController@show')->name('designation');
+Route::post('/get-department-title', 'DesignationController@Designation');
+Route::any('add-designation', 'DesignationController@add');
+Route::any('edit-designation/{id}', 'DesignationController@add');
+Route::get('view-designation/{id}', 'DesignationController@view');
+Route::delete('delete-designation', 'DesignationController@delete');
+ROute::post('export-designation','DesignationController@export');
 //==========> Users Management <=================// 
-Route::any('/user-management', 'DesignationsController@show')->name('designation');
+// Route::any('/user-management', 'DesignationsController@show');
+
+Route::any('/job-opening', 'JobOpeningController@show')->name('jobOpening');
+Route::any('add-job-opening', 'JobOpeningController@add');
+
 

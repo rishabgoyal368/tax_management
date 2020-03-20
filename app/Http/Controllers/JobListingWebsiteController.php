@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\JobListingWebsite;
 use App\Exports\JobListingWebsiteExport;
 use Maatwebsite\Excel\Facades\Excel;
+
+use App\JobListingWebsite;
 use Helper;
 
 
@@ -71,7 +72,6 @@ class JobListingWebsiteController extends Controller
 
     public function add(Request $request)
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             return view('JobListingWebsite.add');
         }

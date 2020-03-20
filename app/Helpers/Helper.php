@@ -29,10 +29,10 @@ class Helper
                 echo 'badge badge-success';
                 break;
             case 'Deleted':
-                echo 'badge badge-warning';
+                echo 'badge badge-danger';
                 break;
             case 'Deactivated':
-                echo 'badge badge-danger';
+                echo 'badge badge-warning';
                 break;
             case 'Archive':
                 echo 'badge badge-primary';

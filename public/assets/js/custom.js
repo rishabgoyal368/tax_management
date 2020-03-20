@@ -102,10 +102,10 @@ function showpassword(url, data, back_url) {
         data: data,
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
         success: function(data) {
-            $('.passwordError').css('display','block')
+            $('.passwordError').css('display', 'block')
             if (data['error']) {
                 $('.passwordError').text(data['error']).addClass('alert alert-danger')
-                // $("#formpassword")[0].reset();
+                    // $("#formpassword")[0].reset();
             }
             if (data['success']) {
                 $('.hidepassword').css('display', 'block'); // show password row
@@ -147,8 +147,8 @@ $(document).ready(function() {
     $('.showPasswordModal').click(function() {
         var url = $(this).data('url')
         var backUrl = $(this).data('back_url')
-                $("#formpassword")[0].reset();
-            $('.passwordError').css('display','none')
+        $("#formpassword")[0].reset();
+        $('.passwordError').css('display', 'none')
 
         $('.AuthenticateAdmin').attr('url', url).attr('data-back_url', backUrl)
     });
@@ -179,6 +179,7 @@ $(document).ready(function() {
             var searchValue = $(this).val();
             var url = $(this).data('url');
             var appendText = this;
+            console.log($(this).val())
             getDataByType(url, searchValue, appendText)
         } else {
             $('.recentSearchDrop').css('display', 'none')
@@ -215,7 +216,7 @@ $(document).ready(function() {
             $('#loader-wrapper').css('display', 'block')
             importData(url, formData, back_url)
         } else {
-            $('.deleteError').text('Please upload Import file').addClass('alert alert-danger')
+            $('.deleteError').css('display', 'block').text('Please upload Import file').addClass('alert alert-danger')
         }
 
     });
