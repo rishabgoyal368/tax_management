@@ -35,7 +35,7 @@
                                 @enderror
                             </div>
                             <div class="form-group ">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password" placeholder="password">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password" placeholder="Password">
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -43,7 +43,7 @@
                                 @enderror
                             </div>
                             <div class="form-group ">
-                                <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation"  autocomplete="new-password" placeholder="Confirm password">
+                                <input id="password-confirm" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation"  autocomplete="new-password" placeholder="Confirm Password">
                                 @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-theme button-1 text-white ctm-border-radius btn-block" type="submit">Reset password_confirmation</button>
+                                <button class="btn btn-theme button-1 text-white ctm-border-radius btn-block" type="submit">Reset Password Confirmation</button>
                             </div>
                         </form>
                         <div class="text-center forgotpass"><a href="{{url('/login')}}">Login</a></div>
