@@ -32,7 +32,10 @@
 
     <!-- multipleselct css-->
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap-select.css')}}">
-   
+
+    <!-- Datetimepicker css-->
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}">
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
@@ -66,8 +69,6 @@
         @endif
         @yield('content')
 
-        @extends('Layout.footer')
     </div>
 </body>
-
-</html>
+@extends('Layout.footer')

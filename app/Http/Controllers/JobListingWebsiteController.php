@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\JobListingWebsite;
 use App\Exports\JobListingWebsiteExport;
 use Maatwebsite\Excel\Facades\Excel;
+
+use App\JobListingWebsite;
 use Helper;
 
 
@@ -28,7 +29,7 @@ class JobListingWebsiteController extends Controller
         $searchemail = $request->Emailname;
         $searchstatus = $request->Statusname;
         $searchlink = $request->LinkName;
-
+// return $request;
         $joblist = JobListingWebsite::withTrashed()->get();
         $result = JobListingWebsite::withTrashed()->where(function ($query) use ($master, $plateform, $email, $status) {
             // Master Search
@@ -71,12 +72,12 @@ class JobListingWebsiteController extends Controller
 
     public function add(Request $request)
     {
-
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             return view('JobListingWebsite.add');
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $request->all();
+
            $validator = Validator::make($data, [
                 'name' =>  'required|alpha_num|max:100|unique:job_listing_websites,name,' . $request['id'] . ',id,email,' . $request['email'] . ',deleted_at,NULL',
                 'websiteLink' => 'required',

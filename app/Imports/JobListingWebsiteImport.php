@@ -19,6 +19,8 @@ class JobListingWebsiteImport implements ToCollection, WithHeadingRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
+            
+            $data = [];
             if (JobListingWebsite::withTrashed()->where(['name' => $row['name'], 'email' => $row['email'], 'password' => $row['password']])->count() == 0) {
                 $data['id'] = '';
                 $data['name'] = $row['name'];

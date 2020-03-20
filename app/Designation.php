@@ -23,10 +23,10 @@ class Designation extends Authenticatable
         'title', 'uploadBy', 'department_id', 'status'
     ];
 
+    // Add or Update
     public static function addorUpdate($data)
     {
-        if($data['status'] == 'Deleted')
-        {
+        if ($data['status'] == 'Deleted') {
             $data =  Designation::withTrashed()->updateOrCreate(
                 [
                     'id' => $data['id']
@@ -38,8 +38,7 @@ class Designation extends Authenticatable
                 ]
             );
             Designation::where('id', $data['id'])->delete();
-        }
-        else{
+        } else {
             Designation::withTrashed()->updateOrCreate(
                 [
                     'id' => $data['id']
@@ -52,17 +51,24 @@ class Designation extends Authenticatable
             );
             Designation::where('id', $data['id'])->restore();
         }
-       
     }
 
-    
-
+    // Delete
     public static function remove($id)
     {
         Designation::withTrashed()->where('id', $id)->update([
             'status' => 'Deleted'
         ]);
         return Designation::withTrashed()->where('id', $id)->delete();
+    }
+
+    // Check or Create
+    public static function checkOrCreate($department)
+    {
+        $data =   Designation::firstOrCreate([
+            'title' => $department
+        ]);
+        return $data['id'];
     }
 
     public function getDepartment()

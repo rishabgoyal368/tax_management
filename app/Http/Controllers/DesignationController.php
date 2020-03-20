@@ -13,7 +13,7 @@ use App\Department;
 use Helper;
 
 
-class DesignationsController extends Controller
+class DesignationController extends Controller
 {
     public function __construct()
     {
@@ -75,7 +75,7 @@ class DesignationsController extends Controller
         $resultIds = clone $result;
         $id = $resultIds->pluck('id')->toArray();
         $ids = implode(',', $id);
-        return $GetDesignation = $result->toSql();
+        // return $GetDesignation = $result->toSql();
 
         $GetDesignation = $result->latest()->paginate(env('PAGINATE'));
         return view('Designation.list', compact('GetDesignation', 'ids', 'GetDepartment', 'Designation', 'status', 'department', 'master'));
