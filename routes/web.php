@@ -27,6 +27,10 @@ Route::any('Delete-job-listing-websites', 'JobListingWebsiteController@delete');
 ROute::post('export-joblisting','JobListingWebsiteController@export');
 Route::post('reauthenticate','HomeController@reauthenticate');
 
+//==========> Admin  <===================//
+Route::get('/AdminProfile','AdminController@profile');
+Route::any('/updateprofile','AdminController@update');
+
 
 
 //==========> Department <===================//

@@ -69,3 +69,14 @@ Breadcrumbs::for('edit-job-opening', function ($trail) {
     $trail->parent('job-opening');
     $trail->push('Edit job opening', url('edit-job-opening'));
 });
+
+Breadcrumbs::for('AdminProfile', function ($trail) {
+    $trail->parent('Job-listing-websites');
+    $trail->push('AdminProfile', url('AdminProfile'));
+});
+
+Breadcrumbs::for('updateprofile', function ($trail) {
+    $trail->parent('Job-listing-websites');
+
+    $trail->push('updateprofile', url('updateprofile'));
+});
