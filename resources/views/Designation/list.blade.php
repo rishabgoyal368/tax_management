@@ -65,10 +65,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" value='{{@$index}}' name="" id='indexSort'>
-                            <input type="hidden" value='{{@$index}}' name="" id='titleSort'>
+
+                            <input type="hidden" value='{{@$indexSort}}' name="" id='indexSort'>
+                            <input type="hidden" value='{{@$titleSort}}' name="" id='titleSort'>
                             <input type="hidden" value='{{@$index}}' name="" id='departmentSort'>
-                            <input type="hidden" value='{{@$index}}' name="" id='statusSort'>
+                            <input type="hidden" value='{{@$statusSort}}' name="" id='statusSort'>
 
                         </form>
                         <p>Showing {{$GetDesignation->firstItem()}} - {{$GetDesignation->lastItem()}} of {{@$GetDesignation->total()}}</p>
@@ -117,7 +118,7 @@
                             </div>
                         </div>
                     </div>
-                    {{$GetDesignation->links()}}
+                    {{ $GetDesignation->appends(['master'=>$master,'department' => $department,'status' => $status,'indexSort' => $indexSort,'titleSort' => $titleSort,'departmentSort' => @$index,'statusSort' => $statusSort])->render() }}
                 </div>
             </div>
         </div>

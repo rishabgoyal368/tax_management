@@ -78,7 +78,7 @@ class DesignationController extends Controller
         // return $GetDesignation = $result->toSql();
 
         $GetDesignation = $result->latest()->paginate(env('PAGINATE'));
-        return view('Designation.list', compact('GetDesignation', 'ids', 'GetDepartment', 'Designation', 'status', 'department', 'master'));
+        return view('Designation.list', compact('GetDesignation', 'ids', 'GetDepartment', 'Designation', 'status', 'department', 'master','indexSort','statusSort','titleSort'));
     }
 
     public function add(Request $request, $id = null)
