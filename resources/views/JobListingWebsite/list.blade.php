@@ -19,7 +19,7 @@
                         </h4>
                         <a href="{{url('/Add-job-listing-websites')}}" class="float-right add-doc text-primary">Add Job Listing Websites</a><br>
 
-                        <a class="float-right add-doc text-primary" id='importData' data-toggle="modal" data-target="#addNewTeam" data-backdrop="static" data-model_name='Import Data in Job listing website' data-url="{{url('/import')}}" data-back_url="{{url('/Job-listing-websites')}}" data-type="2">Import</a><br>
+                        <a class="float-right add-doc text-primary" id='importData' data-toggle="modal" data-target="#addNewTeam" data-dumy_pdf="{{url('/upload/Pdf_example/Job_listing_website.xlsx')}}" data-backdrop="static" data-model_name='Import Data in Job listing website' data-url="{{url('/import')}}" data-back_url="{{url('/Job-listing-websites')}}" data-type="2">Import</a><br>
 
                         <a href="{{url('/export-joblisting')}}" onclick="event.preventDefault();document.getElementById('documents-export').submit();" class="float-right add-doc text-primary">Export</a>
 

@@ -118,22 +118,19 @@ function showpassword(url, data, back_url) {
     });
 };
 
-function viewpassword(url,data)
-{
+function viewpassword(url, data) {
     console.log(url)
     $.ajax({
         url: url,
         type: 'POST',
         data: data,
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        success: function(data){
-            if (data['error'])
-            {
+        success: function(data) {
+            if (data['error']) {
                 alert('false');
             }
-            if(data['success'])
-            {
-                alert('true');      
+            if (data['success']) {
+                alert('true');
             }
 
         },
@@ -182,17 +179,17 @@ $(document).ready(function() {
         var data = $('#formpassword').serialize();
         showpassword(url, data, backUrl)
     });
-    
-    $('.viewpassword').click(function(){
-        
+
+    $('.viewpassword').click(function() {
+
         var id = $(this).data('id');
         var url = $(this).data('url');
         var data = $('.displaypassword').serialize();
-viewpassword(url,data);
+        viewpassword(url, data);
     });
-        
-    
-   
+
+
+
 
     //================ COMMON FUNCTION <==================
     $('.common_delete').click(function() {
@@ -234,6 +231,7 @@ viewpassword(url,data);
         $('.import_data_modal_form').data('data-backurl', backurl)
         $('.deleteError').css('display', 'none')
         $('#import').val('');
+        $('#import_data_modal_pdf_example').attr('href', $(this).data('dumy_pdf'))
 
     });
 

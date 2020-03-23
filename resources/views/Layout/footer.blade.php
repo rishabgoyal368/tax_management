@@ -21,13 +21,14 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <a href="" id="import_data_modal_pdf_example" target="_blank">Dumy</a>
                 <h4 class="modal-title mb-3" id='import_data_modal_head'> </h4>
                 <div class="form-group">
-                <form method="post" id="importmodal">
-                                @csrf
-                    <input type="hidden" name="type" value='' id="import_data_modal_type">
-                    <input type="file" name="import" class="form-control" id="import" accept=".xlsx">
-                </form>
+                    <form method="post" id="importmodal">
+                        @csrf
+                        <input type="hidden" name="type" value='' id="import_data_modal_type">
+                        <input type="file" name="import" class="form-control" id="import" accept=".xlsx">
+                    </form>
                 </div>
                 <label for="error" class="deleteError"></label>
 
