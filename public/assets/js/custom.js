@@ -109,11 +109,30 @@ function showpassword(url, data, back_url) {
                     // $("#formpassword")[0].reset();
             }
             if (data['success']) {
-                $('.hidepassword').css('display', 'block'); // show password row
+                $('.hidepassword').css('display', 'block'); // show password column
                 $("#formpassword").hide(); //form hide
                 $('#password_verify').text(data['success']).addClass('alert alert-success') // Add success messgae
 
             }
+        },
+    });
+};
+
+function viewpassword(url, data) {
+    console.log(url)
+    $.ajax({
+        url: url,
+        type: 'POST',
+        data: data,
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        success: function(data) {
+            if (data['error']) {
+                alert('false');
+            }
+            if (data['success']) {
+                alert('true');
+            }
+
         },
     });
 };
@@ -160,15 +179,26 @@ $(document).ready(function() {
         var data = $('#formpassword').serialize();
         showpassword(url, data, backUrl)
     });
-    
-    $('.hidepassword').click(function(){
-        
-        var id = $(this).data('back_url');
-        console.log(id);
+
+    $('.viewpassword').click(function() {
+
+        // var id = $(this).data('id');
+        // var url = $(this).data('url');
+        // var data = $('.displaypassword').serialize();
+        // viewpassword(url, data);
+
+        var id = $(this).data('id');
+        var url = $(this).data('url');
+        var back_url = $(this).data('back_url');
+        var data = $('.displaypassword').serialize();
+        console.log(back_url)
+        viewpassword(url, data, back_url);
+        // $('.viewpassword').css('display', 'none')
+        // $('.removepasswordicon').css('display', 'block')
     });
-        
-    
-   
+
+
+
 
     //================ COMMON FUNCTION <==================
     $('.common_delete').click(function() {
@@ -210,6 +240,7 @@ $(document).ready(function() {
         $('.import_data_modal_form').data('data-backurl', backurl)
         $('.deleteError').css('display', 'none')
         $('#import').val('');
+        $('#import_data_modal_pdf_example').attr('href', $(this).data('dumy_pdf'))
 
     });
 

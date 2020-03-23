@@ -26,31 +26,16 @@ class Designation extends Authenticatable
     // Add or Update
     public static function addorUpdate($data)
     {
-        if ($data['status'] == 'Deleted') {
-            $data =  Designation::withTrashed()->updateOrCreate(
-                [
-                    'id' => $data['id']
-                ],
-                [
-                    'title' => $data['title'],
-                    'department_id' => $data['department_id'] ?: null,
-                    'status' => $data['status'],
-                ]
-            );
-            Designation::where('id', $data['id'])->delete();
-        } else {
-            Designation::withTrashed()->updateOrCreate(
-                [
-                    'id' => $data['id']
-                ],
-                [
-                    'title' => $data['title'],
-                    'department_id' => $data['department_id'] ?: null,
-                    'status' =>  $data['status'],
-                ]
-            );
-            Designation::where('id', $data['id'])->restore();
-        }
+        Designation::withTrashed()->updateOrCreate(
+            [
+                'id' => $data['id']
+            ],
+            [
+                'title' => $data['title'],
+                'department_id' => $data['department_id'] ?: null,
+                'status' =>  $data['status'],
+            ]
+        );
     }
 
     // Delete

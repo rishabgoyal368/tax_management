@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
 Route::post('/import','HomeController@import');
+Route::post('reauthenticate','HomeController@reauthenticate');
 Auth::routes(['register' => false]);
 
 //==========> Job listing Website <===================//
@@ -24,8 +25,9 @@ Route::any('Add-job-listing-websites', 'JobListingWebsiteController@add');
 Route::any('Edit-job-listing-websites/{id}', 'JobListingWebsiteController@edit');
 Route::any('Show-job-listing-websites/{id}', 'JobListingWebsiteController@display');
 Route::any('Delete-job-listing-websites', 'JobListingWebsiteController@delete');
-ROute::post('export-joblisting','JobListingWebsiteController@export');
-Route::post('reauthenticate','HomeController@reauthenticate');
+Route::post('export-joblisting','JobListingWebsiteController@export');
+Route::post('update-joblisting','JobListingWebsiteController@update');
+
 
 //==========> Admin  <===================//
 Route::any('/updateprofile','AdminController@update');
@@ -46,5 +48,10 @@ ROute::post('export-designation','DesignationController@export');
 Route::any('/job-opening', 'JobOpeningController@show')->name('jobOpening');
 Route::post('/get-job-opening-title','JobOpeningController@jobTitle');
 Route::any('add-job-opening', 'JobOpeningController@add');
+
+
+//==========> Admin  <===================//
+Route::any('/updateprofile','AdminController@update');
+Route::any('/updatepassword','AdminController@updatepassword');
 
 

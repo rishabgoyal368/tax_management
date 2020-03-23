@@ -26,7 +26,7 @@ class JobOpeningController extends Controller
 
     public function show(Request $request)
     {
-        $Jobopening = JobOpening::get();
+        $Jobopening = JobOpening::paginate(env('PAGINATE'));
         return view('JobOpening.list', compact('Jobopening'));
     }
 
@@ -67,7 +67,7 @@ class JobOpeningController extends Controller
 
             JobOpening::addorUpdate($request);
             $response = @$request->id ? 'updated' : 'added';
-            return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
+            return redirect('job-opening')->with(['success' => 'Job Opening ' . $response . ' successfully']);
         }
     }
 

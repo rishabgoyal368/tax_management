@@ -24,7 +24,7 @@ class DesignationController extends Controller
     public function show(Request $request)
     {
         $GetDepartment = Department::get();
-        $Designation = Designation::withTrashed()->get();
+        $Designation = Designation::get();
         $master = $request->master;
         $status = $request->status;
         $department = $request->department;
@@ -34,7 +34,7 @@ class DesignationController extends Controller
         $titleSort = $request->titleSort;
         $statusSort = $request->statusSort;
 
-        $result = Designation::withTrashed()->orwhereHas('getDepartment', function ($query) use ($master, $departmentSort) {
+        $result = Designation::orwhereHas('getDepartment', function ($query) use ($master, $departmentSort) {
             //Designer               
             if ($master) {
                 $query->where('title', 'LIKE', "%{$master}%");
@@ -78,7 +78,7 @@ class DesignationController extends Controller
         // return $GetDesignation = $result->toSql();
 
         $GetDesignation = $result->latest()->paginate(env('PAGINATE'));
-        return view('Designation.list', compact('GetDesignation', 'ids', 'GetDepartment', 'Designation', 'status', 'department', 'master'));
+        return view('Designation.list', compact('GetDesignation', 'ids', 'GetDepartment', 'Designation', 'status', 'department', 'master','indexSort','statusSort','titleSort'));
     }
 
     public function add(Request $request, $id = null)
@@ -86,7 +86,7 @@ class DesignationController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($id) {
                 #Update
-                $department = Designation::withTrashed()->find($id);
+                $department = Designation::find($id);
                 $label = 'Edit Designation';
                 return view('Designation.details', compact('department','label'));
             } else {
@@ -126,7 +126,7 @@ class DesignationController extends Controller
 
     public function view($id)
     {
-        $designation = Designation::withTrashed()->find($id);
+        $designation = Designation::find($id);
         return view('Designation.view', compact('designation'));
     }
 

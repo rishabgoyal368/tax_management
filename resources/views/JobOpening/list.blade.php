@@ -75,28 +75,35 @@
                                     <thead>
                                         <tr>
                                             <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='indexSort' data-id='indexSort' data-submit='designation_submit'></i>S.no<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='indexSort' data-id='indexSort' data-submit='designation_submit'></i></th>
-                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='titleSort' data-id='titleSort' data-submit='designation_submit'></i>JobTitle<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='titleSort' data-id='titleSort' data-submit='designation_submit'></i></th>
-                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='titleSort' data-id='titleSort' data-submit='designation_submit'></i>Designation<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='titleSort' data-id='titleSort' data-submit='designation_submit'></i></th>
-                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='departmentSort' data-id='departmentSort' data-submit='designation_submit'></i>Deparment<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='departmentSort' data-id='departmentSort' data-submit='designation_submit'></i></th>
+                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='titleSort' data-id='titleSort' data-submit='designation_submit'></i>Job created date<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='titleSort' data-id='titleSort' data-submit='designation_submit'></i></th>
+                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='titleSort' data-id='titleSort' data-submit='designation_submit'></i>Job Title<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='titleSort' data-id='titleSort' data-submit='designation_submit'></i></th>
+                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='departmentSort' data-id='departmentSort' data-submit='designation_submit'></i>Designation<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='departmentSort' data-id='departmentSort' data-submit='designation_submit'></i></th>
+                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='statusSort' data-id='statusSort' data-submit='designation_submit'></i>Experience Required<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='statusSort' data-id='statusSort' data-submit='designation_submit'></i></th>
+
+                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='statusSort' data-id='statusSort' data-submit='designation_submit'></i>Department<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='statusSort' data-id='statusSort' data-submit='designation_submit'></i></th>
+                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='statusSort' data-id='statusSort' data-submit='designation_submit'></i>No. of Positions<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='statusSort' data-id='statusSort' data-submit='designation_submit'></i></th>
+                                            
                                             <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='statusSort' data-id='statusSort' data-submit='designation_submit'></i>Status<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='statusSort' data-id='statusSort' data-submit='designation_submit'></i></th>
+                                            <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='statusSort' data-id='statusSort' data-submit='designation_submit'></i>Posted on job posting websites<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='statusSort' data-id='statusSort' data-submit='designation_submit'></i></th>
+
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($Jobopening as $key => $department)
+                                        @forelse($Jobopening as $key => $job_opening)
                                         <tr>
 
-                                            <td>{{($Jobopening->currentpage()-1) * $Jobopening->perpage() + $key + 1}}</td>
-                                            <td>{{$department->title}}</td>
-                                            <td>{{$department->getDepartment['title']}}</td>
-                                            <td> <label class="{{Helper::statusClass($department->status)}}">{{($department->status)}}</label></td>
+                                            <td>{{$job_opening->id}}</td>
+                                            <td>{{$job_opening->title}}</td>
+                                            <td>{{$job_opening->getDepartment['title']}}</td>
+                                            <td> <label class="{{Helper::statusClass($job_opening->status)}}">{{($job_opening->status)}}</label></td>
                                             <td>
                                                 <div class="action_block">
-                                                    <a class="edit_icon" href="{{url('/edit-designation')}}/{{$department->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
-                                                    <a class="trash-icon common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target=".common_delete_modal" data-url="{{url('/delete-designation')}}" data-back_url="{{url('/designation')}}" data-id="{{$department->id}}">
+                                                    <a class="edit_icon" href="{{url('/edit-designation')}}/{{$job_opening->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
+                                                    <a class="trash-icon common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target=".common_delete_modal" data-url="{{url('/delete-designation')}}" data-back_url="{{url('/designation')}}" data-id="{{$job_opening->id}}">
                                                         <span class="lnr lnr-trash" data-toggle="tooltip" title="Delete"></span>
                                                     </a>
-                                                    <a class="eye_icon" href="{{url('/view-designation')}}/{{$department->id}}" target="_blank"> <i class="fa fa-fw fa-eye" data-toggle="tooltip" title="View"></i></a>
+                                                    <a class="eye_icon" href="{{url('/view-designation')}}/{{$job_opening->id}}" target="_blank"> <i class="fa fa-fw fa-eye" data-toggle="tooltip" title="View"></i></a>
                                                 </div>
                                             </td>
 

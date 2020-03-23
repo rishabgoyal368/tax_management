@@ -66,6 +66,14 @@
                                                 </span>
                                             </span>
                                         </a>
+                                        <a class="dropdown-item p-2" href="employment.html">
+                                            <span class="media align-items-center">
+                                                <span class="lnr lnr-user mr-3"></span>
+                                                <span class="media-body text-truncate">
+                                                    <a href="{{url('/updatepassword')}}">Update password </a>
+                                                </span>
+                                            </span>
+                                        </a>
                                         <a class="dropdown-item p-2" href="settings.html">
                                             <span class="media align-items-center">
                                                 <span class="lnr lnr-cog mr-3"></span>

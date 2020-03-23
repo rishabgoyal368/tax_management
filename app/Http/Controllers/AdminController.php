@@ -24,12 +24,8 @@ class AdminController extends Controller
         //    return 'true';
         return view('index');
     }
-    //Admin Profile
-    public function profile()
-    {
-        return view('admin.adminprofile');
-    }
-    
+//----------------------------------update adminprofile------------------------------------------
+
     public function update(Request $request)
     {
         // return ($request->all());
@@ -38,20 +34,39 @@ class AdminController extends Controller
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $request->all();
-        $validator =  Validator::make($data, [
+            $validator =  Validator::make($data, [
             'first_name' =>  'required',
                 'last_name' => 'required',
                 'email' => 'required',
-                'password' => 'required',
                 'image' => 'required',
-        ]);
+            ]);
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()->first()]);
-        } else {
-           Admin::Updates($request);
-            return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
+            return redirect()->back()->withErrors($validator->errors());
         }
-            
+        
+
+        Admin::Updates($data);
+        return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
+        }
+    }
+
+    
+    public function updatepassword(Request $request)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            return view('admin.adminpassword');
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = $request->all();
+            $validator =  Validator::make($data, [
+                'password' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->errors());
+            }
+
+            Admin::Updatepassword($data);
+            return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
         }
     }
 }

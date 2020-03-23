@@ -29,7 +29,7 @@ class JobListingWebsiteController extends Controller
         $searchemail = $request->Emailname;
         $searchstatus = $request->Statusname;
         $searchlink = $request->LinkName;
-// return $request;
+        // return $request;
         $joblist = JobListingWebsite::withTrashed()->get();
         $result = JobListingWebsite::withTrashed()->where(function ($query) use ($master, $plateform, $email, $status) {
             // Master Search
@@ -66,7 +66,7 @@ class JobListingWebsiteController extends Controller
         $resultIds = clone $result;
         $id = $resultIds->pluck('id')->toArray();
         $ids = implode(',', $id);
-        $jobListing = $result->paginate('10');
+        $jobListing = $result->paginate(env('PAGINATE'));
         return view('JobListingWebsite.list', compact('jobListing', 'joblist', 'plateform', 'email', 'status', 'master', 'index', 'searchplateform', 'searchemail', 'searchstatus', 'searchlink', 'ids'));
     }
 
@@ -77,17 +77,16 @@ class JobListingWebsiteController extends Controller
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $request->all();
-            $validator =  Validator::make(
-                $data,
-                [
-                    'name' =>  'required|alpha_num|max:100|unique:job_listing_websites,name,' . $request['id'] . ',id,email,' . $request['email'] . ',deleted_at,NULL',
-                    'websiteLink' => 'required',
-                    'email' => 'required|email',
-                    'password' => 'required|min:6|max:20',
-                ]
-            );
+
+            $validator = Validator::make($data, [
+                'name' =>  'required|alpha_num|max:100|unique:job_listing_websites,name,' . $request['id'] . ',id,email,' . $request['email'] . ',deleted_at,NULL',
+                'websiteLink' => 'required',
+                'email' => 'required|email',
+                'password' => 'required|min:6|max:20',
+                'status' => 'required',
+            ]);
             if ($validator->fails()) {
-                return response()->json(['error' => $validator->errors()->first()]);
+                return redirect()->back()->withErrors($validator->errors());
             } else {
                 JobListingWebsite::addorUpdate($request);
                 $response = @$request->id ? 'updated' : 'added';
@@ -117,7 +116,7 @@ class JobListingWebsiteController extends Controller
             'id'  => 'required|exists:job_listing_websites,id',
         ]);
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()->first()]);
+            return redirect()->back()->withErrors($validator->errors());
         } else {
             JobListingWebsite::remove($request->id);
             return response()->json(['success' => 'JobListingWebsite deleted successfully.']);
@@ -140,5 +139,22 @@ class JobListingWebsiteController extends Controller
             );
         }
         return Excel::download(new JobListingWebsiteExport($arr), 'Job_listing_website.xlsx');
+    }
+
+    //---------------------------individualy passwword update--------------------------
+
+    public function update(Request $request)
+    {
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'password' => 'required|min:6|max:20',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors());
+        } else {
+            JobListingWebsite::Updatepassword($data);
+            // return redirect('Job-listing-websites')->with(['success' => 'Password change successfully']);
+            return 'true';
+        }
     }
 }

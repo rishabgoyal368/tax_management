@@ -92,11 +92,9 @@
                     required: true,
                     minlength: 6,
                     maxlength: 20,
-
-
                 },
                 status: {
-                    required: true
+                    required: true,
                 }
             },
             messages: {
