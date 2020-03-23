@@ -50,3 +50,8 @@ Route::post('/get-job-opening-title','JobOpeningController@jobTitle');
 Route::any('add-job-opening', 'JobOpeningController@add');
 
 
+//==========> Admin  <===================//
+Route::any('/updateprofile','AdminController@update');
+Route::any('/updatepassword','AdminController@updatepassword');
+
+

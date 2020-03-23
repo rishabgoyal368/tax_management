@@ -182,10 +182,19 @@ $(document).ready(function() {
 
     $('.viewpassword').click(function() {
 
+        // var id = $(this).data('id');
+        // var url = $(this).data('url');
+        // var data = $('.displaypassword').serialize();
+        // viewpassword(url, data);
+
         var id = $(this).data('id');
         var url = $(this).data('url');
+        var back_url = $(this).data('back_url');
         var data = $('.displaypassword').serialize();
-        viewpassword(url, data);
+        console.log(back_url)
+        viewpassword(url, data, back_url);
+        // $('.viewpassword').css('display', 'none')
+        // $('.removepasswordicon').css('display', 'block')
     });
 
 

@@ -29,7 +29,7 @@ class JobListingWebsiteController extends Controller
         $searchemail = $request->Emailname;
         $searchstatus = $request->Statusname;
         $searchlink = $request->LinkName;
-// return $request;
+        // return $request;
         $joblist = JobListingWebsite::withTrashed()->get();
         $result = JobListingWebsite::withTrashed()->where(function ($query) use ($master, $plateform, $email, $status) {
             // Master Search
@@ -66,7 +66,7 @@ class JobListingWebsiteController extends Controller
         $resultIds = clone $result;
         $id = $resultIds->pluck('id')->toArray();
         $ids = implode(',', $id);
-        $jobListing = $result->paginate('10');
+        $jobListing = $result->paginate(env('PAGINATE'));
         return view('JobListingWebsite.list', compact('jobListing', 'joblist', 'plateform', 'email', 'status', 'master', 'index', 'searchplateform', 'searchemail', 'searchstatus', 'searchlink', 'ids'));
     }
 
@@ -78,7 +78,7 @@ class JobListingWebsiteController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $request->all();
 
-           $validator = Validator::make($data, [
+            $validator = Validator::make($data, [
                 'name' =>  'required|alpha_num|max:100|unique:job_listing_websites,name,' . $request['id'] . ',id,email,' . $request['email'] . ',deleted_at,NULL',
                 'websiteLink' => 'required',
                 'email' => 'required|email',
@@ -86,12 +86,12 @@ class JobListingWebsiteController extends Controller
                 'status' => 'required',
             ]);
             if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors());
-        } else {
-            JobListingWebsite::addorUpdate($request);
-            $response = @$request->id ? 'updated' : 'added';
-            return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
-        }
+                return redirect()->back()->withErrors($validator->errors());
+            } else {
+                JobListingWebsite::addorUpdate($request);
+                $response = @$request->id ? 'updated' : 'added';
+                return redirect('Job-listing-websites')->with(['success' => 'Job Listing Websites ' . $response . ' successfully']);
+            }
         }
     }
 
@@ -145,17 +145,16 @@ class JobListingWebsiteController extends Controller
 
     public function update(Request $request)
     {
-        return $request->all();
         $data = $request->all();
-           $validator = Validator::make($data, [
-                'password' => 'required|min:6|max:20',
-            ]);
-            if ($validator->fails()) {
+        $validator = Validator::make($data, [
+            'password' => 'required|min:6|max:20',
+        ]);
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator->errors());
-             } else {
-            JobListingWebsite::Updatepassword($request);
-            return redirect('Job-listing-websites')->with(['success' => 'Password change successfully']);
-             }
-
+        } else {
+            JobListingWebsite::Updatepassword($data);
+            // return redirect('Job-listing-websites')->with(['success' => 'Password change successfully']);
+            return 'true';
+        }
     }
 }

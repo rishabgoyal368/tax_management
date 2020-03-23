@@ -71,12 +71,18 @@ Breadcrumbs::for('edit-job-opening', function ($trail) {
 });
 
 Breadcrumbs::for('AdminProfile', function ($trail) {
-    $trail->parent('Job-listing-websites');
+    $trail->parent('home');
     $trail->push('AdminProfile', url('AdminProfile'));
 });
 
 Breadcrumbs::for('updateprofile', function ($trail) {
-    $trail->parent('Job-listing-websites');
+    $trail->parent('home');
+
+    $trail->push('updateprofile', url('updateprofile'));
+});
+
+Breadcrumbs::for('updatepassword', function ($trail) {
+    $trail->parent('home');
 
     $trail->push('updateprofile', url('updateprofile'));
 });

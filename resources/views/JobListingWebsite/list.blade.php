@@ -108,7 +108,7 @@
                                             <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='LinkName' data-id='LinkName' data-submit='job_list_submit'></i>Link to visit the platform<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='LinkName' data-id='LinkName' data-submit='job_list_submit'></i></th>
 
                                             <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='Emailname' data-id='Emailname' data-submit='job_list_submit'></i>Email<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='Emailname' data-id='Emailname' data-submit='job_list_submit'></i></th>
-                                            <th class="hidepassword" style="display:block;">password</th>
+                                            <th class="hidepassword" style="display:none;">password</th>
                                             <th><i class="fa fa-fw fa-arrow-up sortCick" data-value='asc' data-name='Statusname' data-id='Statusname' data-submit='job_list_submit'></i>Status<i class="fa fa-fw fa-arrow-down sortCick" data-value='desc' data-name='Statusname' data-id='Statusname' data-submit='job_list_submit'></i></th>
                                             <th>Active leads</th>
                                             <th>Actions</th>
@@ -121,9 +121,14 @@
                                             <td>{{$job_list->name}}</td>
                                             <td><a href="{{$job_list->website}}" target="_blank">{{$job_list->website}}</a></td>
                                             <td>{{$job_list->email}}</td>
-                                            <td class="hidepassword" style="display:block;"> 
-                                                <input type="text" name="password" value = "{{$job_list->password}}">
-                                                <i class="fa fa-fw fa-eye viewpassword"  data-id = "{{$job_list->id}}" data-url ="{{url('/update-joblisting')}}"></i>
+                                           
+                                            <td class="hidepassword" style="display:none;">
+                                                <form class="displaypassword">
+                                                    <input type="hidden" name="id" value="{{ $job_list->id }}">
+                                                    <input type="text" name="password" value="{{$job_list->password}}">
+                                                    <i class="fa fa-fw fa-eye viewpassword" data-id="{{$job_list->id}}" data-url="{{url('/update-joblisting')}}" data-back_url="{{ url('/Job-listing-websites') }}"></i>
+                                                    <i class="fa fa-fw fa-star removepasswordicon" style="display:none;"></i>
+                                                </form>
                                             </td>
                                             <td><label class="{{Helper::statusClass($job_list->status)}}">{{$job_list->status}}</label></td>
                                             <td>--</td>

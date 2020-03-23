@@ -49,4 +49,24 @@ class AdminController extends Controller
         return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
         }
     }
+
+    
+    public function updatepassword(Request $request)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            return view('admin.adminpassword');
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = $request->all();
+            $validator =  Validator::make($data, [
+                'password' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->errors());
+            }
+
+            Admin::Updatepassword($data);
+            return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
+        }
+    }
 }

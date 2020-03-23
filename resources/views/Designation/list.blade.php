@@ -36,7 +36,7 @@
                                     <div class="form-group">
                                         <select class="selectpicker" multiple data-live-search="true" name="department[]" data-style="form-control btn-default btn-outline">
                                             <option disabled>Select Department</option>
-                                            @foreach($Designation as $value)
+                                            @foreach($Designation->unique('getDepartment')  as $value)
                                             <option value="{{$value->getDepartment['id']}}" @if(!empty($department)) @if(in_array($value->getDepartment['id'],$department)) selected @endif @endif>{{$value->getDepartment['title']}}</option>
                                             @endforeach
                                         </select>
