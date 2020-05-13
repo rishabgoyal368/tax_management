@@ -39,4 +39,18 @@ class Helper
                 break;
         }
     }
+
+
+
+
+
+    #Date
+    function changeDateTime($date)
+    {
+        if (!empty($date)) {
+            $date1 =  date('dd/mm/yy', strtotime($date));
+            echo $date1;
+        }
+        echo "";
+    }
 }

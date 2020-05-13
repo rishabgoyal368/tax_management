@@ -15,18 +15,18 @@ class CreateJobOpeningTable extends Migration
     {
         Schema::create('job_openings', function (Blueprint $table) {
             $table->id();
-            $table->text('Job_title');
-            $table->unsignedBigInteger('Designation_id');
-            $table->unsignedBigInteger('Department_id');
-            $table->integer('Min_experience_required')->nullable();
-            $table->integer('Max_experience_required');
-            $table->integer('Min_salary')->nullable();
-            $table->integer('Max_salary');
-            $table->integer('Position');
-            $table->text('Description');
-            $table->text('Time_period');
-            $table->enum('Status', ['Archive','Closed','Hold','Open','Upcoming'])->nullable();            
-            $table->timestamp('Deleted_at')->nullable();
+            $table->text('title');
+            $table->unsignedBigInteger('designation_id');
+            $table->unsignedBigInteger('department_id');
+            $table->integer('min_experience')->nullable();
+            $table->integer('max_experience');
+            $table->integer('min_salary')->nullable();
+            $table->integer('max_salary');
+            $table->integer('position');
+            $table->text('description');
+            $table->text('time_period');
+            $table->enum('status', ['Archive','Closed','Hold','Open','Upcoming'])->nullable();            
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

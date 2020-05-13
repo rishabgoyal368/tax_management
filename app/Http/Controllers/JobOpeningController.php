@@ -33,8 +33,15 @@ class JobOpeningController extends Controller
     public function add(Request $request, $id = null)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $label = 'Add job Opening';
-            return view('JobOpening.details', compact('label'));
+            if ($id) {
+                #Update
+                $jobOpening = JobOpening::find($id);
+                $label = 'Edit job Opening';
+                return view('JobOpening.details', compact('jobOpening', 'label'));
+            } else {
+                $label = 'Add job Opening';
+                return view('JobOpening.details', compact('label'));
+            }
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // return $request;
@@ -58,8 +65,10 @@ class JobOpeningController extends Controller
                 ]
             );
             // return $request;
-            $request['designation_id'] = Designation::checkOrCreate(@$request->designation);
             $request['department_id'] = Department::checkOrCreate(@$request->department);
+            $design['title'] = $request->designation;
+            $design['department_id'] = $request['department_id'];
+            $request['designation_id'] = Designation::checkOrCreate($design);
 
             $date =  Carbon::createFromFormat('d/m/Y', $request->timePeriod);
             $request['date'] = strtotime($date);

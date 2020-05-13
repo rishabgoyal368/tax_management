@@ -34,8 +34,10 @@
                                 <input class="form-control @error('email') is-invalid @enderror" name="email" id="email" type="text" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <input class="form-control @error('password') is-invalid @enderror" name="password" id="password" type="password" placeholder="Password">
-                                <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" onclick="myFunction()"></span>
+                                <div class="password-field-main">
+                                    <input class="form-control @error('password') is-invalid @enderror" name="password" id="password" type="password" placeholder="Password">
+                                    <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" onclick="myFunction()"></span>
+                                </div>
                             </div>
                             <div class="form-group row margin-lt-15 checkbox_custom">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>

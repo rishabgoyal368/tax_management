@@ -94,12 +94,19 @@
                                         <tr>
 
                                             <td>{{$job_opening->id}}</td>
-                                            <td>{{$job_opening->title}}</td>
-                                            <td>{{$job_opening->getDepartment['title']}}</td>
+                                            <td>{{$job_opening->created_at}}</td>
+                                            <td>{{$job_opening->Job_title}}</td>
+                                            <td>{{$job_opening->created_at}}</td>
+                                            <td>{{$job_opening->getDesignation['title']}}</td>
+                                            <td>{{$job_opening->Min_experience_required	}} {{$job_opening->Max_experience_required}} </td>
+                                            <td>{{$job_opening->getDesignation['title']}}</td>
+                                            <td>{{$job_opening->Position}}</td>
                                             <td> <label class="{{Helper::statusClass($job_opening->status)}}">{{($job_opening->status)}}</label></td>
+                                            <td>{{$job_opening->Position}}</td>
+                                            
                                             <td>
                                                 <div class="action_block">
-                                                    <a class="edit_icon" href="{{url('/edit-designation')}}/{{$job_opening->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
+                                                    <a class="edit_icon" href="{{url('/edit-job-opening')}}/{{$job_opening->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
                                                     <a class="trash-icon common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target=".common_delete_modal" data-url="{{url('/delete-designation')}}" data-back_url="{{url('/designation')}}" data-id="{{$job_opening->id}}">
                                                         <span class="lnr lnr-trash" data-toggle="tooltip" title="Delete"></span>
                                                     </a>

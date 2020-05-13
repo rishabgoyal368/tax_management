@@ -15,12 +15,12 @@
                 <div class="card ctm-border-radius shadow-sm grow">
                     <div class="card-header">
                         <h4 class="card-title mb-0 d-inline-block">
-                        @if(@$jobadd->id)
-                             Edit Job Listing Websites
-                         @else
+                            @if(@$jobadd->id)
+                            Edit Job Listing Websites
+                            @else
                             Add JOb Listing Website
-                        @endif
-                            </h4>
+                            @endif
+                        </h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -58,14 +58,14 @@
                                 <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password" onclick="myFunction()">
                             </div>
                             <div class="col-md-12 form-group mb-0">
-                                <select class="form-control" name="status" id="status">                                   
-                                    <option value="" selected disabled>Select Status</option>
-                                    <option @if(@$jobadd->status == 'Active') selected @endif value="Active">Active</option>
+                                <select class="form-control" name="status" id="status">
+                                    <!-- <option value=""  disabled>Select Status</option> -->
+                                    <option @if(@$jobadd->status == 'Active') selected @endif selected value="Active">Active</option>
                                     <option @if(@$jobadd->status == 'Deactivated') selected @endif value="Deactivated">Deactivated</option>
                                     <option @if(@$jobadd->status == 'Deleted') selected @endif value="Deleted">Deleted</option>
                                     <option @if(@$jobadd->status == 'Archive') selected @endif value="Archive">Archive</option>
                                 </select>
-                                 @if ($errors->has('status'))
+                                @if ($errors->has('status'))
                                 <span class="siteLogo_error" role="alert">
                                     <strong>{{ $errors->first('status') }}</strong>
                                 </span>

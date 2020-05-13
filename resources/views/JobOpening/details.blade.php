@@ -11,7 +11,7 @@
         <div class="col-xl-12 col-lg-8 col-md-12">
             <form method="POST" name="joblist" id="jobOpening" action="{{url('/add-job-opening')}}">
                 @csrf
-                <input type="hidden" name="id" id="id" value="{{@$department->id}}">
+                <input type="hidden" name="id" id="id" value="{{@$jobOpening->id}}">
                 <div class="card ctm-border-radius shadow-sm grow">
                     <div class="card-header">
                         <h4 class="card-title mb-0 d-inline-block">
@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 form-group">
-                                <input type="text" name="JobTitle" id="JobTitle" class="form-control commonCustomSelect" autocomplete="off" data-url="{{url('/get-job-opening-title')}}" placeholder="Job Title*" value="{{@$department->title ?: old('JobTitle') }}">
+                                <input type="text" name="JobTitle" id="JobTitle" class="form-control commonCustomSelect" autocomplete="off" data-url="{{url('/get-job-opening-title')}}" placeholder="Job Title*" value="{{@$jobOpening->title ?: old('JobTitle') }}">
                                 <ul class="recentSearchDrop" style="display:none" aria>
                                 </ul>
                                 @if ($errors->has('JobTitle'))
@@ -32,7 +32,7 @@
                             </div>
                             <div class="col-md-12 form-group">
                                 <input type="hidden" name="departmentId">
-                                <input type="text" name="designation" id="designation" class="form-control commonCustomSelect" autocomplete="off" data-url="{{url('/get-department-title')}}" placeholder="Designation*" value="{{@$department->getDepartment['title'] ?: old('designation') }}">
+                                <input type="text" name="designation" id="designation" class="form-control commonCustomSelect" autocomplete="off" data-url="{{url('/get-department-title')}}" placeholder="Designation*" value="{{@$jobOpening->getDesignation['title'] ?: old('designation') }}">
                                 <ul class="recentSearchDrop" style="display:none" aria>
                                 </ul>
                                 @if ($errors->has('designation'))
@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-md-12 form-group">
                                 <!-- <input type="hidden" name="departmentId"> -->
-                                <input type="text" name="department" id="department" class="form-control commonCustomSelect" autocomplete="off" data-url="{{url('/get-department-ajax')}}" placeholder="Department*" value="{{@$department->getDepartment['title'] ?: old('department') }}">
+                                <input type="text" name="department" id="department" class="form-control commonCustomSelect" autocomplete="off" data-url="{{url('/get-department-ajax')}}" placeholder="Department*" value="{{@$jobOpening->getDepartment['title'] ?: old('department') }}">
                                 <ul class="recentSearchDrop" style="display:none" aria>
                                 </ul>
                                 @if ($errors->has('department'))
@@ -55,7 +55,7 @@
                             <div class="col-md-12 form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text"  name="minExperience" id="minExperience" class="form-control" autocomplete="off" placeholder="Min Experience" value="{{@$department->minExperience ?: old('minExperience') }}">
+                                        <input type="text"  name="minExperience" id="minExperience" class="form-control" autocomplete="off" placeholder="Min Experience" value="{{@$jobOpening->min_experience ?: old('minExperience') }}">
                                         @if ($errors->has('minExperience'))
                                         <span class="text-error" role="alert">
                                             <strong>{{ $errors->first('minExperience') }}</strong>
@@ -63,7 +63,7 @@
                                         @endif
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text"  name="maxExperience" id="maxExperience" class="form-control" autocomplete="off" placeholder="Max Experience*" value="{{@$department->maxExperience ?: old('maxExperience') }}">
+                                        <input type="text"  name="maxExperience" id="maxExperience" class="form-control" autocomplete="off" placeholder="Max Experience*" value="{{@$jobOpening->max_experience ?: old('maxExperience') }}">
                                         @if ($errors->has('maxExperience'))
                                         <span class="text-error" role="alert">
                                             <strong>{{ $errors->first('maxExperience') }}</strong>
@@ -75,7 +75,7 @@
                             <div class="col-md-12 form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input type="text" name="minSalary" id="minSalary" class="form-control" autocomplete="off" placeholder="Min Salary" value="{{@$department->getDepartment['title'] ?: old('minSalary') }}">
+                                        <input type="text" name="minSalary" id="minSalary" class="form-control" autocomplete="off" placeholder="Min Salary" value="{{@$jobOpening->min_salary ?: old('minSalary') }}">
                                         @if ($errors->has('minSalary'))
                                         <span class="text-error" role="alert">
                                             <strong>{{ $errors->first('minSalary') }}</strong>
@@ -83,7 +83,7 @@
                                         @endif
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" name="maxSalary" id="maxSalary" class="form-control" autocomplete="off" placeholder="Max Salary*" value="{{@$department->getDepartment['title'] ?: old('maxSalary') }}">
+                                        <input type="text" name="maxSalary" id="maxSalary" class="form-control" autocomplete="off" placeholder="Max Salary*" value="{{@$jobOpening->max_salary ?: old('maxSalary') }}">
                                         @if ($errors->has('maxSalary'))
                                         <span class="text-error" role="alert">
                                             <strong>{{ $errors->first('maxSalary') }}</strong>
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="text" name="postion" id="postion" class="form-control" autocomplete="off" placeholder="No of Postion*" value="{{@$department->getDepartment['title'] ?: old('postion') }}">
+                                <input type="text" name="postion" id="postion" class="form-control" autocomplete="off" placeholder="No of Postion*" value="{{@$jobOpening->position ?: old('postion') }}">
                                 @if ($errors->has('postion'))
                                 <span class="text-error" role="alert">
                                     <strong>{{ $errors->first('postion') }}</strong>
@@ -101,7 +101,7 @@
                                 @endif
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="text" name="description" id="description" class="form-control" autocomplete="off" placeholder="description*" value="{{@$department->getDepartment['title'] ?: old('description') }}">
+                                <input type="text" name="description" id="description" class="form-control" autocomplete="off" placeholder="description*" value="{{@$jobOpening->description ?: old('description') }}">
                                 @if ($errors->has('description'))
                                 <span class="text-error" role="alert">
                                     <strong>{{ $errors->first('description') }}</strong>
@@ -110,7 +110,7 @@
                             </div>
 
                             <div class="col-md-12 form-group">
-                                <input type="text" name="timePeriod" id="timePeriod" class="form-control datetimepicker" autocomplete="off" placeholder="Time Period*" value="{{@$department->getDepartment['title'] ?: old('timePeriod') }}">
+                                <input type="text" name="timePeriod" id="timePeriod" class="form-control datetimepicker" autocomplete="off" placeholder="Time Period*" value="{{@$jobOpening->time_period ? $jobOpening->time_period : old('timePeriod') }}">
                                 @if ($errors->has('timePeriod'))
                                 <span class="text-error" role="alert">
                                     <strong>{{ $errors->first('timePeriod') }}</strong>
@@ -121,10 +121,11 @@
                             <div class="col-md-12 form-group mb-0">
                                 <select class="form-control " name="status">
                                     <option value="default" selected disabled>Select Status</option>
-                                    <option @if((@$department->status ) == 'Active') selected @endif value="Active">Active</option>
-                                    <option @if((@$department->status ) == 'Deactivated') selected @endif value="Deactivated">Deactivated</option>
-                                    <option @if((@$department->status ) == 'Deleted') selected @endif value="Deleted">Deleted</option>
-                                    <option @if((@$department->status ) == 'Archive') selected @endif value="Archive">Archive</option>
+                                    <option @if((@$jobOpening->status ) == 'Open') selected @endif value="Open">Open</option>
+                                    <option @if((@$jobOpening->status ) == 'Upcoming') selected @endif value="Upcoming">Upcoming</option>
+                                    <option @if((@$jobOpening->status ) == 'Hold') selected @endif value="Hold">Hold</option>
+                                    <option @if((@$jobOpening->status ) == 'Closed') selected @endif value="Closed">Closed</option>
+                                    <option @if((@$jobOpening->status ) == 'Archive') selected @endif value="Archive">Archive</option>
                                 </select>
                                 @if ($errors->has('status'))
                                 <span class="text-error" role="alert">

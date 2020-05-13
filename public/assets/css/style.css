@@ -2197,3 +2197,14 @@
     .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
         text-overflow: ellipsis;
     }
+
+
+/*---13 May 2020--*/
+.password-field-main {
+    position: relative;
+}
+.password-field-main .field-icon {
+    position: absolute;
+    right: 10px;
+    top: 13px;
+}

@@ -71,7 +71,10 @@ class DesignationController extends Controller
         if ($titleSort) {
             $result->orderBy('title', $titleSort);
         }
-
+        if((!$statusSort)&&(!$indexSort)&&(!$titleSort))
+        {# For Latest
+            $result->latest();
+        }
         $resultIds = clone $result;
         $id = $resultIds->pluck('id')->toArray();
         $ids = implode(',', $id);

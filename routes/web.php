@@ -47,6 +47,7 @@ ROute::post('export-designation','DesignationController@export');
 
 Route::any('/job-opening', 'JobOpeningController@show')->name('jobOpening');
 Route::post('/get-job-opening-title','JobOpeningController@jobTitle');
+Route::get('/edit-job-opening/{id}','JobOpeningController@add');
 Route::any('add-job-opening', 'JobOpeningController@add');
 
 

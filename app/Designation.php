@@ -41,18 +41,20 @@ class Designation extends Authenticatable
     // Delete
     public static function remove($id)
     {
-        Designation::withTrashed()->where('id', $id)->update([
-            'status' => 'Deleted'
-        ]);
+        // Designation::withTrashed()->where('id', $id)->update([
+        //     'status' => 'Deleted'
+        // ]);
         return Designation::withTrashed()->where('id', $id)->delete();
     }
 
     // Check or Create
-    public static function checkOrCreate($department)
+    public static function checkOrCreate($data)
     {
         $data =   Designation::firstOrCreate([
-            'title' => $department
-        ]);
+            'title' => $data['title'],
+            'department_id' => $data['department_id'] ?: null,
+            // 'status' =>  $data['status'],
+        ]);        
         return $data['id'];
     }
 

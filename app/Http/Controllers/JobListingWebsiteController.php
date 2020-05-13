@@ -30,8 +30,8 @@ class JobListingWebsiteController extends Controller
         $searchstatus = $request->Statusname;
         $searchlink = $request->LinkName;
         // return $request;
-        $joblist = JobListingWebsite::withTrashed()->get();
-        $result = JobListingWebsite::withTrashed()->where(function ($query) use ($master, $plateform, $email, $status) {
+        $joblist = JobListingWebsite::get();
+        $result = JobListingWebsite::where(function ($query) use ($master, $plateform, $email, $status) {
             // Master Search
             if ($master) {
                 $query->where('name', 'LIKE', "%{$master}%");
@@ -62,6 +62,10 @@ class JobListingWebsiteController extends Controller
         }
         if ($searchlink) {
             $result->orderBy('website', $searchlink);
+        }
+        if((!$index)&&(!$searchplateform)&&(!$searchemail)&&(!$searchstatus)&&(!$searchlink))
+        {# For Latest
+            $result->latest();
         }
         $resultIds = clone $result;
         $id = $resultIds->pluck('id')->toArray();
@@ -98,14 +102,14 @@ class JobListingWebsiteController extends Controller
     public function edit(Request $request, $id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $jobadd = JobListingWebsite::withTrashed()->find($id);
+            $jobadd = JobListingWebsite::find($id);
             return view('JobListingWebsite.add', compact('jobadd'));
         }
     }
 
     public function display(Request $request, $id)
     {
-        $jobshow = JobListingWebsite::withTrashed()->find($id);
+        $jobshow = JobListingWebsite::find($id);
         return view('JobListingWebsite.details', compact('jobshow'));
     }
 
@@ -116,7 +120,7 @@ class JobListingWebsiteController extends Controller
             'id'  => 'required|exists:job_listing_websites,id',
         ]);
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors());
+            return response()->json(['error' => $validator->errors()->first()]);            
         } else {
             JobListingWebsite::remove($request->id);
             return response()->json(['success' => 'JobListingWebsite deleted successfully.']);
@@ -147,14 +151,16 @@ class JobListingWebsiteController extends Controller
     {
         $data = $request->all();
         $validator = Validator::make($data, [
+            'id' => 'required|exists:job_listing_websites,id',
             'password' => 'required|min:6|max:20',
         ]);
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors());
+            return response()->json(['error' => $validator->errors()->first()]);            
         } else {
             JobListingWebsite::Updatepassword($data);
             // return redirect('Job-listing-websites')->with(['success' => 'Password change successfully']);
-            return 'true';
+            return response()->json(['success' => 'Password updated successfully.']);
+
         }
     }
 }

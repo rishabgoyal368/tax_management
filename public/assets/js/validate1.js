@@ -46,20 +46,20 @@ $(document).ready(function() {
             },
             maxExperience: {
                 required: true,
-                digits: true,
-                min: 1
+                number: true,
+                min: '#minExperience' 
             },
             minExperience: {
-                digits: true,
+                number: true,
                 min: 0
             },
             maxSalary: {
                 required: true,
-                digits: true,
-                min: 1
+                number: true,
+                min: '#minSalary',
             },
             minSalary: {
-                digits: true,
+                number: true,
                 min: 0
             },
             postion: {

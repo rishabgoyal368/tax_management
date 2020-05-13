@@ -14,6 +14,19 @@
     </div>
 </div>
 <!-- End Delete the Modal -->
+<!-- Success the Modal -->
+<a style="display:none" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target="#common_success_modal" id="common_success_modal_click"></a>
+<div class="modal fade" id="common_success_modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title mb-4" id="common_success_modal_heading"></h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Success the Modal -->
 <!-- Import Data Modal -->
 <div class="modal fade" id="addNewTeam">
     <div class="modal-dialog modal-dialog-centered">

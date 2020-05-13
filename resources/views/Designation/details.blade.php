@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-md-12 form-group">
                                 <input type="text" name="title" id="title" class="form-control commonCustomSelect" autocomplete="off" data-url="{{url('/get-department-title')}}" placeholder="Title*" value="{{@$department->title ?: old('title') }}">
-                                <ul  class="recentSearchDrop" style="display:none" aria>
+                                <ul class="recentSearchDrop" style="display:none" aria>
                                 </ul>
                                 @if ($errors->has('title'))
                                 <span class="text-error" role="alert">
@@ -43,8 +43,8 @@
                             </div>
                             <div class="col-md-12 form-group mb-0">
                                 <select class="form-control " name="status">
-                                    <option value="default" selected disabled>Select Status</option>
-                                    <option @if((@$department->status ) == 'Active') selected @endif value="Active">Active</option>
+                                    <!-- <option value="default"  disabled>Select Status</option> -->
+                                    <option @if((@$department->status ) == 'Active') selected @endif selected value="Active">Active</option>
                                     <option @if((@$department->status ) == 'Deactivated') selected @endif value="Deactivated">Deactivated</option>
                                     <option @if((@$department->status ) == 'Deleted') selected @endif value="Deleted">Deleted</option>
                                     <option @if((@$department->status ) == 'Archive') selected @endif value="Archive">Archive</option>

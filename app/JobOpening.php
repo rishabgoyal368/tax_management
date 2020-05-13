@@ -18,8 +18,8 @@ class JobOpening extends Model
      * @var array
      */
     protected $fillable = [
-        'Job_title', 'Designation_id', 'Department_id', 'Min_experience_required', 'Max_experience_required',
-        'Min_salary', 'Max_salary', 'Position', 'Description', 'Time_period',
+        'title', 'designation_id', 'department_id', 'min_experience', 'max_experience',
+        'min_salary', 'max_salary', 'position', 'description', 'time_period','status'
     ];
 
 
@@ -31,18 +31,29 @@ class JobOpening extends Model
                 'id' => $data['id']
             ],
             [
-                'Job_title' => $data['JobTitle'],
-                'Designation_id' => $data['designation_id'],
-                'Department_id' => $data['department_id'],
-                'Min_experience_required' => $data['minExperience'],
-                'Max_experience_required' => $data['maxExperience'],
-                'Min_salary' => $data['minSalary'],
-                'Max_salary' => $data['maxSalary'],
-                'Position' => $data['postion'],
-                'Description' => $data['description'],
-                'Time_period' => $data['date'],
+                'title' => $data['JobTitle'],
+                'designation_id' => $data['designation_id'],
+                'department_id' => $data['department_id'],
+                'min_experience' => $data['minExperience'],
+                'max_experience' => $data['maxExperience'],
+                'min_salary' => $data['minSalary'],
+                'max_salary' => $data['maxSalary'],
+                'position' => $data['postion'],
+                'description' => $data['description'],
+                'time_period' => $data['date'],
+                'status' => 'Open'
             ]
         );
         JobOpening::where('id', $data['id'])->restore();
+    }
+
+    public function getDesignation()
+    {
+        return $this->hasOne('App\Designation', 'id', 'designation_id');
+    }
+
+    public function getDepartment()
+    {
+        return $this->hasOne('App\Department', 'id', 'department_id');
     }
 }
