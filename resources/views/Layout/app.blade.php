@@ -25,8 +25,8 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
     <!--validator css-->
-    <link rel="stylesheet" href="{{asset('assets/css/validate.css')}}">
-    
+    <!-- <link rel="stylesheet" href="{{asset('assets/css/validate.css')}}"> -->
+
     <!-- sweetaler css-->
     <link rel="stylesheet" href="{{asset('assets/css/sweetalert.css')}}">
 
@@ -38,6 +38,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js">
 
     <title>@yield('title')</title>
 

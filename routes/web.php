@@ -19,29 +19,17 @@ Route::post('/import','HomeController@import');
 Route::post('reauthenticate','HomeController@reauthenticate');
 Auth::routes(['register' => false]);
 
-//==========> Job listing Website <===================//
-Route::any('/Job-listing-websites', 'JobListingWebsiteController@show')->name('Job-listing-websites');
-Route::any('Add-job-listing-websites', 'JobListingWebsiteController@add');
-Route::any('Edit-job-listing-websites/{id}', 'JobListingWebsiteController@edit');
-Route::any('Show-job-listing-websites/{id}', 'JobListingWebsiteController@display');
-Route::any('Delete-job-listing-websites', 'JobListingWebsiteController@delete');
-Route::post('export-joblisting','JobListingWebsiteController@export');
-Route::post('update-joblisting','JobListingWebsiteController@update');
-
-
 //==========> Admin  <===================//
 Route::any('/updateprofile','AdminController@update');
 
 //==========> Department <===================//
 Route::post('/get-department-ajax', 'DepartmentController@getDepartment');
 //==========> Designation <=================// 
-Route::any('/designation', 'DesignationController@show')->name('designation');
-Route::post('/get-department-title', 'DesignationController@Designation');
-Route::any('add-designation', 'DesignationController@add');
-Route::any('edit-designation/{id}', 'DesignationController@add');
-Route::get('view-designation/{id}', 'DesignationController@view');
-Route::delete('delete-designation', 'DesignationController@delete');
-ROute::post('export-designation','DesignationController@export');
+Route::any('/manage-user', 'UserController@show')->name('manage-user');
+Route::any('add-user', 'UserController@add');
+Route::any('edit-user/{id}', 'UserController@add');
+Route::delete('delete-designation', 'UserController@delete');
+ROute::post('export-designation','UserController@export');
 //==========> Users Management <=================// 
 // Route::any('/user-management', 'DesignationsController@show');
 

@@ -19,7 +19,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-3 col-6">
                     <div class="logo my-3 my-sm-0">
                         <a href="{{url('/')}}">
-                            <img src="{{asset('assets/img/logo.png')}}" alt="logo image" class="img-fluid" width="100">
+                            <!-- <img src="" alt="logo image" class="img-fluid" width="100"> -->
                         </a>
                     </div>
                 </div>
@@ -27,27 +27,9 @@
                     <div class="user-block d-none d-lg-block">
                         <div class="row align-items-center">
                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="user-notification-block align-right d-inline-block">
-                                    <div class="top-nav-search">
-                                        <form>
-                                            <input type="text" class="form-control" placeholder="Search here">
-                                            <button class="btn" type="submit"><i class="fa fa-search"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
+                                
 
-                                <!-- User notification-->
-                                <div class="user-notification-block align-right d-inline-block">
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Apply Leave">
-                                            <a href="leave.html" class="font-23 menu-style text-white align-middle">
-                                                <span class="lnr lnr-briefcase position-relative"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- /User notification-->
-
+                                
                                 <!-- user info-->
                                 <div class="user-info align-right dropdown d-inline-block header-dropdown">
                                     <a href="javascript:void(0)" data-toggle="dropdown" class=" menu-style dropdown-toggle">

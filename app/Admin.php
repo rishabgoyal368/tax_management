@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User  as Authenticatable;
 
 class Admin extends Authenticatable
-{ 
+{
     protected $guard = 'admin';
 
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'image', 'password'
+        'name', 'email', 'profile_pic', 'password', 'phone_number'
     ];
 
     protected $hidden = [
