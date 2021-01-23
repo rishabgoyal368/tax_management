@@ -85,12 +85,11 @@ function commonDelete(url, id, back_url) {
                 $('.deleteError').css('display', 'block').text(data['error']).addClass('alert alert-danger')
             }
             if (data['success']) {
-                $('.common_delete_modal').css('display','none')
-                $('#common_success_modal_heading').text(data['success']).addClass('alert alert-success')
-                $('#common_success_modal_click').trigger('click')
-
+                // $('.common_delete_modal').css('display','none')
+                var html = '<p class="alert alert-success"> ' + data['success'] + '</p>';
+                $('.common_delete_modal .modal-body').html(html);
                 // $('.deleteError').css('display', 'block').text(data['success']).addClass('alert alert-success')
-                setTimeout(function () { location.href = back_url }, 300);
+                setTimeout(function () { location.href = window.location.href }, 3000);
             }
         },
         error: function (err) {
@@ -122,7 +121,7 @@ function showpassword(url, data, back_url) {
     });
 };
 
-function viewpassword(url, id, password,back_url) {
+function viewpassword(url, id, password, back_url) {
     console.log(url)
     $.ajax({
         url: url,
@@ -190,7 +189,7 @@ $(document).ready(function () {
         var url = $(this).data('url');
         var back_url = $(this).data('back_url');
         var password = $(this).prev().val();
-        viewpassword(url,id, password, back_url);
+        viewpassword(url, id, password, back_url);
     });
 
 

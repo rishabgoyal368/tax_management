@@ -28,16 +28,14 @@ Route::post('/get-department-ajax', 'DepartmentController@getDepartment');
 Route::any('/manage-user', 'UserController@show')->name('manage-user');
 Route::any('add-user', 'UserController@add');
 Route::any('edit-user/{id}', 'UserController@add');
-Route::delete('delete-designation', 'UserController@delete');
-ROute::post('export-designation','UserController@export');
+Route::delete('delete-user', 'UserController@delete');
 //==========> Users Management <=================// 
 // Route::any('/user-management', 'DesignationsController@show');
 
-Route::any('/job-opening', 'JobOpeningController@show')->name('jobOpening');
-Route::post('/get-job-opening-title','JobOpeningController@jobTitle');
-Route::get('/edit-job-opening/{id}','JobOpeningController@add');
-Route::any('add-job-opening', 'JobOpeningController@add');
-
+Route::any('/manage-content', 'ContentController@show')->name('manage-content');
+Route::any('add-content', 'ContentController@add');
+Route::any('edit-content/{id}', 'ContentController@add');
+Route::delete('delete-content', 'ContentController@delete');
 
 //==========> Admin  <===================//
 Route::any('/updateprofile','AdminController@update');

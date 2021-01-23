@@ -24,7 +24,7 @@ class AdminController extends Controller
         //    return 'true';
         return view('index');
     }
-//----------------------------------update adminprofile------------------------------------------
+    //----------------------------------update adminprofile------------------------------------------
 
     public function update(Request $request)
     {
@@ -35,22 +35,22 @@ class AdminController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $request->all();
             $validator =  Validator::make($data, [
-            'first_name' =>  'required',
+                'first_name' =>  'required',
                 'last_name' => 'required',
                 'email' => 'required',
                 'image' => 'required',
             ]);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors());
-        }
-        
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator->errors());
+            }
 
-        Admin::Updates($data);
-        return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
+
+            Admin::Updates($data);
+            return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
         }
     }
 
-    
+
     public function updatepassword(Request $request)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {

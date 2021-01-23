@@ -32,27 +32,33 @@ class UserController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($id) {
                 #Update
-                $department = User::find($id);
+                $user = User::find($id);
                 $label = 'Edit User';
-                return view('users.list', compact('department','label'));
+                return view('users.add_edit', compact('user', 'label'));
             } else {
                 #Insert
                 $label = 'Add User';
-                return view('users.add_edit',compact('label'));
+                $user['id'] = '';
+                return view('users.add_edit', compact('label', 'user'));
             }
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $request['department_id'] = Department::checkOrCreate(@$request->department);
+            // return $request->all();
 
             $this->validate($request, [
-                'title' =>  'required|unique:designations,title,' . $request['id'] . ',id,department_id,' . $request['department_id'] . ',deleted_at,NULL',
-                'department' => 'required',
+                'name' =>  'required',
+                'email' => 'required',
+                'phone_number' => 'required',
+                'password' => $request['id'] ? 'nullable' : 'required|confirmed',
                 'status' => 'required',
             ]);
-            $request['department_id'] = Department::checkOrCreate($request->department);
-            Designation::addorUpdate($request);
-            $response = @$request->id ? 'updated' : 'added';
-            return redirect('/designation')->with(['success' => 'Designation ' . $response . ' successfully']);
+            $user =  User::addEdit($request);
+            if ($request['id']) {
+                $label = 'Updated';
+            } else {
+                $label = 'Add';
+            }
+            return redirect('/manage-user')->with(['success' => 'User ' . $label . ' successfully']);
         }
     }
 
@@ -60,39 +66,13 @@ class UserController extends Controller
     {
         $data = $request->all();
         $validator =  Validator::make($data, [
-            'id'  => 'required|exists:designations,id',
+            'id'  => 'required|exists:users,id',
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()->first()]);
         } else {
-            Designation::remove($request->id);
-            return response()->json(['success' => 'Designation deleted successfully.']);
+            User::where('id', $request->id)->delete();
+            return response()->json(['success' => 'User deleted successfully.']);
         }
-    }
-
-    public function view($id)
-    {
-        $designation = Designation::find($id);
-        return view('Designation.view', compact('designation'));
-    }
-
-    public function Designation(Request $request)
-    {
-        return Designation::withTrashed()->where('title', 'LIKE', "%{$request->name}%")->get();
-    }
-
-    public function export(Request $request)
-    {
-        $ids =   explode(',', $request['id']);
-        $data =  Designation::withTrashed()->with('getDepartment')->whereIn('id', $ids)->latest()->get()->toArray();
-        foreach ($data as $value) {
-            // $status =  Helper::status($value['status']);
-            $arr[] = array(
-                'Designation' => $value['title'],
-                'department' => $value['get_department']['title'],
-                'status' => $value['status'],
-            );
-        }
-        return Excel::download(new DesignationExport($arr), 'designation.xlsx');
     }
 }

@@ -57,16 +57,30 @@
 <script src="{{asset('assets/js/sweetalert.min.js')}}"></script>
 
 <!--multipleselect-->
-<script src="{{asset('assets/js/bootstrap-select.min.js')}}"></script>
+<!-- <script src="{{asset('assets/js/bootstrap-select.min.js')}}"></script> -->
 <!--multipleselect-->
-<script src="{{asset('assets/plugins/select2/moment.min.js')}}"></script>
-<script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
 
 <!-- Custom Js -->
 <script src="{{asset('assets/js/script.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
 <script>
-    $('#myTable').DataTable();
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            placeholder: 'Punjabi content',
+            tabsize: 2,
+            height: 400
+        });
+
+
+        $('#title').summernote({
+            placeholder: 'Title',
+            tabsize: 2,
+            height: 100
+        });
+
+    });
 </script>
+
 </html>

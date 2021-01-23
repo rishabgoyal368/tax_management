@@ -27,9 +27,9 @@
                     <div class="user-block d-none d-lg-block">
                         <div class="row align-items-center">
                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                
 
-                                
+
+
                                 <!-- user info-->
                                 <div class="user-info align-right dropdown d-inline-block header-dropdown">
                                     <a href="javascript:void(0)" data-toggle="dropdown" class=" menu-style dropdown-toggle">
@@ -40,27 +40,20 @@
 
                                     <!-- Notifications -->
                                     <div class="dropdown-menu notification-dropdown-menu shadow-lg border-0 p-3 m-0 dropdown-menu-right">
-                                        <a class="dropdown-item p-2" href="employment.html">
+                                        
+                                        <a class="dropdown-item p-2" href="{{ url('updateprofile') }}" >
                                             <span class="media align-items-center">
                                                 <span class="lnr lnr-user mr-3"></span>
                                                 <span class="media-body text-truncate">
-                                                    <a href="{{url('/updateprofile')}}">Profile</a>
+                                                    {{ __('Profile') }}
                                                 </span>
                                             </span>
                                         </a>
-                                        <a class="dropdown-item p-2" href="employment.html">
-                                            <span class="media align-items-center">
-                                                <span class="lnr lnr-user mr-3"></span>
-                                                <span class="media-body text-truncate">
-                                                    <a href="{{url('/updatepassword')}}">Update password </a>
-                                                </span>
-                                            </span>
-                                        </a>
-                                        <a class="dropdown-item p-2" href="settings.html">
+                                        <a class="dropdown-item p-2" href="{{ url('updatepassword') }}" >
                                             <span class="media align-items-center">
                                                 <span class="lnr lnr-cog mr-3"></span>
                                                 <span class="media-body text-truncate">
-                                                    <span class="text-truncate">Settings</span>
+                                                    {{ __('Update password') }}
                                                 </span>
                                             </span>
                                         </a>
