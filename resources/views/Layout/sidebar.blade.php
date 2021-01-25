@@ -21,7 +21,7 @@
                     <div class="user-card card shadow-sm bg-white text-center ctm-border-radius grow">
                         <div class="user-info card-body">
                             <div class="user-avatar mb-4">
-                                <img src="{{asset('assets/img/profiles/img-13.jpg')}}" alt="User Avatar" class="img-fluid rounded-circle" width="100">
+                                <img src="{{env('APP_URL').'uploads/'.Auth::user()->profile_pic}}" alt="User Avatar" class="img-fluid rounded-circle" width="100">
                             </div>
                             <div class="user-details">
                                 <h4><b>Welcome Admin</b></h4>

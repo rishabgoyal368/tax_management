@@ -34,7 +34,7 @@
                                 <div class="user-info align-right dropdown d-inline-block header-dropdown">
                                     <a href="javascript:void(0)" data-toggle="dropdown" class=" menu-style dropdown-toggle">
                                         <div class="user-avatar d-inline-block">
-                                            <img src="{{asset('assets/img/profiles/img-6.jpg')}}" alt="user avatar" class="rounded-circle img-fluid" width="55">
+                                            <img src="{{env('APP_URL').'uploads/'.Auth::user()->profile_pic}}" alt="user avatar" class="rounded-circle img-fluid" width="55">
                                         </div>
                                     </a>
 
@@ -89,7 +89,7 @@
                             <div class="user-info align-center bg-theme text-center">
                                 <a href="javascript:void(0)" class="d-block menu-style text-white">
                                     <div class="user-avatar d-inline-block mr-3">
-                                        <img src="{{asset('assets/img/profiles/img-6.jpg')}}" alt="user avatar" class="rounded-circle img-fluid" width="55">
+                                        <img src="{{env('APP_URL').'uploads/'.Auth::user()->profile_pic}}" alt="user avatar" class="rounded-circle img-fluid" width="55">
                                     </div>
                                 </a>
                             </div>

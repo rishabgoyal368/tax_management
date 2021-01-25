@@ -47,7 +47,7 @@ Breadcrumbs::for('AdminProfile', function ($trail) {
 Breadcrumbs::for('updateprofile', function ($trail) {
     $trail->parent('home');
 
-    $trail->push('updateprofile', url('updateprofile'));
+    $trail->push('Update Profile', url('updateprofile'));
 });
 
 Breadcrumbs::for('updatepassword', function ($trail) {

@@ -22,17 +22,17 @@ class Admin extends Authenticatable
     public static function Updates($data)
     {
         Admin::where('id', $data['id'])->update([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'image' => $data['image'],
+            'name' => @$data['name'],
+            'email' => @$data['email'],
+            'profile_pic' => @$data['profile_pic'],
+            'phone_number' => @$data['phone_number'],
         ]);
     }
     //----------------------update Admin password --------------------
     public static function Updatepassword($data)
     {
         Admin::where('id', $data['id'])->update([
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['current_password']),
         ]);
     }
 }

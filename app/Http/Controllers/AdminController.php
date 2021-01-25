@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Admin;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -35,18 +36,25 @@ class AdminController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $request->all();
             $validator =  Validator::make($data, [
-                'first_name' =>  'required',
-                'last_name' => 'required',
-                'email' => 'required',
-                'image' => 'required',
+                'name' =>  'required',
+                'email' => 'required|email',
+                'phone_number' => 'required|numeric',
+                'image' => $data['id'] ? 'nullable' : 'required',
             ]);
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator->errors());
             }
-
-
+            if ($request->image) {
+                $fileName = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('uploads'), $fileName);
+                $data['profile_pic'] = $fileName;
+            } else {
+                $fileName = Admin::where('id', $request->id)->value('profile_pic');
+                $data['profile_pic'] = $fileName;
+            }
+            // return $data;
             Admin::Updates($data);
-            return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
+            return redirect('/')->with(['success' => 'profile updated  successfully']);
         }
     }
 
@@ -59,14 +67,21 @@ class AdminController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $request->all();
             $validator =  Validator::make($data, [
-                'password' => 'required',
+                'current_password' => 'required',
+                'new_password' => 'required',
             ]);
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator->errors());
             }
-
-            Admin::Updatepassword($data);
-            return redirect('Job-listing-websites')->with(['success' => 'profile updated  successfully']);
+            
+            if (Hash::check($request->current_password, Auth::user()->password) == false) {
+				$message = 'Current Passsword is not match';
+				return redirect()->back()->with(['error' => $message]);
+			} else {
+                Admin::Updatepassword($data);
+                return redirect()->back()->with(['success' => 'profile updated  successfully']);
+            }
+   
         }
     }
 }
