@@ -24,4 +24,6 @@ Route::group(['middleware' => 'token_auth'], function () {
 
     Route::post('logout', 'JwtAuthController@logout');
     Route::get('user-info', 'JwtAuthController@getUser');
+
+    
 });

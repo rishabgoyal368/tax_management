@@ -21,6 +21,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 form-group">
+                                <label for="">Title</label>
                                 <textarea id="title" name="name" value="{{@$content->name}}">{{@$content->name}}</textarea>
                                 @if ($errors->has('name'))
                                 <span class="text-error" role="alert">
@@ -30,6 +31,7 @@
                             </div>
 
                             <div class="col-md-12 form-group">
+                                <label for="">Title image</label>
                                 <input type="file" name="image" id="image" class="form-control">
                                 @if ($errors->has('image'))
                                 <span class="text-error" role="alert">
@@ -37,16 +39,40 @@
                                 </span>
                                 @endif
                                 @if($content['image'])
-                                    <a href="{{env('APP_URL')}}/uploads/{{$content->image}}" target="_blank">{{$content->image}}</a>
+                                <a href="{{env('APP_URL')}}/uploads/{{$content->image}}" target="_blank">{{$content->image}}</a>
                                 @endif
                             </div>
 
                             <div class="col-md-12 form-group">
+                                <label for="">Description</label>
                                 <textarea id="summernote" name="content" value="{{@$content->content}}">{{@$content->content}}</textarea>
                                 @if ($errors->has('content'))
                                 <span class="text-error" role="alert">
                                     <strong>{{ $errors->first('content') }}</strong>
                                 </span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="">Order</label>
+                                <input type="number" min="1" name="order" placeholder="order" id="order" value="{{@$content['order']}}" class="form-control">
+                                @if ($errors->has('order'))
+                                <span class="text-error" role="alert">
+                                    <strong>{{ $errors->first('order') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="">Audio</label>
+                                <input type="file" name="audio" id="audio" class="form-control">
+                                @if ($errors->has('audio'))
+                                <span class="text-error" role="alert">
+                                    <strong>{{ $errors->first('audio') }}</strong>
+                                </span>
+                                @endif
+                                @if(@$content['audio'])
+                                <a href="{{env('APP_URL')}}uploads/{{$content->audio}}" target="_blank">{{$content->audio}}</a>
                                 @endif
                             </div>
 

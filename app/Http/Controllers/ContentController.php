@@ -50,6 +50,9 @@ class ContentController extends Controller
                 'name' =>  'required',
                 'image' => $request['id'] ? 'nullable' : 'required',
                 'content' => 'required',
+                'order' => 'required|numeric',
+                'audio' => $request['id'] ? 'nullable' : 'required',
+
             ]);
             if ($request->image) {
                 $fileName = time() . '.' . $request->image->extension();
@@ -60,6 +63,15 @@ class ContentController extends Controller
                 $request['file'] = $fileName;
             }
 
+            if ($request->audio) {
+                $fileName = time() . '.' . $request->audio->extension();
+                $request->audio->move(public_path('uploads'), $fileName);
+                $request['audio_file'] = $fileName;
+            } else {
+                $fileName = Content::where('id', $request->id)->value('audio');
+                $request['audio_file'] = $fileName;
+            }
+            
             $user =  Content::addEdit($request);
             if ($request['id']) {
                 $label = 'Updated';
