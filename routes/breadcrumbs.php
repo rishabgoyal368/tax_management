@@ -21,7 +21,7 @@ Breadcrumbs::for('edit-user', function ($trail) {
     $trail->push('Edit User', route('manage-user'));
 });
 
-// Home > Department
+// Home > Content
 Breadcrumbs::for('manage-content', function ($trail) {
     $trail->parent('home');
     $trail->push('Content', route('manage-content'));
@@ -35,6 +35,39 @@ Breadcrumbs::for('add-content', function ($trail) {
 Breadcrumbs::for('edit-content', function ($trail) {
     $trail->parent('manage-content');
     $trail->push('Edit User', route('manage-content'));
+});
+
+
+// Home > Lipi
+Breadcrumbs::for('manage-lipi', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Lipi', route('manage-lipi'));
+});
+
+Breadcrumbs::for('add-lipi', function ($trail) {
+    $trail->parent('manage-lipi');
+    $trail->push('Add Lipi', route('manage-lipi'));
+});
+
+Breadcrumbs::for('edit-lipi', function ($trail) {
+    $trail->parent('manage-lipi');
+    $trail->push('Edit Lipi', route('manage-lipi'));
+});
+
+// Home > khani
+Breadcrumbs::for('manage-khani', function ($trail) {
+    $trail->parent('home');
+    $trail->push('khani', route('manage-khani'));
+});
+
+Breadcrumbs::for('add-khani', function ($trail) {
+    $trail->parent('manage-khani');
+    $trail->push('Add khani', route('manage-khani'));
+});
+
+Breadcrumbs::for('edit-khani', function ($trail) {
+    $trail->parent('manage-khani');
+    $trail->push('Edit khani', route('manage-khani'));
 });
 
 

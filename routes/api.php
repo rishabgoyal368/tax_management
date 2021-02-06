@@ -22,8 +22,11 @@ Route::post('register', 'JwtAuthController@register');
 
 Route::group(['middleware' => 'token_auth'], function () {
 
+    // User Controller
     Route::post('logout', 'JwtAuthController@logout');
     Route::get('user-info', 'JwtAuthController@getUser');
-
+    
+    // Content Controller
+    Route::get('getGurumukhi', 'PunjabiController@getGurumukhi');
     
 });

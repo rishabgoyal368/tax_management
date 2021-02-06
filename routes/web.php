@@ -37,6 +37,16 @@ Route::any('add-content', 'ContentController@add');
 Route::any('edit-content/{id}', 'ContentController@add');
 Route::delete('delete-content', 'ContentController@delete');
 
+Route::any('/manage-lipi', 'LipiController@show')->name('manage-lipi');
+Route::any('add-lipi', 'LipiController@add');
+Route::any('edit-lipi/{id}', 'LipiController@add');
+Route::delete('delete-lipi', 'LipiController@delete');
+
+Route::any('/manage-khani', 'KhaniController@show')->name('manage-khani');
+Route::any('add-khani', 'KhaniController@add');
+Route::any('edit-khani/{id}', 'KhaniController@add');
+Route::delete('delete-khani', 'KhaniController@delete');
+
 //==========> Admin  <===================//
 Route::any('/updateprofile','AdminController@update');
 Route::any('/updatepassword','AdminController@updatepassword');

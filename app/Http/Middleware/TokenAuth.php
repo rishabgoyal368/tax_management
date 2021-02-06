@@ -25,15 +25,7 @@ class TokenAuth extends BaseMiddleware
         try {
             $user = JWTAuth::parseToken()->authenticate();
             if (!empty($user)) {
-                if (@$user['status'] == '2') {
-                    JWTAuth::parseToken()->invalidate( JWTAuth::getToken() );
-                    return response()->json(['code' => 301, 'message' => "You're already resigned the organization"]);
-                } else if (@$user['status'] == '3') {
-                    JWTAuth::parseToken()->invalidate( JWTAuth::getToken() );
-                    return response()->json(['code' => 301, 'message' => "You're terminated from the organization due to some reason"]);
-                } else {
-                    return $next($request);
-                }
+                return $next($request);
             }
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
