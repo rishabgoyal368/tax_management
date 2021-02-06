@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Content;
+use App\Lipi;
+use App\Khani;
 
 class PunjabiController extends Controller
 {
@@ -23,4 +25,24 @@ class PunjabiController extends Controller
         return response()->json(['content' => $content, 'code' => 200]);
     }
 
+    public function getContent(Request $request)
+    {
+        $type = $request['type'];
+        switch ($type) {
+            case 'Content':
+                $content = Content::latest()->get();
+                break;
+            case 'Lipi':
+                $content = Lipi::latest()->get();
+                break;
+            case 'Khani':
+                $content = Khani::latest()->get();
+                break;
+            default:
+                $content = Content::latest()->get();
+                break;
+        }
+
+        return response()->json(['content' => $content, 'code' => 200]);
+    }
 }
