@@ -88,19 +88,19 @@ Breadcrumbs::for('edit-spellings', function ($trail) {
 });
 
 // Home > number
-Breadcrumbs::for('manage-number', function ($trail) {
+Breadcrumbs::for('manage-Number', function ($trail) {
     $trail->parent('home');
-    $trail->push('number', route('manage-number'));
+    $trail->push('Number', route('manage-Number'));
 });
 
-Breadcrumbs::for('add-number', function ($trail) {
-    $trail->parent('manage-number');
-    $trail->push('Add number', route('manage-number'));
+Breadcrumbs::for('add-Number', function ($trail) {
+    $trail->parent('manage-Number');
+    $trail->push('Add Number', route('manage-Number'));
 });
 
-Breadcrumbs::for('edit-number', function ($trail) {
-    $trail->parent('manage-number');
-    $trail->push('Edit number', route('manage-number'));
+Breadcrumbs::for('edit-Number', function ($trail) {
+    $trail->parent('manage-Number');
+    $trail->push('Edit Number', route('manage-Number'));
 });
 
 

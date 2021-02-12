@@ -60,8 +60,8 @@
                                     <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'spellings') menu_active @endif">
                                         <a href="{{url('/manage-spellings')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage Spellings</span></a>
                                     </div>
-                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'khani') menu_active @endif">
-                                        <a href="{{url('/manage-number')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage Numbers</span></a>
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'Number') menu_active @endif">
+                                        <a href="{{url('/manage-Number')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage Numbers</span></a>
                                     </div>
 
                                 </div>

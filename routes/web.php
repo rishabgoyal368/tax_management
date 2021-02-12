@@ -52,10 +52,10 @@ Route::any('add-spellings', 'SpellingController@add');
 Route::any('edit-spellings/{id}', 'SpellingController@add');
 Route::delete('delete-spellings', 'SpellingController@delete');
 
-Route::any('/manage-khani', 'KhaniController@show')->name('manage-khani');
-Route::any('add-khani', 'KhaniController@add');
-Route::any('edit-khani/{id}', 'KhaniController@add');
-Route::delete('delete-khani', 'KhaniController@delete');
+Route::any('/manage-Number', 'NumberController@show')->name('manage-Number');
+Route::any('add-Number', 'NumberController@add');
+Route::any('edit-Number/{id}', 'NumberController@add');
+Route::delete('delete-Number', 'NumberController@delete');
 
 //==========> Admin  <===================//
 Route::any('/updateprofile','AdminController@update');

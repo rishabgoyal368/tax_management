@@ -15,10 +15,9 @@ class CreateNumberTable extends Migration
     {
         Schema::create('number', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->longText('audio');
             $table->string('image');
             $table->longText('description');
-            $table->string('lipi');
             $table->timestamps();
         });
     }

@@ -42,6 +42,9 @@ class PunjabiController extends Controller
             case 'Spelling':
                 $content = Spelling::latest()->get();
                 break;
+            case 'Number':
+                    $content = Number::latest()->get();
+                    break;
             default:
                 $content = Content::latest()->get();
                 break;
