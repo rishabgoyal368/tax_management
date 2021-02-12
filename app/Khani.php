@@ -16,6 +16,16 @@ class Khani extends Model
         'name', 'image', 'khani','order','audio'
     ];
     
+    public function getImageAttribute($value)
+    {
+        return env('APP_URL') .'uploads/'.$value;
+    }
+
+    public function getAudioAttribute($value)
+    {
+        return env('APP_URL') .'uploads/'.$value;
+    }
+
     public static function addEdit($data)
     {
         $user = Khani::where('id', $data['id'])->first();

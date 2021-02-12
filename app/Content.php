@@ -16,11 +16,22 @@ class Content extends Model
             [
                 'name' => @$data['name'] ?: @$user['name'],
                 'image' => @$data['file'] ?: @$user['image'],
+                'description' => @$data['content'] ?: @$user['content'],
                 'content' => @$data['content'] ?: @$user['content'],
                 'audio' => @$data['audio_file'] ?: @$user['audio'],
                 'order' => @$data['order'] ?: @$user['order'],
             ]
         );
+    }
+
+    public function getImageAttribute($value)
+    {
+        return env('APP_URL') .'uploads/'.$value;
+    }
+
+    public function getAudioAttribute($value)
+    {
+        return env('APP_URL') .'uploads/'.$value;
     }
 
     /**
@@ -29,6 +40,6 @@ class Content extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'image', 'content','audio','order'
+        'name', 'image', 'content','audio','order','description'
     ];
 }

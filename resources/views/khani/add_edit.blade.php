@@ -39,7 +39,7 @@
                                 </span>
                                 @endif
                                 @if(@$content['image'])
-                                <a href="{{env('APP_URL')}}/uploads/{{$content->image}}" target="_blank">{{$content->image}}</a>
+                                <a href="{{$content->image}}" target="_blank">{{$content->image}}</a>
                                 @endif
                             </div>
 
@@ -61,7 +61,7 @@
                                 </span>
                                 @endif
                                 @if(@$content['audio'])
-                                <a href="{{env('APP_URL')}}uploads/{{$content->audio}}" target="_blank">{{$content->audio}}</a>
+                                <a href="{{$content->audio}}" target="_blank">{{$content->audio}}</a>
                                 @endif
                             </div>
 

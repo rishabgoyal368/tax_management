@@ -15,6 +15,7 @@ use App\User;
 use App\Content;
 use App\Lipi;
 use App\Khani;
+use App\Spelling;
 
 class PunjabiController extends Controller
 {
@@ -30,13 +31,16 @@ class PunjabiController extends Controller
         $type = $request['type'];
         switch ($type) {
             case 'Content':
-                $content = Content::latest()->get();
+                $content = Content::orderBy('order','ASC')->get();
                 break;
             case 'Lipi':
-                $content = Lipi::latest()->get();
+                $content = Lipi::orderBy('order','ASC')->get();
                 break;
             case 'Khani':
-                $content = Khani::latest()->get();
+                $content = Khani::orderBy('order','ASC')->get();
+                break;
+            case 'Spelling':
+                $content = Spelling::latest()->get();
                 break;
             default:
                 $content = Content::latest()->get();

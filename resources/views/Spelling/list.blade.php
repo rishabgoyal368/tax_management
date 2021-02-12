@@ -1,5 +1,5 @@
 @extends('Layout.app')
-@section('title','Lipi')
+@section('title','Spelling')
 @section('content')
 <!-- Sidebar -->
 @include('Layout.sidebar')
@@ -22,7 +22,7 @@
                                     <thead>
                                         <tr>
                                             <th>S.no</th>
-                                            <th>Name</th>
+                                            <th>Spelling</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -31,11 +31,11 @@
                                         <tr>
 
                                             <td>{{$user->id}}</td>
-                                            <td>{!! $user->name !!}</td>
+                                            <td>{!! $user->description !!}</td>
                                             <td>
                                                 <div class="action_block">
-                                                    <a class="edit_icon" href="{{url('/edit-khani')}}/{{$user->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
-                                                    <a class="trash-icon common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target=".common_delete_modal" data-url="{{url('/delete-khani')}}"  data-id="{{$user->id}}">
+                                                    <a class="edit_icon" href="{{url('/edit-spellings')}}/{{$user->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
+                                                    <a class="trash-icon common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target=".common_delete_modal" data-url="{{url('/delete-spellings')}}"  data-id="{{$user->id}}">
                                                         <span class="lnr lnr-trash" data-toggle="tooltip" title="Delete"></span>
                                                     </a>
                                                 </div>

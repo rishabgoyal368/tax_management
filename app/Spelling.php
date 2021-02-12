@@ -12,20 +12,28 @@ class Spelling extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'image', 'khani','order','audio'
+        'audio', 'image', 'description'
     ];
     
     public static function addEdit($data)
     {
-        $user = Khani::where('id', $data['id'])->first();
-        return Khani::updateOrCreate(
+        $user = Spelling::where('id', $data['id'])->first();
+        return Spelling::updateOrCreate(
             ['id' => @$data['id'] ?: null],
             [
-                'name' => @$data['name'] ?: @$user['name'],
                 'image' => @$data['file'] ?: @$user['image'],
-                'khani' => @$data['khani'] ?: @$user['khani'],
+                'description' => @$data['description'] ?: @$user['description'],
                 'audio' => @$data['audio_file'] ?: @$user['audio'],
             ]
         );
+    }
+    public function getImageAttribute($value)
+    {
+        return env('APP_URL') .'uploads/'.$value;
+    }
+
+    public function getAudioAttribute($value)
+    {
+        return env('APP_URL') .'uploads/'.$value;
     }
 }

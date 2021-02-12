@@ -46,9 +46,8 @@ class SpellingController extends Controller
             // return $request->all();
 
             $this->validate($request, [
-                'name' =>  'required',
                 'image' => $request['id'] ? 'nullable' : 'required',
-                'khani' => 'required',
+                'description' => 'required',
                 'audio' => $request['id'] ? 'nullable' : 'required',
 
             ]);
@@ -57,7 +56,7 @@ class SpellingController extends Controller
                 $request->image->move(public_path('uploads'), $fileName);
                 $request['file'] = $fileName;
             } else {
-                $fileName = Khani::where('id', $request->id)->value('image');
+                $fileName = Spelling::where('id', $request->id)->value('image');
                 $request['file'] = $fileName;
             }
 
@@ -66,17 +65,17 @@ class SpellingController extends Controller
                 $request->audio->move(public_path('uploads'), $fileName);
                 $request['audio_file'] = $fileName;
             } else {
-                $fileName = Khani::where('id', $request->id)->value('audio');
+                $fileName = Spelling::where('id', $request->id)->value('audio');
                 $request['audio_file'] = $fileName;
             }
             // return $request;
-            $user =  Khani::addEdit($request);
+            $user =  Spelling::addEdit($request);
             if ($request['id']) {
                 $label = 'Updated';
             } else {
                 $label = 'Add';
             }
-            return redirect('/manage-khani')->with(['success' => 'Record ' . $label . ' successfully']);
+            return redirect('/manage-spellings')->with(['success' => 'Record ' . $label . ' successfully']);
         }
     }
 
@@ -84,13 +83,13 @@ class SpellingController extends Controller
     {
         $data = $request->all();
         $validator =  Validator::make($data, [
-            'id'  => 'required|exists:khani,id',
+            'id'  => 'required|exists:spellings,id',
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()->first()]);
         } else {
-            Khani::where('id', $request->id)->delete();
-            return response()->json(['success' => 'Records deleted successfully.']);
+            Spelling::where('id', $request->id)->delete();
+            return response()->json(['success' => 'Record deleted successfully.']);
         }
     }
 }

@@ -20,15 +20,6 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12 form-group">
-                                <label for="">Title</label>
-                                <textarea id="title" name="name" value="{{@$content->name}}">{{@$content->name}}</textarea>
-                                @if ($errors->has('name'))
-                                <span class="text-error" role="alert">
-                                    <strong>{{ $errors->first('name') }}</strong>
-                                </span>
-                                @endif
-                            </div>
 
                             <div class="col-md-12 form-group">
                                 <label for="">Title image</label>
@@ -44,11 +35,11 @@
                             </div>
 
                             <div class="col-md-12 form-group">
-                                <label for="">Khani</label>
-                                <textarea id="summernote" name="khani" >{{@$content->khani}}</textarea>
-                                @if ($errors->has('khani'))
+                                <label for="">Spelling</label>
+                                <textarea id="summernote" name="description" >{{@$content->description}}</textarea>
+                                @if ($errors->has('description'))
                                 <span class="text-error" role="alert">
-                                    <strong>{{ $errors->first('khani') }}</strong>
+                                    <strong>{{ $errors->first('description') }}</strong>
                                 </span>
                                 @endif
                             </div>                          
@@ -72,7 +63,7 @@
                     <div class="col-12">
                         <div class="submit-section text-center btn-add">
                             <input type="submit" value="Save" class="btn btn-theme text-white ctm-border-radius button-1">
-                            <a href="{{url('/manage-khani')}}" class="btn btn-danger text-white ctm-border-radius">Cancel</a>
+                            <a href="{{url('/manage-spellings')}}" class="btn btn-danger text-white ctm-border-radius">Cancel</a>
                         </div>
                     </div>
                 </div>
