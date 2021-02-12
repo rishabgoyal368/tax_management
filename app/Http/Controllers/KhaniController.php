@@ -67,8 +67,8 @@ class KhaniController extends Controller
                 $request->audio->move(public_path('uploads'), $fileName);
                 $request['audio_file'] = $fileName;
             } else {
-                $fileName = Khani::where('id', $request->id)->value('audio');
-                $request['audio_file'] = $fileName;
+                $fileName = Khani::where('id', $request->id)->first();
+                $request['audio_file'] = $fileName->getOriginal('audio');
             }
             // return $request;
             $user =  Khani::addEdit($request);

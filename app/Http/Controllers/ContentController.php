@@ -59,8 +59,8 @@ class ContentController extends Controller
                 $request->image->move(public_path('uploads'), $fileName);
                 $request['file'] = $fileName;
             } else {
-                $fileName = Content::where('id', $request->id)->value('image');
-                $request['file'] = $fileName;
+                $fileName = Content::where('id', $request->id)->first();
+                $request['file'] = $fileName->getOriginal('image');
             }
 
             if ($request->audio) {
