@@ -9,7 +9,7 @@
 <div class="col-xl-9 col-lg-8  col-md-12">
     <div class="row">
         <div class="col-xl-12 col-lg-8 col-md-12">
-            <form method="POST" name="joblist" id="designation" action="{{url('/add-khani')}}" enctype="multipart/form-data">
+            <form method="POST" name="joblist" id="designation" action="{{url('/add-spellings')}}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" id="id" value="{{@$content->id ?: old('id') }}">
                 <div class="card ctm-border-radius shadow-sm grow">

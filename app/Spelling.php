@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Khani extends Model
+class Spelling extends Model
 {
-    protected $table = 'khani';
     /**
      * The attributes that are mass assignable.
      *

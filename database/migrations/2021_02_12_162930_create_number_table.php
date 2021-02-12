@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKhaniTable extends Migration
+class CreateNumberTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateKhaniTable extends Migration
      */
     public function up()
     {
-        Schema::create('khani', function (Blueprint $table) {
+        Schema::create('number', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('image');
-            $table->longText('khani');
-            $table->longText('audio');
+            $table->longText('description');
+            $table->string('lipi');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateKhaniTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('khani');
+        Schema::dropIfExists('number');
     }
 }

@@ -47,6 +47,16 @@ Route::any('add-khani', 'KhaniController@add');
 Route::any('edit-khani/{id}', 'KhaniController@add');
 Route::delete('delete-khani', 'KhaniController@delete');
 
+Route::any('/manage-spellings', 'SpellingController@show')->name('manage-spellings');
+Route::any('add-spellings', 'SpellingController@add');
+Route::any('edit-spellings/{id}', 'SpellingController@add');
+Route::delete('delete-spellings', 'SpellingController@delete');
+
+Route::any('/manage-khani', 'KhaniController@show')->name('manage-khani');
+Route::any('add-khani', 'KhaniController@add');
+Route::any('edit-khani/{id}', 'KhaniController@add');
+Route::delete('delete-khani', 'KhaniController@delete');
+
 //==========> Admin  <===================//
 Route::any('/updateprofile','AdminController@update');
 Route::any('/updatepassword','AdminController@updatepassword');

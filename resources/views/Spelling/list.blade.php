@@ -10,8 +10,8 @@
             <div class="company-doc">
                 <div class="card ctm-border-radius shadow-sm grow">
                 <div class="card-header">
-                        <h4 class="card-title d-inline-block mb-0">Manage khani</h4>
-                        <a href="{{url('/add-khani')}}" class="float-right add-doc text-primary">Add khani</a><br>
+                        <h4 class="card-title d-inline-block mb-0">Manage Spelling</h4>
+                        <a href="{{url('/add-spellings')}}" class="float-right add-doc text-primary">Add Spelling</a><br>
                         
                     </div>
                     <div class="card-body">

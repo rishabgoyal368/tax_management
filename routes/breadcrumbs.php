@@ -71,6 +71,38 @@ Breadcrumbs::for('edit-khani', function ($trail) {
 });
 
 
+// Home > spellings
+Breadcrumbs::for('manage-spellings', function ($trail) {
+    $trail->parent('home');
+    $trail->push('spellings', route('manage-spellings'));
+});
+
+Breadcrumbs::for('add-spellings', function ($trail) {
+    $trail->parent('manage-spellings');
+    $trail->push('Add spellings', route('manage-spellings'));
+});
+
+Breadcrumbs::for('edit-spellings', function ($trail) {
+    $trail->parent('manage-spellings');
+    $trail->push('Edit spellings', route('manage-spellings'));
+});
+
+// Home > number
+Breadcrumbs::for('manage-number', function ($trail) {
+    $trail->parent('home');
+    $trail->push('number', route('manage-number'));
+});
+
+Breadcrumbs::for('add-number', function ($trail) {
+    $trail->parent('manage-number');
+    $trail->push('Add number', route('manage-number'));
+});
+
+Breadcrumbs::for('edit-number', function ($trail) {
+    $trail->parent('manage-number');
+    $trail->push('Edit number', route('manage-number'));
+});
+
 
 Breadcrumbs::for('AdminProfile', function ($trail) {
     $trail->parent('home');

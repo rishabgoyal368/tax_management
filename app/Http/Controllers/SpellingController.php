@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\Validator;
 use App\Exports\DesignationExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-use App\Khani;
-use App\Department;
+use App\Spelling;
 use Helper;
 
 
-class KhaniController extends Controller
+class SpellingController extends Controller
 {
     public function __construct()
     {
@@ -23,8 +22,8 @@ class KhaniController extends Controller
 
     public function show(Request $request)
     {
-        $users = Khani::latest()->paginate(env('PAGINATE'));
-        return view('khani.list', compact('users'));
+        $users = Spelling::latest()->paginate(env('PAGINATE'));
+        return view('Spelling.list', compact('users'));
     }
 
     public function add(Request $request, $id = null)
@@ -32,15 +31,15 @@ class KhaniController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($id) {
                 #Update
-                $content = Khani::find($id);
-                $label = 'Edit khani';
-                return view('khani.add_edit', compact('content', 'label'));
+                $content = Spelling::find($id);
+                $label = 'Edit Spelling';
+                return view('Spelling.add_edit', compact('content', 'label'));
             } else {
                 #Insert
-                $label = 'Add khani';
+                $label = 'Add Spelling';
                 $content['id'] = '';
                 $content['image'] = '';
-                return view('khani.add_edit', compact('content', 'label'));
+                return view('Spelling.add_edit', compact('content', 'label'));
             }
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
