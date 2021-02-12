@@ -16,6 +16,7 @@ class Content extends Model
             [
                 'name' => @$data['name'] ?: @$user['name'],
                 'image' => @$data['file'] ?: @$user['image'],
+                'description' => @$data['content'] ?: @$user['content'],
                 'content' => @$data['content'] ?: @$user['content'],
                 'audio' => @$data['audio_file'] ?: @$user['audio'],
                 'order' => @$data['order'] ?: @$user['order'],
@@ -29,6 +30,6 @@ class Content extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'image', 'content','audio','order'
+        'name', 'image', 'content','audio','order','description'
     ];
 }

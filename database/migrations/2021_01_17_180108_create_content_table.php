@@ -16,11 +16,11 @@ class CreateContentTable extends Migration
         Schema::create('content', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('content');
+            $table->longText('content');
             $table->string('image');
             $table->string('order');
             $table->string('audio');
-            $table->string('description');
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
