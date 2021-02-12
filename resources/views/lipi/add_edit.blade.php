@@ -43,15 +43,6 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-12 form-group">
-                                <label for="">Order</label>
-                                <input type="number" min="1" name="order" placeholder="order" id="order" value="{{@$content['order']}}" class="form-control">
-                                @if ($errors->has('order'))
-                                <span class="text-error" role="alert">
-                                    <strong>{{ $errors->first('order') }}</strong>
-                                </span>
-                                @endif
-                            </div>
 
                             <div class="col-md-12 form-group">
                                 <label for="">Description</label>

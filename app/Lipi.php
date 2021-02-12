@@ -13,7 +13,7 @@ class Lipi extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'image', 'description','order'
+        'name', 'image', 'description','order','lipi'
     ];
     
     public static function addEdit($data)
@@ -25,7 +25,7 @@ class Lipi extends Model
                 'name' => @$data['name'] ?: @$user['name'],
                 'image' => @$data['file'] ?: @$user['image'],
                 'description' => @$data['description'] ?: @$user['description'],
-                'order' => @$data['order'] ?: @$user['order'],
+                'lipi' => 'test',
             ]
         );
     }
