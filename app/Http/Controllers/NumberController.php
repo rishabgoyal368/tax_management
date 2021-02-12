@@ -57,8 +57,8 @@ class NumberController extends Controller
                 $request->image->move(public_path('uploads'), $fileName);
                 $request['file'] = $fileName;
             } else {
-                $fileName = Number::where('id', $request->id)->value('image');
-                $request['file'] = $fileName;
+                $fileName = Number::where('id', $request->id)->first();
+                $request['file'] = $fileName->getOriginal('image');
             }
 
             if ($request->audio) {
@@ -66,8 +66,8 @@ class NumberController extends Controller
                 $request->audio->move(public_path('uploads'), $fileName);
                 $request['audio_file'] = $fileName;
             } else {
-                $fileName = Number::where('id', $request->id)->value('audio');
-                $request['audio_file'] = $fileName;
+                $fileName = Number::where('id', $request->id)->first();
+                $request['audio_file'] = $fileName->getOriginal('audio');
             }
             // return $request;
             $user =  Number::addEdit($request);

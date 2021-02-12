@@ -57,8 +57,8 @@ class LipiController extends Controller
                 $request->image->move(public_path('uploads'), $fileName);
                 $request['file'] = $fileName;
             } else {
-                $fileName = Lipi::where('id', $request->id)->value('image');
-                $request['file'] = $fileName;
+                $fileName = Lipi::where('id', $request->id)->first();
+                $request['file'] = $fileName->getOriginal('image');
             }
             // return $request;
             $user =  Lipi::addEdit($request);
