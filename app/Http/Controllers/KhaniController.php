@@ -58,8 +58,8 @@ class KhaniController extends Controller
                 $request->image->move(public_path('uploads'), $fileName);
                 $request['file'] = $fileName;
             } else {
-                $fileName = Khani::where('id', $request->id)->value('image');
-                $request['file'] = $fileName;
+                $fileName = Khani::where('id', $request->id)->first();
+                $request['file'] = $fileName->getAttributes()['image'];
             }
 
             if ($request->audio) {
@@ -68,7 +68,7 @@ class KhaniController extends Controller
                 $request['audio_file'] = $fileName;
             } else {
                 $fileName = Khani::where('id', $request->id)->first();
-                $request['audio_file'] = $fileName->getOriginal('audio');
+                $request['audio_file'] = $fileName->getAttributes()['audio'];
             }
             // return $request;
             $user =  Khani::addEdit($request);

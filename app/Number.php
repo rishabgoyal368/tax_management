@@ -13,7 +13,7 @@ class Number extends Model
      * @var array
      */
     protected $fillable = [
-        'audio', 'image', 'description'
+        'audio', 'image', 'description','title'
     ];
     
     public static function addEdit($data)
@@ -23,6 +23,7 @@ class Number extends Model
             ['id' => @$data['id'] ?: null],
             [
                 'image' => @$data['file'] ?: @$user['image'],
+                'title' => @$data['title'] ?: @$user['title'],
                 'description' => @$data['description'] ?: @$user['description'],
                 'audio' => @$data['audio_file'] ?: @$user['audio'],
             ]

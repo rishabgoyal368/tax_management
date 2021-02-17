@@ -60,5 +60,7 @@ Route::delete('delete-Number', 'NumberController@delete');
 //==========> Admin  <===================//
 Route::any('/updateprofile','AdminController@update');
 Route::any('/updatepassword','AdminController@updatepassword');
+Route::any('/app-setting','AdminController@appSetting');
+
 
 

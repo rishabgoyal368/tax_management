@@ -13,7 +13,7 @@ class Khani extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'image', 'khani','order','audio'
+        'name', 'image', 'khani','audio'
     ];
     
     public function getImageAttribute($value)

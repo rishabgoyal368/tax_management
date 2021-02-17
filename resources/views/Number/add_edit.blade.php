@@ -21,6 +21,16 @@
                     <div class="card-body">
                         <div class="row">
 
+                        <div class="col-md-12 form-group">
+                                <label for="">Title</label>
+                                <textarea id="title" name="title" value="{{@$content->title}}">{{@$content->title}}</textarea>
+                                @if ($errors->has('title'))
+                                <span class="text-error" role="alert">
+                                    <strong>{{ $errors->first('title') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
                             <div class="col-md-12 form-group">
                                 <label for="">Title image</label>
                                 <input type="file" name="image" id="image" class="form-control">
@@ -30,7 +40,7 @@
                                 </span>
                                 @endif
                                 @if(@$content['image'])
-                                <a href="{{env('APP_URL')}}/uploads/{{$content->image}}" target="_blank">{{$content->image}}</a>
+                                <a href="{{$content->image}}" target="_blank">{{$content->image}}</a>
                                 @endif
                             </div>
 
@@ -52,7 +62,7 @@
                                 </span>
                                 @endif
                                 @if(@$content['audio'])
-                                <a href="{{env('APP_URL')}}uploads/{{$content->audio}}" target="_blank">{{$content->audio}}</a>
+                                <a href="{{$content->audio}}" target="_blank">{{$content->audio}}</a>
                                 @endif
                             </div>
 

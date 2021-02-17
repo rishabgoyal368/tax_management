@@ -16,6 +16,7 @@ use App\Content;
 use App\Lipi;
 use App\Khani;
 use App\Spelling;
+use App\Number;
 
 class PunjabiController extends Controller
 {
@@ -34,10 +35,10 @@ class PunjabiController extends Controller
                 $content = Content::orderBy('order','ASC')->get();
                 break;
             case 'Lipi':
-                $content = Lipi::orderBy('order','ASC')->get();
+                $content = Lipi::latest()->get();
                 break;
             case 'Khani':
-                $content = Khani::orderBy('order','ASC')->get();
+                $content = Khani::latest()->get();
                 break;
             case 'Spelling':
                 $content = Spelling::latest()->get();

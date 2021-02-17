@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-
+Route::post('app-setting', 'JwtAuthController@setting');
 Route::post('login', 'JwtAuthController@login');
 Route::post('register', 'JwtAuthController@register');
 
@@ -25,6 +25,7 @@ Route::group(['middleware' => 'token_auth'], function () {
     // User Controller
     Route::post('logout', 'JwtAuthController@logout');
     Route::get('user-info', 'JwtAuthController@getUser');
+    Route::post('update-profile', 'JwtAuthController@updateProfile');
 
     // Content Controller
     // Route::get('getGurumukhi', 'PunjabiController@getGurumukhi');

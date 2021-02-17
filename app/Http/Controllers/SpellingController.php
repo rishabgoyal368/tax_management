@@ -57,7 +57,7 @@ class SpellingController extends Controller
                 $request['file'] = $fileName;
             } else {
                 $fileName = Spelling::where('id', $request->id)->first();
-                $request['file'] = $fileName->getOriginal('image');
+                $request['file'] = $fileName->getAttributes()['image'];
             }
 
             if ($request->audio) {
@@ -66,7 +66,7 @@ class SpellingController extends Controller
                 $request['audio_file'] = $fileName;
             } else {
                 $fileName = Spelling::where('id', $request->id)->first();
-                $request['audio_file'] = $fileName->getOriginal('audio');
+                $request['audio_file'] = $fileName->getAttributes()['audio'];
             }
             // return $request;
             $user =  Spelling::addEdit($request);

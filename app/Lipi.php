@@ -22,9 +22,9 @@ class Lipi extends Model
         return Lipi::updateOrCreate(
             ['id' => @$data['id'] ?: null],
             [
-                'name' => @$data['name'] ?: @$user['name'],
-                'image' => @$data['file'] ?: @$user['image'],
-                'description' => @$data['description'] ?: @$user['description'],
+                'name' => @$data['name'],
+                'image' => @$data['file'],
+                'description' => @$data['description'],
                 'lipi' => 'test',
             ]
         );

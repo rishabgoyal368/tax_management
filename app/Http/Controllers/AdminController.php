@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Admin;
+use App\AppSetting;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -81,6 +82,30 @@ class AdminController extends Controller
                 Admin::Updatepassword($data);
                 return redirect()->back()->with(['success' => 'profile updated  successfully']);
             }
+   
+        }
+    }
+
+    public function appSetting(Request $request)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $AppSetting = AppSetting::latest()->first();
+            return view('admin.appSetting',compact('AppSetting'));
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = $request->all();
+            $AppSetting = AppSetting::where('id', $request->id)->first();
+
+            if ($request->logo) {
+                $fileName = time() . '.' . $request->logo->extension();
+                $request->logo->move(public_path('uploads'), $fileName);
+                $data['logo'] = $fileName;
+                $AppSetting->logo = $fileName;
+            } 
+            $AppSetting->app_version = $data['app_version'];
+            $AppSetting->save();
+
+            return redirect()->back()->with(['success' => 'profile updated  successfully']);
    
         }
     }
