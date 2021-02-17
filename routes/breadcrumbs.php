@@ -117,6 +117,10 @@ Breadcrumbs::for('updateprofile', function ($trail) {
 
 Breadcrumbs::for('updatepassword', function ($trail) {
     $trail->parent('home');
-
     $trail->push('updateprofile', url('updateprofile'));
+});
+
+Breadcrumbs::for('app-setting', function ($trail) {
+    $trail->parent('home');
+    $trail->push('App Setting', url('app-setting'));
 });

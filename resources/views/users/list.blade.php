@@ -39,7 +39,7 @@
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->phone_number}}</td>
-                                            <td>{{$user->email_verify}}</td>
+                                            <td>{{$user->status}}</td>
                                             <td>
                                                 <div class="action_block">
                                                     <a class="edit_icon" href="{{url('/edit-user')}}/{{$user->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
