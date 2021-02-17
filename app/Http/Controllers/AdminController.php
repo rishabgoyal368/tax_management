@@ -18,11 +18,11 @@ class AdminController extends Controller
     public function index(Request $request)
     {
 
-        // $admin = new Admin();
-        //    $admin->email = $request->input('email');
-        //    $admin->password = bcrypt($request->input('password'));
-        //    $admin->save();
-        //    return 'true';
+        $admin = new Admin();
+           $admin->email = $request->input('email');
+           $admin->password = bcrypt($request->input('password'));
+           $admin->save();
+           return 'true';
         return view('index');
     }
     //----------------------------------update adminprofile------------------------------------------
