@@ -62,6 +62,16 @@
                                 @endif
                             </div>
                             @endif
+
+                            <div class="col-md-12 form-group">
+                                <input type="text" name="job" id="job" class="form-control" autocomplete="off" placeholder="Job*" value="{{@$user->job ?: old('job') }}">
+                                @if ($errors->has('job'))
+                                <span class="text-error" role="alert">
+                                    <strong>{{ $errors->first('job') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
                             <div class="col-md-12 form-group mb-0">
                                 <select class="form-control " name="status">
                                     <option value="default"  disabled>Select Status</option>

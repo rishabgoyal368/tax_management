@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Validator;
 use App\Exports\DesignationExport;
 use Maatwebsite\Excel\Facades\Excel;
 
+use App\task;
 use App\User;
-use App\Department;
 use Helper;
 
 
-class UserController extends Controller
+class TaskController extends Controller
 {
     public function __construct()
     {
@@ -23,23 +23,37 @@ class UserController extends Controller
 
     public function show(Request $request)
     {
-        $users = User::latest()->paginate(env('PAGINATE'));
-        return view('users.list', compact('users'));
+        $tasks = task::latest()->paginate(env('PAGINATE'));
+        return view('tasks.list', compact('tasks'));
     }
 
     public function add(Request $request, $id = null)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $tasks = array(
+                [
+                    'id' => '1',
+                    'task_name' => 'test data1',
+                ],
+                [
+                    'id' => '2',
+                    'task_name' => 'test data2',
+                ],
+                [
+                    'id' => '3',
+                    'task_name' => 'test data3',
+                ],
+            );
+            $users = User::where('status','Active')->get();
             if ($id) {
                 #Update
-                $user = User::find($id);
+                $task = task::find($id);
                 $label = 'Edit User';
-                return view('users.add_edit', compact('user', 'label'));
+                return view('tasks.add_edit', compact('users', 'label','task','tasks'));
             } else {
                 #Insert
                 $label = 'Add User';
-                $user['id'] = '';
-                return view('users.add_edit', compact('label', 'user'));
+                return view('tasks.add_edit', compact('label', 'users','tasks'));
             }
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -47,19 +61,16 @@ class UserController extends Controller
 
             $this->validate($request, [
                 'name' =>  'required',
-                'email' => 'required',
-                'phone_number' => 'required',
-                'password' => $request['id'] ? 'nullable' : 'required|confirmed',
                 'status' => 'required',
-                'job' => 'required',
+                'user' => 'required',
             ]);
-            $user =  User::addEdit($request);
+            $user =  task::addEdit($request);
             if ($request['id']) {
                 $label = 'Updated';
             } else {
                 $label = 'Add';
             }
-            return redirect('/manage-user')->with(['success' => 'User ' . $label . ' successfully']);
+            return redirect('/task-list')->with(['success' => 'Task ' . $label . ' successfully']);
         }
     }
 
@@ -67,13 +78,13 @@ class UserController extends Controller
     {
         $data = $request->all();
         $validator =  Validator::make($data, [
-            'id'  => 'required|exists:users,id',
+            'id'  => 'required|exists:tasks,id',
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()->first()]);
         } else {
-            User::where('id', $request->id)->delete();
-            return response()->json(['success' => 'User deleted successfully.']);
+            task::where('id', $request->id)->delete();
+            return response()->json(['success' => 'Task deleted successfully.']);
         }
     }
 }

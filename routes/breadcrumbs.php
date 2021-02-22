@@ -21,89 +21,6 @@ Breadcrumbs::for('edit-user', function ($trail) {
     $trail->push('Edit User', route('manage-user'));
 });
 
-// Home > Content
-Breadcrumbs::for('manage-content', function ($trail) {
-    $trail->parent('home');
-    $trail->push('Content', route('manage-content'));
-});
-
-Breadcrumbs::for('add-content', function ($trail) {
-    $trail->parent('manage-content');
-    $trail->push('Add User', route('manage-content'));
-});
-
-Breadcrumbs::for('edit-content', function ($trail) {
-    $trail->parent('manage-content');
-    $trail->push('Edit User', route('manage-content'));
-});
-
-
-// Home > Lipi
-Breadcrumbs::for('manage-lipi', function ($trail) {
-    $trail->parent('home');
-    $trail->push('Lipi', route('manage-lipi'));
-});
-
-Breadcrumbs::for('add-lipi', function ($trail) {
-    $trail->parent('manage-lipi');
-    $trail->push('Add Lipi', route('manage-lipi'));
-});
-
-Breadcrumbs::for('edit-lipi', function ($trail) {
-    $trail->parent('manage-lipi');
-    $trail->push('Edit Lipi', route('manage-lipi'));
-});
-
-// Home > khani
-Breadcrumbs::for('manage-khani', function ($trail) {
-    $trail->parent('home');
-    $trail->push('khani', route('manage-khani'));
-});
-
-Breadcrumbs::for('add-khani', function ($trail) {
-    $trail->parent('manage-khani');
-    $trail->push('Add khani', route('manage-khani'));
-});
-
-Breadcrumbs::for('edit-khani', function ($trail) {
-    $trail->parent('manage-khani');
-    $trail->push('Edit khani', route('manage-khani'));
-});
-
-
-// Home > spellings
-Breadcrumbs::for('manage-spellings', function ($trail) {
-    $trail->parent('home');
-    $trail->push('spellings', route('manage-spellings'));
-});
-
-Breadcrumbs::for('add-spellings', function ($trail) {
-    $trail->parent('manage-spellings');
-    $trail->push('Add spellings', route('manage-spellings'));
-});
-
-Breadcrumbs::for('edit-spellings', function ($trail) {
-    $trail->parent('manage-spellings');
-    $trail->push('Edit spellings', route('manage-spellings'));
-});
-
-// Home > number
-Breadcrumbs::for('manage-Number', function ($trail) {
-    $trail->parent('home');
-    $trail->push('Number', route('manage-Number'));
-});
-
-Breadcrumbs::for('add-Number', function ($trail) {
-    $trail->parent('manage-Number');
-    $trail->push('Add Number', route('manage-Number'));
-});
-
-Breadcrumbs::for('edit-Number', function ($trail) {
-    $trail->parent('manage-Number');
-    $trail->push('Edit Number', route('manage-Number'));
-});
-
-
 Breadcrumbs::for('AdminProfile', function ($trail) {
     $trail->parent('home');
     $trail->push('AdminProfile', url('AdminProfile'));
@@ -123,4 +40,20 @@ Breadcrumbs::for('updatepassword', function ($trail) {
 Breadcrumbs::for('app-setting', function ($trail) {
     $trail->parent('home');
     $trail->push('App Setting', url('app-setting'));
+});
+
+// Home > User
+Breadcrumbs::for('task-list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Tasks', route('task-list'));
+});
+
+Breadcrumbs::for('add-task', function ($trail) {
+    $trail->parent('task-list');
+    $trail->push('Add Task', route('task-list'));
+});
+
+Breadcrumbs::for('edit-task', function ($trail) {
+    $trail->parent('task-list');
+    $trail->push('Edit Task', route('task-list'));
 });

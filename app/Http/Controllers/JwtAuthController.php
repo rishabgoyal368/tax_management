@@ -25,9 +25,11 @@ class JwtAuthController extends Controller
             $request->all(),
             [
                 'name' => 'required',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:users,email',
                 'password' => 'required',
                 'c_password' => 'required|same:password',
+                'phone_number' => 'required|numeric',
+                'job' => 'required',
             ]
         );
 
@@ -43,7 +45,8 @@ class JwtAuthController extends Controller
         $user->password = bcrypt($request->password);
         $user->email_verify = 0;
         $user->profile_pic = '';
-        // $user->phone_number = $request->phone_number;
+        $user->job = $request->job;
+        $user->phone_number = $request->phone_number;
         $user->status = 'Active';
         $user->save();
 

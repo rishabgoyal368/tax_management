@@ -45,6 +45,7 @@ class User extends Authenticatable implements JWTSubject
                 'profile_pic' => @$data['profile_pic'] ?: @$user['profile_pic'],
                 'phone_number' => @$data['phone_number'] ?: @$user['phone_number'],
                 'status' => @$data['status'] ?: @$user['status'],
+                'job' => @$data['job'] ?: @$user['job'],
             ]
         );
     }
@@ -55,7 +56,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'email_verify', 'profile_pic', 'phone_number', 'status'
+        'name', 'email', 'password', 'email_verify', 'profile_pic', 'phone_number', 'status','job'
     ];
 
     /**
