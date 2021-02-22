@@ -9,7 +9,7 @@ use App\Exports\DesignationExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 use App\User;
-use App\Department;
+use App\task;
 use Helper;
 
 
@@ -72,8 +72,16 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()->first()]);
         } else {
-            User::where('id', $request->id)->delete();
-            return response()->json(['success' => 'User deleted successfully.']);
+            $is_task = task::where('alocate_to',$request->id)->count();
+            if($is_task)
+            {
+                return response()->json(['error' => 'Task is allocated to this user']);
+            }
+            else{
+                User::where('id', $request->id)->delete();
+                return response()->json(['success' => 'User deleted successfully.']);
+            }
+            
         }
     }
 }

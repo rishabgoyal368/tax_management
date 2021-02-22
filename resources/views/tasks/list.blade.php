@@ -32,7 +32,7 @@
 
                                             <td>{{$user->id}}</td>
                                             <td>{{$user->task_name}}</td>
-                                            <td>{{$user->alocate_to}}</td>
+                                            <td><a href="{{url('edit-user')}}/{{$user->getAlocateUser()['id']}}" target="_blank"> {{$user->getAlocateUser()['name']}}</a></td>
                                             <td>{{$user->status}}</td>
                                             <td>
                                                 <div class="action_block">

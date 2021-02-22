@@ -30,4 +30,9 @@ class task extends Model
             ]
         );
     }
+
+    public function getAlocateUser()
+    {
+        return User::where('id',$this->alocate_to)->first();
+    }
 }
