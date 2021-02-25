@@ -114,6 +114,9 @@ class AdminController extends Controller
     public function adminList(Request $request)
     {
         $admin = Auth::guard('admin')->user();
+        $admin->role = $admin['role'] == null ? 0 : $admin['role'];
+        $admin->status = $admin['status'] == null ? 'Active' : $admin['status'];
+        $admin->save();
         switch ($admin['role']) {
             case '0':
                 # finanical manager
@@ -121,10 +124,10 @@ class AdminController extends Controller
                 break;
             case '1':
                 # officer
-                $label = 'User';
+                $label = 'Officer';
                 break;
         }
-        $id = Admin::where('role', 0)->where('id', Auth::guard('admin')->user()->id)->pluck('id');
+        $id = Admin::where('id', Auth::guard('admin')->user()->id)->orwhere('role', 0)->pluck('id');
         $admins = Admin::whereNotIn('id', $id)->paginate(10);
         return view('admin.list', compact('admins', 'label'));
     }
@@ -136,14 +139,14 @@ class AdminController extends Controller
             case 0:
                 # finanical manager
                 $role = 1;
-                $job = 'manager';
+                $job = $request['job'];
                 $userLabel = 'Manager';
                 break;
             case 1:
                 # officer
                 $role = 2;
-                $job = $request['job'];
-                $userLabel = 'User';
+                $job = 'Officer';
+                $userLabel = 'Officer';
                 break;
         }
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -169,20 +172,21 @@ class AdminController extends Controller
                 'password' => $request['id'] ? 'nullable' : 'required|confirmed',
                 'status' => 'required',
             ]);
-
-
-            $request['profile_pic'] = 'profile.png';
-            $request['created_by'] = $admin['id'];
-            $request['role'] = $role;
-            $request['job'] = $job;
             $oldAdmin = Admin::where('id', @$request['id'])->first();
-            $request['password'] = $request['id'] ? $oldAdmin['password'] : Hash::make($request['password']);
-            $user =  Admin::addEdit($request);
-            if ($request['id']) {
+            if ($request->id) {
+                $request['profile_pic'] = $oldAdmin['profile_pic'];
+                $request['created_by'] = $oldAdmin['created_by'];
                 $msz = ' Updated';
             } else {
+                $request['created_by'] = $admin['id'];
+                $request['profile_pic'] = 'profile.png';
                 $msz = ' Add';
             }
+
+            $request['role'] = $role;
+            $request['job'] = $job;
+            $request['password'] = $request['id'] ? $oldAdmin['password'] : Hash::make($request['password']);
+            $user =  Admin::addEdit($request);
             return redirect('/manage-admin')->with(['success' => $userLabel . $msz . ' successfully']);
         }
     }
@@ -204,7 +208,7 @@ class AdminController extends Controller
                     break;
                 case '1':
                     # officer
-                    $label = 'User';
+                    $label = 'Officer';
                     break;
             }
             Admin::where('id', $request->id)->delete();

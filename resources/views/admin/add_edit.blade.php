@@ -29,7 +29,7 @@
                                 @endif
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="email" name="email" id="email" required  class="form-control" autocomplete="off" placeholder="Email*" value="{{@$user->email ?: old('email') }}">
+                                <input type="email" name="email" id="email" required class="form-control" autocomplete="off" placeholder="Email*" value="{{@$user->email ?: old('email') }}">
                                 @if ($errors->has('email'))
                                 <span class="error" role="alert">
                                     <strong>{{ $errors->first('email') }}</strong>
@@ -37,7 +37,7 @@
                                 @endif
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="number" name="phone_number"  required id="phone_number" class="form-control" autocomplete="off" placeholder="Phone Number*" value="{{@$user->phone_number ?: old('phone_number') }}">
+                                <input type="number" name="phone_number" required id="phone_number" class="form-control" autocomplete="off" placeholder="Phone Number*" value="{{@$user->phone_number ?: old('phone_number') }}">
                                 @if ($errors->has('phone_number'))
                                 <span class="error" role="alert">
                                     <strong>{{ $errors->first('phone_number') }}</strong>
@@ -46,7 +46,7 @@
                             </div>
                             @if(!$user['id'])
                             <div class="col-md-12 form-group">
-                                <input type="password" name="password" required  id="password" class="form-control" autocomplete="off" placeholder="Password*" value="{{@$user->password }}">
+                                <input type="password" name="password" required id="password" class="form-control" autocomplete="off" placeholder="Password*" value="{{@$user->password }}">
                                 @if ($errors->has('password'))
                                 <span class="error" role="alert">
                                     <strong>{{ $errors->first('password') }}</strong>
@@ -54,7 +54,7 @@
                                 @endif
                             </div>
                             <div class="col-md-12 form-group">
-                                <input type="password" name="password_confirmation"  required id="password_confirmation" class="form-control" autocomplete="off" placeholder="Confirm Password*" value="{{@$user->password }}">
+                                <input type="password" name="password_confirmation" required id="password_confirmation" class="form-control" autocomplete="off" placeholder="Confirm Password*" value="{{@$user->password }}">
                                 @if ($errors->has('password_confirmation'))
                                 <span class="error" role="alert">
                                     <strong>{{ $errors->first('password_confirmation') }}</strong>
@@ -63,10 +63,25 @@
                             </div>
                             @endif
 
-                            <div class="col-md-12 form-group mb-0">
+                            @if(Auth::guard('admin')->user()->role == 0)
+                            <div class="col-md-12 form-group">
+                                <select class="form-control " name="job">
+                                    <option value="default" selected disabled>Select Job</option>
+                                    <option @if((@$user->job ) == 'Manager') selected @endif value="Manager">Manager</option>
+                                    <option @if((@$user->job ) == 'Officer') selected @endif value="Officer">Officer</option>
+                                </select>
+                                @if ($errors->has('job'))
+                                <span class="error" role="alert">
+                                    <strong>{{ $errors->first('job') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            @endif
+
+                            <div class="col-md-12 form-group">
                                 <select class="form-control " name="status">
                                     <option value="default" selected disabled>Select Status</option>
-                                    <option @if((@$user->status ) == 'Active') selected @endif  value="Active">Active</option>
+                                    <option @if((@$user->status ) == 'Active') selected @endif value="Active">Active</option>
                                     <option @if((@$user->status ) == 'Deactivated') selected @endif value="Deactivated">Deactivated</option>
                                 </select>
                                 @if ($errors->has('status'))

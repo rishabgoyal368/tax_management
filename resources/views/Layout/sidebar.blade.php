@@ -39,9 +39,15 @@
                                     @php
                                     $u = Request::segment(1);
                                     $url = explode('-',$u);
+
+                                    $admin = Auth::guard('admin')->user();
+                                    $name = $admin->role == 1 ? 'Officer' : 'Manager';
                                     @endphp
                                     <div class="col-6 align-items-center shadow-none text-center @if(last($url) == null) menu_active @endif">
                                         <a href="{{url('/')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Dashboard</span></a>
+                                    </div>
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'admin') menu_active @endif">
+                                        <a href="{{url('/manage-admin')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage {{$name}}</span></a>
                                     </div>
                                     <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'user') menu_active @endif">
                                         <a href="{{url('/manage-user')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage Users</span></a>
@@ -50,6 +56,8 @@
                                         <a href="{{url('/task-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage task</span></a>
                                     </div>
                                     
+
+
 
                                 </div>
                             </div>
