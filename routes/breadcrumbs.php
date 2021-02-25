@@ -21,6 +21,23 @@ Breadcrumbs::for('edit-user', function ($trail) {
     $trail->push('Edit User', route('manage-user'));
 });
 
+
+Breadcrumbs::for('manage-admin', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Manage Admins', url('manage-admin'));
+});
+
+Breadcrumbs::for('add-admin', function ($trail) {
+    $trail->parent('manage-admin');
+    $trail->push('Add Admins', url('manage-admin'));
+});
+
+Breadcrumbs::for('edit-admin', function ($trail) {
+    $trail->parent('manage-admin');
+    $trail->push('Edit Admins', url('manage-admin'));
+});
+
+
 Breadcrumbs::for('AdminProfile', function ($trail) {
     $trail->parent('home');
     $trail->push('AdminProfile', url('AdminProfile'));

@@ -23,7 +23,7 @@
                             <div class="col-md-12 form-group">
                                 <input type="text" name="name" id="name" required class="form-control" autocomplete="off" placeholder="Task Name*" value="{{@$task->task_name ?: old('name') }}">
                                 @if ($errors->has('name'))
-                                <span class="text-error" role="alert">
+                                <span class="error" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                                 @endif
@@ -37,7 +37,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('name'))
-                                <span class="text-error" role="alert">
+                                <span class="error" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                                 @endif
@@ -52,7 +52,7 @@
                                     @endforeach
                                 </select>
                                 @if ($errors->has('name'))
-                                <span class="text-error" role="alert">
+                                <span class="error" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                                 @endif
@@ -67,7 +67,7 @@
                                     <option @if((@$task->status ) == 'Running') selected @endif value="Running">Running</option>
                                 </select>
                                 @if ($errors->has('status'))
-                                <span class="siteLogo_error" role="alert">
+                                <span class="error" role="alert">
                                     <strong>{{ $errors->first('status') }}</strong>
                                 </span>
                                 @endif

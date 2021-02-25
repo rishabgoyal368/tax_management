@@ -21,7 +21,7 @@
 							<div class="col-md-12 form-group">
 								<input type="text" name="name" id="name" class="form-control" autocomplete="off" placeholder="Title*" value="{{ @Auth::user()->name }}">
 								@if ($errors->has('name'))
-								<span class="text-error" role="alert">
+								<span class="error" role="alert">
 									<strong>{{ $errors->first('name') }}</strong>
 								</span>
 								@endif
@@ -29,7 +29,7 @@
 							<div class="col-md-12 form-group">
 								<input type="email" name="email" id="email" class="form-control" autocomplete="off" placeholder="Email*" value="{{ @Auth::user()->email }}">
 								@if ($errors->has('email'))
-								<span class="siteLogo_error" role="alert">
+								<span class="error" role="alert">
 									<strong>{{ $errors->first('email') }}</strong>
 								</span>
 								@endif
@@ -37,7 +37,7 @@
 							<div class="col-md-12 form-group">
 								<input type="number" name="phone_number" id="phone_number" min="0" maxlength="12" minlength="10" class="form-control" value="{{ @Auth::user()->phone_number }}">
 								@if ($errors->has('phone_number'))
-								<span class="siteLogo_error" role="alert">
+								<span class="error" role="alert">
 									<strong>{{ $errors->first('phone_number') }}</strong>
 								</span>
 								@endif
@@ -48,7 +48,7 @@
 							<a href="{{env('APP_URL').'uploads/'.Auth::user()->profile_pic}}" target="_blank">{{Auth::user()->profile_pic}}</a>
 							@endisset
 							@if ($errors->has('image'))
-							<span class="siteLogo_error" role="alert">
+							<span class="error" role="alert">
 								<strong>{{ $errors->first('image') }}</strong>
 							</span>
 							@endif

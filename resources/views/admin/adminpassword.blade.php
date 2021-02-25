@@ -21,7 +21,7 @@
 							<div class="col-md-12 form-group">
 								<input type="password" name="current_password" id="current_password" class="form-control" autocomplete="off" placeholder="Current Password*" >
 								@if ($errors->has('current_password'))
-								<span class="text-error" role="alert">
+								<span class="error" role="alert">
 									<strong>{{ $errors->first('current_password') }}</strong>
 								</span>
 								@endif
@@ -29,7 +29,7 @@
 							<div class="col-md-12 form-group">
 								<input type="password" name="new_password" id="new_password" class="form-control" autocomplete="off" placeholder="New Password*">
 								@if ($errors->has('new_password'))
-								<span class="siteLogo_error" role="alert">
+								<span class="error" role="alert">
 									<strong>{{ $errors->first('new_password') }}</strong>
 								</span>
 								@endif

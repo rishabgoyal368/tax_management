@@ -21,6 +21,11 @@ Auth::routes(['register' => false]);
 
 //==========> Admin  <===================//
 Route::any('/updateprofile','AdminController@update');
+Route::any('manage-admin','AdminController@adminList');
+Route::any('add-admin','AdminController@addAdmin');
+Route::any('edit-admin/{id}', 'AdminController@addAdmin');
+Route::delete('delete-admin', 'AdminController@deleteAdmin');
+
 
 //==========> Designation <=================// 
 Route::any('/manage-user', 'UserController@show')->name('manage-user');

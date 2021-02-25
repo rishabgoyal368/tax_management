@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    protected $userLabel = '';
+
     public function __construct()
     {
         $this->middleware('auth:admin');
@@ -20,10 +22,10 @@ class AdminController extends Controller
     {
 
         $admin = new Admin();
-           $admin->email = $request->input('email');
-           $admin->password = bcrypt($request->input('password'));
-           $admin->save();
-           return 'true';
+        $admin->email = $request->input('email');
+        $admin->password = bcrypt($request->input('password'));
+        $admin->save();
+        return 'true';
         return view('index');
     }
     //----------------------------------update adminprofile------------------------------------------
@@ -74,15 +76,14 @@ class AdminController extends Controller
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator->errors());
             }
-            
+
             if (Hash::check($request->current_password, Auth::user()->password) == false) {
-				$message = 'Current Passsword is not match';
-				return redirect()->back()->with(['error' => $message]);
-			} else {
+                $message = 'Current Passsword is not match';
+                return redirect()->back()->with(['error' => $message]);
+            } else {
                 Admin::Updatepassword($data);
                 return redirect()->back()->with(['success' => 'profile updated  successfully']);
             }
-   
         }
     }
 
@@ -90,7 +91,7 @@ class AdminController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $AppSetting = AppSetting::latest()->first();
-            return view('admin.appSetting',compact('AppSetting'));
+            return view('admin.appSetting', compact('AppSetting'));
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = $request->all();
@@ -101,12 +102,113 @@ class AdminController extends Controller
                 $request->logo->move(public_path('uploads'), $fileName);
                 $data['logo'] = $fileName;
                 $AppSetting->logo = $fileName;
-            } 
+            }
             $AppSetting->app_version = $data['app_version'];
             $AppSetting->save();
 
             return redirect()->back()->with(['success' => 'profile updated  successfully']);
-   
+        }
+    }
+
+
+    public function adminList(Request $request)
+    {
+        $admin = Auth::guard('admin')->user();
+        switch ($admin['role']) {
+            case '0':
+                # finanical manager
+                $label = 'Manager';
+                break;
+            case '1':
+                # officer
+                $label = 'User';
+                break;
+        }
+        $id = Admin::where('role', 0)->where('id', Auth::guard('admin')->user()->id)->pluck('id');
+        $admins = Admin::whereNotIn('id', $id)->paginate(10);
+        return view('admin.list', compact('admins', 'label'));
+    }
+
+    public function addAdmin(Request $request, $id = null)
+    {
+        $admin = Auth::guard('admin')->user();
+        switch ($admin['role']) {
+            case 0:
+                # finanical manager
+                $role = 1;
+                $job = 'manager';
+                $userLabel = 'Manager';
+                break;
+            case 1:
+                # officer
+                $role = 2;
+                $job = $request['job'];
+                $userLabel = 'User';
+                break;
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if ($id) {
+                #Update
+                $user = Admin::find($id);
+                $label = 'Edit ' . $userLabel;
+                return view('admin.add_edit', compact('user', 'label'));
+            } else {
+                #Insert
+                $label = 'Add ' . $userLabel;
+                $user['id'] = '';
+                return view('admin.add_edit', compact('label', 'user'));
+            }
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // return $request->all();
+
+            $this->validate($request, [
+                'name' =>  'required',
+                'email' => $request['id'] ? 'required|unique:admins,email,' . $request['id'] . ',id,deleted_at,NULL' : 'required|unique:admins,email',
+                'phone_number' => 'required',
+                'password' => $request['id'] ? 'nullable' : 'required|confirmed',
+                'status' => 'required',
+            ]);
+
+
+            $request['profile_pic'] = 'profile.png';
+            $request['created_by'] = $admin['id'];
+            $request['role'] = $role;
+            $request['job'] = $job;
+            $oldAdmin = Admin::where('id', @$request['id'])->first();
+            $request['password'] = $request['id'] ? $oldAdmin['password'] : Hash::make($request['password']);
+            $user =  Admin::addEdit($request);
+            if ($request['id']) {
+                $msz = ' Updated';
+            } else {
+                $msz = ' Add';
+            }
+            return redirect('/manage-admin')->with(['success' => $userLabel . $msz . ' successfully']);
+        }
+    }
+
+    public function deleteAdmin(Request $request)
+    {
+        $data = $request->all();
+        $validator =  Validator::make($data, [
+            'id'  => 'required|exists:admins,id',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()]);
+        } else {
+            $admin = Auth::guard('admin')->user();
+            switch ($admin['role']) {
+                case '0':
+                    # finanical manager
+                    $label = 'Manager';
+                    break;
+                case '1':
+                    # officer
+                    $label = 'User';
+                    break;
+            }
+            Admin::where('id', $request->id)->delete();
+            return response()->json(['success' => $label . ' deleted successfully.']);
         }
     }
 }

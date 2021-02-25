@@ -21,7 +21,7 @@
 							<div class="col-md-12 form-group">
 								<input type="number" required name="app_version" id="app_version" class="form-control" value="{{ @$AppSetting['app_version'] }}" autocomplete="off" placeholder="app_version*" >
 								@if ($errors->has('app_version'))
-								<span class="text-error" role="alert">
+								<span class="error" role="alert">
 									<strong>{{ $errors->first('app_version') }}</strong>
 								</span>
 								@endif
@@ -29,7 +29,7 @@
 							<div class="col-md-12 form-group">
 								<input type="file" name="logo" id="logo" class="form-control" autocomplete="off" >
 								@if ($errors->has('logo'))
-								<span class="siteLogo_error" role="alert">
+								<span class="error" role="alert">
 									<strong>{{ $errors->first('logo') }}</strong>
 								</span>
 								@endif
