@@ -21,6 +21,21 @@ Breadcrumbs::for('edit-user', function ($trail) {
     $trail->push('Edit User', route('manage-user'));
 });
 
+// Home > tax
+Breadcrumbs::for('manage-tax', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Users', route('manage-tax'));
+});
+
+Breadcrumbs::for('add-tax', function ($trail) {
+    $trail->parent('manage-tax');
+    $trail->push('Add tax', route('manage-tax'));
+});
+
+Breadcrumbs::for('edit-tax', function ($trail) {
+    $trail->parent('manage-tax');
+    $trail->push('Edit tax', route('manage-tax'));
+});
 
 Breadcrumbs::for('manage-admin', function ($trail) {
     $trail->parent('home');

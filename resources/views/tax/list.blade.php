@@ -1,5 +1,5 @@
 @extends('Layout.app')
-@section('title','Tasks')
+@section('title','Tax')
 @section('content')
 <!-- Sidebar -->
 @include('Layout.sidebar')
@@ -10,8 +10,8 @@
             <div class="company-doc">
                 <div class="card ctm-border-radius shadow-sm grow">
                 <div class="card-header">
-                        <h4 class="card-title d-inline-block mb-0">Manage Tasks</h4>
-                        <a href="{{url('/add-task')}}" class="float-right add-doc text-primary">Add Task</a><br>                        
+                        <h4 class="card-title d-inline-block mb-0">Manage Tax</h4>
+                        <a href="{{url('/add-tax')}}" class="float-right add-doc text-primary">Add Tax</a><br>                        
                     </div>
                     <div class="card-body">
                         <div class="employee-office-table">
@@ -21,25 +21,20 @@
                                         <tr>
                                             <th>S.no</th>
                                             <th>Name</th>
-                                            <th>Alocated To</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($tasks as $key => $user)
+                                        @forelse($taxs as $key => $user)
                                         <tr>
 
                                             <td>{{$key + $taxs->firstItem()}}</td>
-                                            <td>{{$user->task_name}}</td>
-                                            <td><a href="{{url('edit-user')}}/{{$user->getAlocateUser()['id']}}" target="_blank"> {{$user->getAlocateUser()['name']}}</a></td>
+                                            <td>{{$user->name}}</td>
                                             <td>{{$user->status}}</td>
                                             <td>
                                                 <div class="action_block">
-                                                    <a class="edit_icon" href="{{url('/edit-task')}}/{{$user->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
-                                                    <a class="trash-icon common_delete" href="javascript:void(0);" data-toggle="modal" data-backdrop="static" data-target=".common_delete_modal" data-url="{{url('/delete-task')}}"  data-id="{{$user->id}}">
-                                                        <span class="lnr lnr-trash" data-toggle="tooltip" title="Delete"></span>
-                                                    </a>
+                                                    <a class="edit_icon" href="{{url('/edit-tax')}}/{{$user->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
                                                 </div>
                                             </td>
 
@@ -56,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                    {{ $tasks->links() }}
+                    {{ $taxs->links() }}
                 </div>
             </div>
         </div>

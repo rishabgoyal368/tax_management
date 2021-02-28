@@ -39,6 +39,12 @@ Route::any('add-task', 'TaskController@add');
 Route::any('edit-task/{id}', 'TaskController@add');
 Route::delete('delete-task', 'TaskController@delete');
 
+//==========> Task Management <=================// 
+Route::any('/manage-tax', 'TaxController@show')->name('manage-tax');
+Route::any('add-tax', 'TaxController@add');
+Route::any('edit-tax/{id}', 'TaxController@add');
+Route::delete('delete-tax', 'TaxController@delete');
+
 //==========> Admin  <===================//
 Route::any('/updateprofile','AdminController@update');
 Route::any('/updatepassword','AdminController@updatepassword');

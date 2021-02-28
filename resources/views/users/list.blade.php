@@ -35,7 +35,7 @@
                                         @forelse($users as $key => $user)
                                         <tr>
 
-                                            <td>{{$user->id}}</td>
+                                            <td>{{$key + $taxs->firstItem()}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->phone_number}}</td>
