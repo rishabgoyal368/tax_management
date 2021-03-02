@@ -16,19 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('app-setting', 'JwtAuthController@setting');
-Route::post('login', 'JwtAuthController@login');
-Route::post('register', 'JwtAuthController@register');
+Route::post('app-setting', 'Api\JwtAuthController@setting');
+Route::post('login', 'Api\JwtAuthController@login');
+Route::post('register', 'Api\JwtAuthController@register');
 
-Route::group(['middleware' => 'token_auth'], function () {
+Route::get('tax-list', 'Api\TaxController@taxList');
+
+Route::group(['middleware' => 'token_auth','namespace' => 'Api'], function () {
 
     // User Controller
     Route::post('logout', 'JwtAuthController@logout');
     Route::get('user-info', 'JwtAuthController@getUser');
     Route::post('update-profile', 'JwtAuthController@updateProfile');
 
-    // Content Controller
-    // Route::get('getGurumukhi', 'PunjabiController@getGurumukhi');
-
-    Route::post('manage-content', 'PunjabiController@getContent');
+   
 });

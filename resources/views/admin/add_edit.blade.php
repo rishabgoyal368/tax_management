@@ -63,12 +63,16 @@
                             </div>
                             @endif
 
-                            @if(Auth::guard('admin')->user()->role == 0)
+                            @if(Auth::guard('admin')->user()->role != 2 )
                             <div class="col-md-12 form-group">
                                 <select class="form-control " name="job">
                                     <option value="default" selected disabled>Select Job</option>
+                                    @if(Auth::guard('admin')->user()->role == 0 )
                                     <option @if((@$user->job ) == 'Manager') selected @endif value="Manager">Manager</option>
-                                    <option @if((@$user->job ) == 'Officer') selected @endif value="Officer">Officer</option>
+                                    @endif
+                                    @foreach($officer as $officer_name)
+                                    <option @if((@$user->job ) == $officer_name->name) selected @endif value="{{$officer_name->name}}">{{$officer_name->name}}</option>
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('job'))
                                 <span class="error" role="alert">

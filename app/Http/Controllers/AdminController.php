@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Admin;
 use App\AppSetting;
+use App\Tax;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -135,6 +136,7 @@ class AdminController extends Controller
     public function addAdmin(Request $request, $id = null)
     {
         $admin = Auth::guard('admin')->user();
+        $officer = Tax::select('id','name')->where('parent_id','0')->get();
         switch ($admin['role']) {
             case 0:
                 # finanical manager
@@ -154,12 +156,12 @@ class AdminController extends Controller
                 #Update
                 $user = Admin::find($id);
                 $label = 'Edit ' . $userLabel;
-                return view('admin.add_edit', compact('user', 'label'));
+                return view('admin.add_edit', compact('user', 'label','officer'));
             } else {
                 #Insert
                 $label = 'Add ' . $userLabel;
                 $user['id'] = '';
-                return view('admin.add_edit', compact('label', 'user'));
+                return view('admin.add_edit', compact('label', 'user','officer'));
             }
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

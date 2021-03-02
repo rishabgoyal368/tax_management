@@ -49,9 +49,9 @@
                                     <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'admin') menu_active @endif">
                                         <a href="{{url('/manage-admin')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage {{$name}}</span></a>
                                     </div>
-                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'user') menu_active @endif">
+                                    <!-- <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'user') menu_active @endif">
                                         <a href="{{url('/manage-user')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage Users</span></a>
-                                    </div>
+                                    </div> -->
                                     <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'list') menu_active @endif">
                                         <a href="{{url('/task-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage task</span></a>
                                     </div>

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
 
 use JWTAuth;
 use Validator;
@@ -35,7 +36,7 @@ class JwtAuthController extends Controller
 
         if ($validator->fails()) {
 
-            return response()->json(['error' => $validator->errors()], 401);
+            return response()->json(['error' => $validator->errors(),'success' => false], 200);
         }
 
 
@@ -72,7 +73,7 @@ class JwtAuthController extends Controller
 
         if ($validator->fails()) {
 
-            return response()->json(['error' => $validator->errors()], 401);
+            return response()->json(['error' => $validator->errors(),'success' => false], 200);
         }
 
         $input = $request->only('email', 'password');
@@ -98,7 +99,7 @@ class JwtAuthController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'User logged out successfully'
+                'message' => 'User logged out Successfully'
             ]);
         } catch (JWTException $exception) {
             return response()->json([
@@ -119,8 +120,8 @@ class JwtAuthController extends Controller
        $AppSetting = AppSetting::latest()->first();
        return response()->json([
         'data' => $AppSetting,
-        'success' => false,
-        'message' => 'Invalid Email or Password',
+        'success' => true,
+        'message' => 'App Setting update Successfully',
     ]);
     }
 
@@ -136,7 +137,7 @@ class JwtAuthController extends Controller
             ]
         );
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
+            return response()->json(['error' => $validator->errors(),'success' => false], 200);
         }
         else{
             $user = JWTAuth::parseToken()->authenticate();
