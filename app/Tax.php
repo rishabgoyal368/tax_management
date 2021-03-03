@@ -33,4 +33,14 @@ class Tax extends Model
     {
         return User::where('id', $this->alocate_to)->first();
     }
+
+    public function parent()
+    {
+        return $this->belongsTo('App\Tax', 'id', 'parent_id');
+    }
+
+    public function getImageAttribute($value)
+    {
+        return env('APP_URL') . '/uploads/' . $value;
+    }
 }

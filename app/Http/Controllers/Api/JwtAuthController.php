@@ -58,7 +58,7 @@ class JwtAuthController extends Controller
         return response()->json([
             'success' => true,
             'data' => $user
-        ], Response::HTTP_OK);
+        ]);
     }
 
     public function login(Request $request)

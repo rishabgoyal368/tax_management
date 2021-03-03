@@ -47,7 +47,7 @@
                             <div class="col-md-12 form-group">
                                 <input type="file" name="image" id="image" class="form-control" {{ @$task['id'] ? '' : 'required' }} >
                                 @isset($task['image'])
-                                <a href="{{env('APP_URL').'uploads/'.Auth::user()->profile_pic}}" target="_blank">{{Auth::user()->profile_pic}}</a>
+                                <a href="{{$value['image']}}" target="_blank">{{$value->getOriginal('image')}}</a>
                                 @endisset
                                 @if ($errors->has('image'))
                                 <span class="error" role="alert">

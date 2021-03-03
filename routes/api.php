@@ -20,7 +20,6 @@ Route::post('app-setting', 'Api\JwtAuthController@setting');
 Route::post('login', 'Api\JwtAuthController@login');
 Route::post('register', 'Api\JwtAuthController@register');
 
-Route::get('tax-list', 'Api\TaxController@taxList');
 
 Route::group(['middleware' => 'token_auth','namespace' => 'Api'], function () {
 
@@ -28,6 +27,11 @@ Route::group(['middleware' => 'token_auth','namespace' => 'Api'], function () {
     Route::post('logout', 'JwtAuthController@logout');
     Route::get('user-info', 'JwtAuthController@getUser');
     Route::post('update-profile', 'JwtAuthController@updateProfile');
+
+    // Additional tax
+    Route::get('tax-list', 'TaxController@taxList');
+
+
 
    
 });
