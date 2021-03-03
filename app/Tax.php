@@ -23,7 +23,7 @@ class Tax extends Model
             [
                 'name' => @$data['name'] ?: null,
                 'parent_id' => @$data['parent_id'] ?: '0',
-                'image' => @$data['image'] ?: null,
+                'image' => @$data['logo'] ?: null,
                 'status' => @$data['status'] ?: null,
             ]
         );
@@ -41,6 +41,6 @@ class Tax extends Model
 
     public function getImageAttribute($value)
     {
-        return env('APP_URL') . '/uploads/' . $value;
+        return env('APP_URL') . 'uploads/' . $value;
     }
 }

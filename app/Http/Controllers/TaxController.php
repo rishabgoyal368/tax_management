@@ -55,10 +55,11 @@ class TaxController extends Controller
             if ($request->image) {
                 $fileName = time() . '.' . $request->image->extension();
                 $request->image->move(public_path('uploads'), $fileName);
-                $request['image'] = $fileName;
+                $request['logo'] = $fileName;
             }
             else{
-                $request['image'] = Tax::where('id',$request['id'])->value('image');
+                $tax  = Tax::where('id',$request['id'])->first();
+                $request['logo'] = $tax->getAttributes()['image'];
             }
             // return $request;
             $user =  tax::addEdit($request);

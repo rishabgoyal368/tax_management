@@ -47,7 +47,7 @@
                             <div class="col-md-12 form-group">
                                 <input type="file" name="image" id="image" class="form-control" {{ @$task['id'] ? '' : 'required' }} >
                                 @isset($task['image'])
-                                <a href="{{$value['image']}}" target="_blank">{{$value->getOriginal('image')}}</a>
+                                <a href="{{$value['image']}}" target="_blank">{{$value->getAttributes()['image']}}</a>
                                 @endisset
                                 @if ($errors->has('image'))
                                 <span class="error" role="alert">

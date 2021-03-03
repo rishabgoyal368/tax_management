@@ -22,12 +22,6 @@ class TaxController extends Controller
     public function taxList(Request $request)
     {
         $taxes = Tax::with('parent')->where('status','Active')->where('parent_id', 0)->get();
-        // foreach ($taxes as $key => $tax) {
-        //     $data[$key]['id'] = $tax['id']; 
-        //     $data[$key]['name'] = $tax['name']; 
-        //     $data[$key]['image'] = 'taxx'; 
-        // }
-        // return $data;
         return response()->json([
             'success' => true,
             'tax_list' => $taxes,
