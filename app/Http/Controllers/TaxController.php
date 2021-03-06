@@ -87,14 +87,24 @@ class TaxController extends Controller
     }
 
     public function suplier_data_list(){
-        $supplier_data_list = SupplierData::latest()->paginate(env('PAGINATE'));
+        $supplier_data_list = SupplierData::with('user')->latest()->paginate(env('PAGINATE'));
         return view('SupplierData.list', compact('supplier_data_list'));
-        // dd($supplier_data_list);
+    }
+
+    public function view_supplier_data(Request $request, $id){
+        $view_supplier_data = SupplierData::where('id', $id)->with('user')->first();
+        return view('SupplierData.view', compact('view_supplier_data'));
+
     }
 
     public function buy_invoice_list(){
-        $buy_invoice_list = BuyInvoice::get()->toArray();
-        dd($buy_invoice_list);
+        $buy_invoice_list = BuyInvoice::with('user')->latest()->paginate(env('PAGINATE'));
+        return view('BuyInvoice.list', compact('buy_invoice_list'));
+    }
+
+    public function view_buy_invoice(Request $request, $id){
+        $view_buy_invoice = BuyInvoice::where('id', $id)->with('user')->first();
+        return view('BuyInvoice.view', compact('view_buy_invoice'));
     }
 
 

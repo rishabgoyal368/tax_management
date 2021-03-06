@@ -19,6 +19,7 @@
                                     <thead>
                                         <tr>
                                             <th>S.no</th>
+                                            <th>User Name</th>
                                             <th>Invoice Date</th>
                                             <th>Invoice Number</th>
                                             <th>Actions</th>
@@ -28,12 +29,13 @@
                                         @forelse($supplier_data_list as $key => $supplier_data)
                                         <tr>
 
-                                            <td>{{$key + $taxs->firstItem()}}</td>
+                                            <td>{{$key+1}}</td>
+                                            <td>{{ ucfirst($supplier_data['user']['name']) }}</td>
                                             <td>{{ date('d M Y',strtotime($supplier_data->invoice_date)) }}</td>
                                             <td>{{$supplier_data->invoice_no }}</td>
                                             <td>
                                                 <div class="action_block">
-                                                    <a class="edit_icon" href="{{url('/edit-task')}}/{{$supplier_data->id}}"> <span class="lnr lnr-pencil position-relative" data-toggle="tooltip" title="Edit"></span></a>
+                                                    <a class="edit_icon" href="{{url('/supplier-data/view')}}/{{$supplier_data->id}}"> <span class="fa fa-eye" data-toggle="tooltip" title="View"></span></a>
                                                 </div>
                                             </td>
 

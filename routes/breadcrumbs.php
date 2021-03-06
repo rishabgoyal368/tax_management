@@ -96,8 +96,20 @@ Breadcrumbs::for('supplier-data', function ($trail) {
     $trail->push('Supplier Data', route('supplier-data'));
 });
 
-// Breadcrumbs::for('add-task', function ($trail) {
-//     $trail->parent('task-list');
-//     $trail->push('Add Task', route('task-list'));
-// });
+Breadcrumbs::for('view-supplier-data', function ($trail) {
+    $trail->parent('supplier-data');
+    $trail->push('view-supplier-data', route('supplier-data'));
+});
+
+// Home > Buy- Invoice
+Breadcrumbs::for('buy-invoice', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Buy Invoice', route('buy-invoice'));
+});
+
+Breadcrumbs::for('view-buy-invoice', function ($trail) {
+    $trail->parent('buy-invoice');
+    $trail->push('View Buy Invoice', route('buy-invoice'));
+});
+
 
