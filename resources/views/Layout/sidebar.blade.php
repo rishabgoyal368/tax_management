@@ -58,7 +58,12 @@
                                     <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'tax') menu_active @endif">
                                         <a href="{{url('/manage-tax')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage Taxes</span></a>
                                     </div>
-
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'supplier_data') menu_active @endif">
+                                        <a href="{{url('/supplier-data')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Supplier Data</span></a>
+                                    </div>
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'buy_invoice') menu_active @endif">
+                                        <a href="{{url('/buy-invoice')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Buy Invoice</span></a>
+                                    </div>
 
 
                                 </div>

@@ -89,3 +89,15 @@ Breadcrumbs::for('edit-task', function ($trail) {
     $trail->parent('task-list');
     $trail->push('Edit Task', route('task-list'));
 });
+
+// Home > Supplier-Data
+Breadcrumbs::for('supplier-data', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Supplier Data', route('supplier-data'));
+});
+
+// Breadcrumbs::for('add-task', function ($trail) {
+//     $trail->parent('task-list');
+//     $trail->push('Add Task', route('task-list'));
+// });
+

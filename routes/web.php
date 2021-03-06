@@ -52,3 +52,11 @@ Route::any('/app-setting','AdminController@appSetting');
 
 
 
+//==============> Supplier-Data <===================//
+Route::any('/supplier-data','TaxController@suplier_data_list');
+Route::any('/supplier-data/view/{id}','TaxController@view_supplier_data');
+
+
+//==============> Buy-Invoice <===================//
+Route::any('/buy-invoice','TaxController@buy_invoice_list');
+Route::any('/buy-invoice/view/{id}','TaxController@view_invoice_list');

@@ -9,7 +9,7 @@ use App\Exports\DesignationExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 use App\Tax;
-use App\User;
+use App\User, App\SupplierData, App\BuyInvoice;
 use Helper;
 
 
@@ -85,4 +85,17 @@ class TaxController extends Controller
             return response()->json(['success' => 'Task deleted successfully.']);
         }
     }
+
+    public function suplier_data_list(){
+        $supplier_data_list = SupplierData::latest()->paginate(env('PAGINATE'));
+        return view('SupplierData.list', compact('supplier_data_list'));
+        // dd($supplier_data_list);
+    }
+
+    public function buy_invoice_list(){
+        $buy_invoice_list = BuyInvoice::get()->toArray();
+        dd($buy_invoice_list);
+    }
+
+
 }

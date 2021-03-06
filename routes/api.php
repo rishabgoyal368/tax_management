@@ -30,6 +30,14 @@ Route::group(['middleware' => 'token_auth','namespace' => 'Api'], function () {
 
     // Additional tax
     Route::get('tax-list', 'TaxController@taxList');
+    
+
+    //Supplier-Data
+    Route::post('/supplier-data/add','TaxController@supplier_data_add');
+
+   //Buy-invoice
+    Route::post('/buy-invoice/add','TaxController@buy_invoice_add');
+
 
 
 

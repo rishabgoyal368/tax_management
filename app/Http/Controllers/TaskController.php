@@ -24,6 +24,7 @@ class TaskController extends Controller
     public function show(Request $request)
     {
         $tasks = task::latest()->paginate(env('PAGINATE'));
+        // dd($tasks);
         return view('tasks.list', compact('tasks'));
     }
 

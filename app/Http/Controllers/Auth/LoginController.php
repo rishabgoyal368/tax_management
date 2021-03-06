@@ -62,7 +62,7 @@ class LoginController extends Controller
         $rd = $request->all();
         $rd['email'] = strtolower($request->input('email'));
         $request->replace($rd);
-        $input = $request->all();
+        $input = $request->all();      
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password,'status' => 'Active'], $request->remember)) {
             return redirect()->intended($this->redirectPath());
         } else {
