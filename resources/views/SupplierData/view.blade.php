@@ -20,39 +20,30 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-12 form-group">User Name
-                                <input type="text" name="name" id="name" disabled="disabled" class="form-control"  value="{{ ucfirst(@$view_supplier_data->user->name) }}">
+                            <div class="col-md-12 form-group">User Name -  {{ ucfirst(@$view_supplier_data->user->name) }}
                             </div>
-                            <div class="col-md-12 form-group">Invoice Date
-                                <input type="text" name="name" id="name" disabled="disabled" class="form-control"  value="{{ date('d M Y', strtotime($view_supplier_data->invoice_date)) }}">
+                            <div class="col-md-12 form-group">Invoice Date - {{ date('d M Y', strtotime($view_supplier_data->invoice_date)) }}
                             </div>
-                            <div class="col-md-12 form-group">National Id Number
-                                <input type="text" name="name" id="name" disabled="disabled" class="form-control"  value="{{ @$view_supplier_data->national_id_no }}">
+                            <div class="col-md-12 form-group">National Id Number - {{ @$view_supplier_data->national_id_no }}
                             </div>
-                            <div class="col-md-12 form-group">Address
-                                <input type="text" name="name" id="name" disabled="disabled" class="form-control"  value="{{ @$view_supplier_data->address }}">
+                            <div class="col-md-12 form-group">Address - {{ @$view_supplier_data->address }}
                             </div>
-                            <div class="col-md-12 form-group">Supplier Name
-                                <input type="text" name="name" id="name" disabled="disabled" class="form-control"  value="{{ ucfirst(@$view_supplier_data->supplier_name) }}">
+                            <div class="col-md-12 form-group">Supplier Name - {{ ucfirst(@$view_supplier_data->supplier_name) }}
                             </div>
-                            <div class="col-md-12 form-group">File Number
-                                <input type="text" name="name" id="name" disabled="disabled" class="form-control"  value="{{ @$view_supplier_data->file_no }}">
+                            <div class="col-md-12 form-group">File Number - {{ @$view_supplier_data->file_no }}
                             </div>
-                            <div class="col-md-12 form-group">Invoice Number
-                                <input type="text" name="name" id="name" disabled="disabled" class="form-control"  value="{{ @$view_supplier_data->invoice_no }}">
+                            <div class="col-md-12 form-group">Invoice Number - {{ @$view_supplier_data->invoice_no }}
                             </div>
-                            <div class="col-md-12 form-group">Tax Registration Number
-                                <input type="text" name="name" id="name" disabled="disabled" class="form-control"  value="{{ @$view_supplier_data->tax_registration_no }}">
+                            <div class="col-md-12 form-group">Tax Registration Number - {{ @$view_supplier_data->tax_registration_no }}
                             </div>
                         </div>
+                        <center><a class="alert-action" data_id="{{ @$view_supplier_data->id }}"><i class="fa fa-exclamation-triangle" style="color: red; font-size: 42px;" aria-hidden="true"></i></a></center>
                     </div>
+                    <input type="hidden" name="url_redirect" data_url="{{ url('/supplier-data/view/alert-send/'.@$view_supplier_data->id) }}" id="url_redirect">
                 </div>
             </form>
         </div>
 
     </div>
 </div>
-
-
-
 @endsection

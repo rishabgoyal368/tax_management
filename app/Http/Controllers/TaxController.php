@@ -97,6 +97,12 @@ class TaxController extends Controller
 
     }
 
+    // public function send_notify_page(Request $request, $id){
+    //     $view_supplier_data = SupplierData::where('id', $id)->with('user')->first();
+
+    //     return view('SupplierData.sent_notify', compact('view_supplier_data'));
+    // }
+
     public function buy_invoice_list(){
         $buy_invoice_list = BuyInvoice::with('user')->latest()->paginate(env('PAGINATE'));
         return view('BuyInvoice.list', compact('buy_invoice_list'));

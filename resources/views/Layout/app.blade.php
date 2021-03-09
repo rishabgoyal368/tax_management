@@ -47,11 +47,13 @@
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
+ 
 
 </head>
 
 <body>
 
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <div class="inner-wrapper">
         <!-- Loader -->

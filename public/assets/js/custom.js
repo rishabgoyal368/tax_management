@@ -259,3 +259,22 @@ $(document).ready(function () {
     });
 
 });
+
+$('.alert-action').on('click',function(){
+    // var url = $('#url_redirect').attr('data_url');
+(async () => {
+
+const { value: message } = await Swal.fire({
+  title: 'Please Enter Message',
+  input: 'textarea',
+  inputLabel: 'Enter Your Message',
+  inputPlaceholder: 'Enter your Message'
+})
+
+if (message) {
+  Swal.fire(`Entered message: ${message}`)
+}
+
+})()
+});
+

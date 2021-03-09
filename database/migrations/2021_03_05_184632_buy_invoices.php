@@ -25,6 +25,8 @@ class BuyInvoices extends Migration
             $table->string('product_type');
             $table->integer('quantity');
             $table->string('tax_category');
+            $table->string('notify_message')->nullable();
+            $table->string('image');
             $table->timestamps();
         });
     }

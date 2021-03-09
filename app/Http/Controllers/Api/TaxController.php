@@ -85,7 +85,7 @@ class TaxController extends Controller
                 'product_type' => 'required',
                 'quantity' => 'required|numeric',
                 'tax_category' => 'required',
-                // 'invoice_photo' => 'required',
+                'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
             ]
         );
 
@@ -107,6 +107,12 @@ class TaxController extends Controller
         $buy_invoice->product_type   	= $request->product_type;
         $buy_invoice->quantity   		= $request->quantity;
         $buy_invoice->tax_category   	= $request->tax_category;
+        if($request->image)
+        {
+            $fileName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('uploads/buy_invoice'), $fileName);
+            $buy_invoice->image = $fileName;
+        }
         if($buy_invoice->save()){
             return response()->json([
                 'success' => true,
