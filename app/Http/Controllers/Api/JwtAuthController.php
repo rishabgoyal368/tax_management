@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 
 use App\AppSetting;
 use App\User;
-
+use Auth;
 class JwtAuthController extends Controller
 {
     public $token = true;
@@ -87,7 +87,9 @@ class JwtAuthController extends Controller
         }
         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $generate_token=str_shuffle(str_repeat($pool, 5));
-        $user = Auth::User()->update(['device_token'=>$generate_token]);
+        $user_id = Auth::User()->id;
+        $user = User::where('id',$user_id)->update(['device_token'=>$generate_token]);
+       
         return response()->json([
             'device_token'=>$generate_token,
             'success' => true,
