@@ -9,7 +9,7 @@ use App\Exports\DesignationExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 use App\Tax;
-use App\User, App\SupplierData, App\BuyInvoice;
+use App\User, App\SupplierData, App\BuyInvoice, App\FcmDevice;
 use Helper;
 
 
@@ -98,11 +98,60 @@ class TaxController extends Controller
     }
 
     public function send_notify_page(Request $request){
-        if($request->isMethod('post')){
-            $data = $request->all();
-            dd($data);
+        $data = $request->all();
+        // $result = '';
+        // dd($data);
+        $user_token = User::where('id',$data['user_id'])->value('device_token');
+
+        $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
+        $notification = array(
+            'title' => 'notification',
+            'type' => $data['type'],
+            'click_action' => 'FLUTTER_NOTIFICATION_CLICK',
+            'sound' => 'mySound',
+            'body'=> $data['message'],
+            'device_token' => $user_token,
+            // 'user_type' => $user_type,
+            'priority' => 'high'
+        );
+        // dd($notification);
+
+        // $extraNotificationData = ['body' => $meg, 'title' => $title];
+        $fcmNotification = [
+            //'registration_ids' => $tokenList, //multple token array
+            'to'=> "AAAA348KHT0:APA91bG9cc7bsC61TwysSPnucvI3p1nckhhTey6CRTAMGj6_SGZIPcY9LpiTftfd1Z7KYjnhiLzHLGrn6OOFH2PEQEnFtIQsK9gTj6vNo302qDEpjiHXVWLzeL8MFQML4cjvh6_BZ0tz", //single token
+            //'notification' => $extraNotificationData,
+            'data' => $notification
+        ];
+        $headers = [
+            'Authorization: key=AAAA348KHT0:APA91bG9cc7bsC61TwysSPnucvI3p1nckhhTey6CRTAMGj6_SGZIPcY9LpiTftfd1Z7KYjnhiLzHLGrn6OOFH2PEQEnFtIQsK9gTj6vNo302qDEpjiHXVWLzeL8MFQML4cjvh6_BZ0tz',
+            'Content-Type: application/json'
+        ];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $fcmUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
+        $result = curl_exec($ch);
+        // dd($result);
+        $add_data = new FcmDevice;
+        $add_data->user_id = $data['user_id'];
+        $add_data->message = $data['message'];
+        $add_data->status = 'sent';
+        $add_data->save();
+
+        curl_close($ch);
+
+        if($data['type'] == 'SupplierData'){
+            return redirect('supplier-data')->with(['success' => 'Message sent sccessfully']);
+        }else{
+            return redirect('/buy-invoice')->with(['success' => 'Message sent sccessfully']);
         }
-    }
+
+
+        }
 
     public function buy_invoice_list(){
         $buy_invoice_list = BuyInvoice::with('user')->latest()->paginate(env('PAGINATE'));

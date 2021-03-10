@@ -56,13 +56,14 @@
                                 <form id="my_message_form" method="post" action="{{ url('send-message-to-user') }}">
                                     <div class="form-group">
                                         <label for="inputComment">Message</label>
-                                        <textarea class="form-control" id="inputComment" placeholder="Enter your Message..." rows="4" required></textarea>
+                                        <textarea class="form-control" id="inputComment" name="message" placeholder="Enter your Message..." rows="4" required></textarea>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                         <button type="submit" class="btn btn-primary">Send</button>
                                     </div>
-                                    <input type="hidden" name="user_id" value="{{ @$view_supplier_data->id }}">
+                                    <input type="hidden" name="id" value="{{  @$view_supplier_data->id }}">
+                                    <input type="hidden" name="user_id" value="{{ @$view_supplier_data->user_id }}">
                                     <input type="hidden" name="type" value="SupplierData">
                                     @csrf
                                 </form>
