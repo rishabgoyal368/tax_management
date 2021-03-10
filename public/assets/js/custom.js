@@ -260,21 +260,8 @@ $(document).ready(function () {
 
 });
 
-$('.alert-action').on('click',function(){
-    // var url = $('#url_redirect').attr('data_url');
-(async () => {
-
-const { value: message } = await Swal.fire({
-  title: 'Please Enter Message',
-  input: 'textarea',
-  inputLabel: 'Enter Your Message',
-  inputPlaceholder: 'Enter your Message'
-})
-
-if (message) {
-  Swal.fire(`Entered message: ${message}`)
-}
-
-})()
-});
+// $('.sumbit_query_model').on('click',function(){
+//     var url_plus_user_id = $(this).attr('data_url');
+//     alert(url_plus_user_iduser_id);
+// });
 

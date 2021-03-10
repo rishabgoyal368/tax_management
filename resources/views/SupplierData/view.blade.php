@@ -37,11 +37,40 @@
                             <div class="col-md-12 form-group">Tax Registration Number - {{ @$view_supplier_data->tax_registration_no }}
                             </div>
                         </div>
-                        <center><a class="alert-action" data_id="{{ @$view_supplier_data->id }}"><i class="fa fa-exclamation-triangle" style="color: red; font-size: 42px;" aria-hidden="true"></i></a></center>
                     </div>
-                    <input type="hidden" name="url_redirect" data_url="{{ url('/supplier-data/view/alert-send/'.@$view_supplier_data->id) }}" id="url_redirect">
                 </div>
             </form>
+
+            <div class="bs-example">
+                <!-- Button HTML (to Trigger Modal) -->
+                <center><a href="#myModal" class="btn btn-lg btn-primary" data-toggle="modal"class="alert-action" data_id="{{ @$view_supplier_data->id }}">Send Message</a></center>
+                    <!-- Modal HTML -->
+                <div id="myModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Your Message</h5>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="my_message_form" method="post" action="{{ url('send-message-to-user') }}">
+                                    <div class="form-group">
+                                        <label for="inputComment">Message</label>
+                                        <textarea class="form-control" id="inputComment" placeholder="Enter your Message..." rows="4" required></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Send</button>
+                                    </div>
+                                    <input type="hidden" name="user_id" value="{{ @$view_supplier_data->id }}">
+                                    <input type="hidden" name="type" value="SupplierData">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
         </div>
 
     </div>

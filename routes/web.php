@@ -55,11 +55,10 @@ Route::any('/app-setting','AdminController@appSetting');
 //==============> Supplier-Data <===================//
 Route::any('/supplier-data','TaxController@suplier_data_list')->name('supplier-data');
 Route::any('/supplier-data/view/{id}','TaxController@view_supplier_data');
-
-Route::any('/supplier-data/view/alert-send/{id}','TaxController@send_notify_page');
+Route::post('/send-message-to-user','TaxController@send_notify_page');
+// Route::any('/supplier-data/view/alert-send/{id}','TaxController@send_notify_page');
 
 
 //==============> Buy-Invoice <===================//
 Route::any('/buy-invoice','TaxController@buy_invoice_list')->name('buy-invoice');
 Route::any('/buy-invoice/view/{id}','TaxController@view_buy_invoice');
-Route::any('/buy-invoice/view/alert-send/{id}','TaxController@send_notify_page');
