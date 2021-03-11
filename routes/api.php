@@ -38,6 +38,10 @@ Route::group(['middleware' => 'token_auth','namespace' => 'Api'], function () {
    //Buy-invoice
     Route::post('/buy-invoice/add','TaxController@buy_invoice_add');
 
+    //Dummy-one
+    Route::post('/first-dummy/add','NewController@first_dummy_add');
+    //Dummy-second
+    Route::post('/second-dummy/add','NewController@second_dummy_add');
 
 
 
