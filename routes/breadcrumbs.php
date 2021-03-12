@@ -113,3 +113,29 @@ Breadcrumbs::for('view-buy-invoice', function ($trail) {
 });
 
 
+
+// First-Dummy
+Breadcrumbs::for('first-dummy', function ($trail) {
+    $trail->parent('home');
+    $trail->push('First Dummy', route('first-dummy'));
+});
+
+// Second-Dummy
+Breadcrumbs::for('second-dummy', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Second Dummy', route('second-dummy'));
+});
+
+
+// Third-Dummy
+Breadcrumbs::for('third-dummy', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Third Dummy', route('third-dummy'));
+});
+
+// Forth-Dummy
+Breadcrumbs::for('forth-dummy', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Forth Dummy', route('forth-dummy'));
+});
+

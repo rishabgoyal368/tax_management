@@ -43,6 +43,11 @@ Route::group(['middleware' => 'token_auth','namespace' => 'Api'], function () {
     //Dummy-second
     Route::post('/second-dummy/add','NewController@second_dummy_add');
 
+    //Dummy-third
+    Route::post('/third-dummy/add','NewController@third_dummy_add');
+
+    //Dummy-forth
+    Route::post('/forth-dummy/add','NewController@forth_dummy_add');
 
 
    

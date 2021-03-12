@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDummySecondsTable extends Migration
+class CreateDummyForthsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDummySecondsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dummy_seconds', function (Blueprint $table) {
+        Schema::create('dummy_forths', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->string('file');
@@ -28,6 +28,6 @@ class CreateDummySecondsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dummy_seconds');
+        Schema::dropIfExists('dummy_forths');
     }
 }

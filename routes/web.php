@@ -39,7 +39,7 @@ Route::any('add-task', 'TaskController@add');
 Route::any('edit-task/{id}', 'TaskController@add');
 Route::delete('delete-task', 'TaskController@delete');
 
-//==========> Task Management <=================// 
+//==========> Tax Management <=================// 
 Route::any('/manage-tax', 'TaxController@show')->name('manage-tax');
 Route::any('add-tax', 'TaxController@add');
 Route::any('edit-tax/{id}', 'TaxController@add');
@@ -62,3 +62,22 @@ Route::post('/send-message-to-user','TaxController@send_notify_page');
 //==============> Buy-Invoice <===================//
 Route::any('/buy-invoice','TaxController@buy_invoice_list')->name('buy-invoice');
 Route::any('/buy-invoice/view/{id}','TaxController@view_buy_invoice');
+
+//===============> First-Dummy <====================//
+Route::any('/first-dummy','NewController@first_dummy')->name('first-dummy');
+//===============> First-Dummy <====================//
+
+
+//===============> Second-Dummy <====================//
+Route::any('/second-dummy','NewController@second_dummy')->name('second-dummy');
+//===============> Second-Dummy <====================//
+
+
+//===============> Third-Dummy <====================//
+Route::any('/third-dummy','NewController@third_dummy')->name('third-dummy');
+//===============> Third-Dummy <====================//
+
+
+//===============> Forth-Dummy <====================//
+Route::any('/forth-dummy','NewController@forth_dummy')->name('forth-dummy');
+//===============> Forth-Dummy <====================//
