@@ -260,8 +260,11 @@ $(document).ready(function () {
 
 });
 
-// $('.sumbit_query_model').on('click',function(){
-//     var url_plus_user_id = $(this).attr('data_url');
-//     alert(url_plus_user_iduser_id);
-// });
+$('.notify_model').on('click',function(){
+    $('#myModal').modal('show');
+    var data_list_id = $(this).attr('data_list_id');
+    var data_user_id = $(this).attr('data_user_id');
+    $('#userId').val(data_user_id);
+    $('#list_id').val(data_list_id);
+});
 

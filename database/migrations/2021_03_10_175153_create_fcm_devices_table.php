@@ -17,6 +17,7 @@ class CreateFcmDevicesTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('message')->nullable();
+            $table->string('type')->nullable();
             $table->string('status')->default('false');
             $table->timestamps();
         });

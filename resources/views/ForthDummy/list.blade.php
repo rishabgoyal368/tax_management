@@ -33,12 +33,41 @@
                                             <td>{{ ucfirst($forth_data->file) }}</td>
                                             <td>
                                                 <div class="action_block">
-                                                   <a class="edit_icon"> <i class="fa fa-bell-o" aria-hidden="true"></i></a>
+                                                    <a style="cursor: pointer;" class="btn btn-lg btn-primary notify_model" data_list_id="{{ $forth_data['id'] }}" data_user_id="{{ $forth_data['user']['id']}}"> <i class="fa fa-bell-o" aria-hidden="true"></i></a>
                                                 </div>
                                             </td>
 
                                             </td>
                                         </tr>
+                                        <div class="bs-example">
+                                                <!-- Modal HTML -->
+                                            <div id="myModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Your Message</h5>
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form id="my_message_form" method="post" action="{{ url('send-message-to-user') }}">
+                                                                <div class="form-group">
+                                                                    <label for="inputComment">Message</label>
+                                                                    <textarea class="form-control" id="inputComment" name="message" placeholder="Enter your Message..." rows="4" required></textarea>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                                    <button type="submit" class="btn btn-primary">Send</button>
+                                                                </div>
+                                                                <input type="hidden" name="id" id="list_id" value="">
+                                                                <input type="hidden" name="user_id" id="userId" value="">
+                                                                <input type="hidden" name="type" value="ForthDummy">
+                                                                @csrf
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
                                         @empty
                                         <tr>
                                             <td>{{env('NO_RECORDS_FOUND')}}</td>

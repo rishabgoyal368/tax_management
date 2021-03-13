@@ -99,7 +99,6 @@ class TaxController extends Controller
 
     public function send_notify_page(Request $request){
         $data = $request->all();
-        // $result = '';
         // dd($data);
         $user_token = User::where('id',$data['user_id'])->value('device_token');
 
@@ -136,16 +135,25 @@ class TaxController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmNotification));
         $result = curl_exec($ch);
         // dd($result);
-        $add_data = new FcmDevice;
-        $add_data->user_id = $data['user_id'];
-        $add_data->message = $data['message'];
-        $add_data->status = 'sent';
+        $add_data           = new FcmDevice;
+        $add_data->user_id  = $data['user_id'];
+        $add_data->message  = $data['message'];
+        $add_data->type     = $data['type'];
+        $add_data->status   = 'sent';
         $add_data->save();
 
         curl_close($ch);
 
         if($data['type'] == 'SupplierData'){
-            return redirect('supplier-data')->with(['success' => 'Message sent sccessfully']);
+            return redirect('/supplier-data')->with(['success' => 'Message sent sccessfully']);
+        }elseif($data['type'] == 'FirstDummy'){
+            return redirect('/first-dummy')->with(['success' => 'Message sent sccessfully']);
+        }elseif($data['type'] == 'SecondDummy'){
+            return redirect('/second-dummy')->with(['success' => 'Message sent sccessfully']);
+        }elseif($data['type'] == 'ThirdDummy'){
+            return redirect('/third-dummy')->with(['success' => 'Message sent sccessfully']);
+        }elseif($data['type'] == 'ForthDummy'){
+            return redirect('/forth-dummy')->with(['success' => 'Message sent sccessfully']);
         }else{
             return redirect('/buy-invoice')->with(['success' => 'Message sent sccessfully']);
         }
