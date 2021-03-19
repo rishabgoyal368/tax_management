@@ -38,7 +38,6 @@ class JwtAuthController extends Controller
 
             return response()->json(['error' => $validator->errors(),'success' => false], 200);
         }
-
         
         $user = new User();
         $user->name = $request->name;
@@ -51,9 +50,9 @@ class JwtAuthController extends Controller
         $user->status = 'Active';
         $user->save();
 
-        if ($this->token) {
-            return $this->login($request);
-        }
+        // if ($this->token) {
+        //     return $this->login($request);
+        // }
 
         return response()->json([
             'success' => true,
@@ -85,8 +84,7 @@ class JwtAuthController extends Controller
                 'message' => 'Invalid Email or Password',
             ]);
         }
-        $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $generate_token=str_shuffle(str_repeat($pool, 5));
+        $generate_token= $request->device_token;
         $user_id = Auth::User()->id;
         $user = User::where('id',$user_id)->update(['device_token'=>$generate_token]);
        
