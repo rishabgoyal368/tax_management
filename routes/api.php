@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/forgot-password','Api\JwtAuthController@forgot_password');
+Route::post('/reset-password','Api\JwtAuthController@reset_password');
+
 
 
 Route::post('app-setting', 'Api\JwtAuthController@setting');
