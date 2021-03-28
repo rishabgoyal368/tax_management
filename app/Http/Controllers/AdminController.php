@@ -22,11 +22,11 @@ class AdminController extends Controller
     public function index(Request $request)
     {
 
-        $admin = new Admin();
-        $admin->email = $request->input('email');
-        $admin->password = bcrypt($request->input('password'));
-        $admin->save();
-        return 'true';
+        // $admin = new Admin();
+        // $admin->email = $request->input('email');
+        // $admin->password = bcrypt($request->input('password'));
+        // $admin->save();
+        // return 'true';
         return view('index');
     }
     //----------------------------------update adminprofile------------------------------------------
@@ -118,6 +118,7 @@ class AdminController extends Controller
         $admin->role = $admin['role'] == null ? 0 : $admin['role'];
         $admin->status = $admin['status'] == null ? 'Active' : $admin['status'];
         $admin->save();
+        $label = '';
         switch ($admin['role']) {
             case '0':
                 # finanical manager

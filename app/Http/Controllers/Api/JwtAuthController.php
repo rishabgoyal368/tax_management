@@ -92,6 +92,7 @@ class JwtAuthController extends Controller
             'device_token'=>$generate_token,
             'success' => true,
             'token' => $jwt_token,
+            'message' => 'you are login successfully'
         ]);
     }
 

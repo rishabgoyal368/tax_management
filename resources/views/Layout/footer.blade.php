@@ -68,7 +68,6 @@
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
-            placeholder: 'Punjabi content',
             tabsize: 2,
             height: 400
         });

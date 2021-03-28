@@ -13,7 +13,7 @@ use SymfonyComponentHttpFoundationResponse;
 use Illuminate\Http\Request;
 
 use App\AppSetting;
-use App\Tax, App\User, App\SupplierData, App\BuyInvoice;
+use App\Tax, App\Content, App\SupplierData, App\BuyInvoice;
 use Auth;
 
 class TaxController extends Controller
@@ -22,15 +22,16 @@ class TaxController extends Controller
     //get all tax
     public function taxList(Request $request)
     {
-        $taxes = Tax::with('parent')->where('status','Active')->where('parent_id', 0)->get();
+        $taxes = Tax::with('parent')->where('status', 'Active')->where('parent_id', 0)->get();
         return response()->json([
             'success' => true,
             'tax_list' => $taxes,
         ]);
     }
 
-    public function supplier_data_add(Request $request){
-    	$validator = Validator::make(
+    public function supplier_data_add(Request $request)
+    {
+        $validator = Validator::make(
             $request->all(),
             [
                 'invoice_date' => 'required|date_format:Y-m-d',
@@ -45,10 +46,10 @@ class TaxController extends Controller
 
         if ($validator->fails()) {
 
-            return response()->json(['error' => $validator->errors(),'success' => false], 200);
+            return response()->json(['error' => $validator->errors(), 'success' => false], 200);
         }
 
-        $user = JWTAuth::parseToken()->authenticate();  
+        $user = JWTAuth::parseToken()->authenticate();
 
         $supplier_data                        = new SupplierData;
         $supplier_data->user_id               = $user->id;
@@ -59,22 +60,23 @@ class TaxController extends Controller
         $supplier_data->file_no               = $request->file_no;
         $supplier_data->invoice_no            = $request->invoice_no;
         $supplier_data->tax_registration_no   = $request->tax_registration_no;
-        if($supplier_data->save()){
+        if ($supplier_data->save()) {
             return response()->json([
                 'success' => true,
-                'data'=>$supplier_data
+                'data' => $supplier_data
             ]);
-        }else{
+        } else {
             return response()->json([
                 'success' => false,
-                'message'=>'Something went wrong,Please try again later.'
+                'message' => 'Something went wrong,Please try again later.'
             ]);
         }
     }
 
-    public function buy_invoice_add(Request $request){
-    	$validator = Validator::make(
-           $request->all(),
+    public function buy_invoice_add(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
             [
                 'product_code' => 'required',
                 'product_name' => 'required',
@@ -91,12 +93,12 @@ class TaxController extends Controller
 
         if ($validator->fails()) {
 
-            return response()->json(['error' => $validator->errors(),'success' => false], 200);
+            return response()->json(['error' => $validator->errors(), 'success' => false], 200);
         }
-   		
-        $user = JWTAuth::parseToken()->authenticate();  
 
-        $buy_invoice               		= new BuyInvoice;
+        $user = JWTAuth::parseToken()->authenticate();
+
+        $buy_invoice                       = new BuyInvoice;
         $buy_invoice->user_id           = $user->id;
         $buy_invoice->product_code      = $request->product_code;
         $buy_invoice->product_name      = $request->product_name;
@@ -104,26 +106,34 @@ class TaxController extends Controller
         $buy_invoice->unit_price        = $request->unit_price;
         $buy_invoice->total_line        = $request->total_line;
         $buy_invoice->invoice_type      = $request->invoice_type;
-        $buy_invoice->product_type   	= $request->product_type;
-        $buy_invoice->quantity   		= $request->quantity;
-        $buy_invoice->tax_category   	= $request->tax_category;
-        if($request->image)
-        {
+        $buy_invoice->product_type       = $request->product_type;
+        $buy_invoice->quantity           = $request->quantity;
+        $buy_invoice->tax_category       = $request->tax_category;
+        if ($request->image) {
             $fileName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('uploads/buy_invoice'), $fileName);
             $buy_invoice->image = $fileName;
         }
-        if($buy_invoice->save()){
+        if ($buy_invoice->save()) {
             return response()->json([
                 'success' => true,
-                'data'=>$buy_invoice
+                'data' => $buy_invoice
             ]);
-        }else{
+        } else {
             return response()->json([
                 'success' => false,
-                'message'=>'Something went wrong,Please try again later.'
+                'message' => 'Something went wrong,Please try again later.'
             ]);
         }
+    }
 
+    public function getContent(Request $request)
+    {
+        $id = $request['id'];
+        $content = Content::where('tax',$id)->first();
+        return response()->json([
+            'success' => true,
+            'data' => $content
+        ]);
     }
 }

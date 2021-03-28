@@ -33,7 +33,8 @@ Route::group(['middleware' => 'token_auth','namespace' => 'Api'], function () {
 
     // Additional tax
     Route::get('tax-list', 'TaxController@taxList');
-    
+     //content
+    Route::post('/get-content','TaxController@getContent');
 
     //Supplier-Data
     Route::post('/supplier-data/add','TaxController@supplier_data_add');
@@ -52,6 +53,7 @@ Route::group(['middleware' => 'token_auth','namespace' => 'Api'], function () {
     //Dummy-forth
     Route::post('/forth-dummy/add','NewController@forth_dummy_add');
 
+   
 
    
 });

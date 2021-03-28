@@ -82,3 +82,7 @@ Route::any('/third-dummy','NewController@third_dummy')->name('third-dummy');
 //===============> Forth-Dummy <====================//
 Route::any('/forth-dummy','NewController@forth_dummy')->name('forth-dummy');
 //===============> Forth-Dummy <====================//
+
+Route::any('/content','ContentController@content');
+Route::any('/add-content','ContentController@add');
+Route::any('/edit-content/{id}','ContentController@add');
