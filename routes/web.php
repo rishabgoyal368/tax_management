@@ -86,3 +86,9 @@ Route::any('/forth-dummy','NewController@forth_dummy')->name('forth-dummy');
 Route::any('/content','ContentController@content');
 Route::any('/add-content','ContentController@add');
 Route::any('/edit-content/{id}','ContentController@add');
+
+//===================Invoices==========================
+Route::any('/invoice-list','InvoiceController@index');
+Route::any('/invoice-list/view/{id}','InvoiceController@view');
+
+//===================Invoices==========================

@@ -154,6 +154,8 @@ class TaxController extends Controller
             return redirect('/third-dummy')->with(['success' => 'Message sent sccessfully']);
         }elseif($data['type'] == 'ForthDummy'){
             return redirect('/forth-dummy')->with(['success' => 'Message sent sccessfully']);
+        }elseif($data['type'] == 'Invoice'){
+            return redirect('/invoice-list')->with(['success' => 'Message sent sccessfully']);
         }else{
             return redirect('/buy-invoice')->with(['success' => 'Message sent sccessfully']);
         }

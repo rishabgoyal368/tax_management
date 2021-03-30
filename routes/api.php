@@ -53,7 +53,10 @@ Route::group(['middleware' => 'token_auth','namespace' => 'Api'], function () {
     //Dummy-forth
     Route::post('/forth-dummy/add','NewController@forth_dummy_add');
 
-   
+   //------------------Invoice--------------------------
+    Route::post('/invoice/add','InvoiceController@add_invoice');
+
+   //------------------Invoice--------------------------
 
    
 });
