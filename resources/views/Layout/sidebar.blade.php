@@ -79,6 +79,11 @@
                                         <a href="{{url('/forth-dummy')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Forth Dummy</span></a>
                                     </div>
                                     @endif
+                                    
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'invoice-list') menu_active @endif">
+                                        <a href="{{url('/invoice-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Invoice</span></a>
+                                    </div>
+
                                     <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'forth_d') menu_active @endif">
                                         <a href="{{url('/content')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Content</span></a>
                                     </div>

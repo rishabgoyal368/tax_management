@@ -84,12 +84,11 @@ class JwtAuthController extends Controller
                 'message' => 'Invalid Email or Password',
             ]);
         }
-        $generate_token= $request->device_token;
         $user_id = Auth::User()->id;
-        $user = User::where('id',$user_id)->update(['device_token'=>$generate_token]);
+        $user = User::where('id',$user_id)->update(['device_token'=>$request->device_token]);
        
         return response()->json([
-            'device_token'=>$generate_token,
+            // 'device_token'=>$generate_token,
             'success' => true,
             'token' => $jwt_token,
             'message' => 'you are login successfully'

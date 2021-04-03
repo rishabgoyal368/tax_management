@@ -154,3 +154,12 @@ Breadcrumbs::for('edit-content', function ($trail) {
     $trail->parent('content');
     $trail->push('Edit content', url('add-content'));
 });
+
+
+
+// Invoice -list
+Breadcrumbs::for('invoice-list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Invoice List', url('invoice-list'));
+});
+
