@@ -9,28 +9,32 @@ use Helper;
 
 class NewController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth:admin');
     }
 
-    public function first_dummy(Request $request){
-    	$first_dummy = DummyOne::with('user')->latest()->paginate(env('PAGINATE'));
-        return view('FirstDummy.list',compact('first_dummy'));
-
+    public function first_dummy(Request $request)
+    {
+        $first_dummy = DummyOne::with('user')->latest()->paginate(env('PAGINATE'));
+        return view('FirstDummy.list', compact('first_dummy'));
     }
 
-    public function second_dummy(Request $request){
+    public function second_dummy(Request $request)
+    {
         $second_dummy = DummySecond::with('user')->latest()->paginate(env('PAGINATE'));
-        return view('SecondDummy.list',compact('second_dummy'));
+        return view('SecondDummy.list', compact('second_dummy'));
     }
 
-    public function third_dummy(Request $request){
+    public function third_dummy(Request $request)
+    {
         $third_dummy = DummyThird::with('user')->latest()->paginate(env('PAGINATE'));
-        return view('ThirdDummy.list',compact('third_dummy'));
+        return view('ThirdDummy.list', compact('third_dummy'));
     }
 
-    public function forth_dummy(Request $request){
+    public function forth_dummy(Request $request)
+    {
         $forth_dummy = DummyForth::with('user')->latest()->paginate(env('PAGINATE'));
-        return view('ForthDummy.list',compact('forth_dummy'));
-    }    
+        return view('ForthDummy.list', compact('forth_dummy'));
+    }
 }

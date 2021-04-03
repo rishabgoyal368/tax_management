@@ -29,13 +29,13 @@ class TokenAuth extends BaseMiddleware
             }
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
-                return response()->json(['code' => 301, 'message' => 'Token is Invalid']);
+                return response()->json(['code' => 301, 'status' => false, 'message' => 'Token is Invalid']);
             } else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
-                return response()->json(['code' => 301, 'message' => 'Token is Expired']);
+                return response()->json(['code' => 301, 'status' => false, 'message' => 'Token is Expired']);
             } else if ($e instanceof Exception) {
-                return response()->json(['code' => 301, 'message' => $e->getMessage()]);
+                return response()->json(['code' => 301, 'status' => false, 'message' => $e->getMessage()]);
             } else {
-                return response()->json(['code' => 301, 'message' => 'Something is wrong']);
+                return response()->json(['code' => 301, 'status' => false, 'message' => 'Something is wrong']);
             }
         }
     }

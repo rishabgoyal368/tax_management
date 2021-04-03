@@ -1,5 +1,5 @@
 @extends('Layout.app')
-@section('title','Third Dummy List')
+@section('title','Invoice List')
 @section('content')
 <!-- Sidebar -->
 @include('Layout.sidebar')
@@ -10,7 +10,7 @@
             <div class="company-doc">
                 <div class="card ctm-border-radius shadow-sm grow">
                 <div class="card-header">
-                        <h4 class="card-title d-inline-block mb-0">Third Dummy List</h4>
+                        <h4 class="card-title d-inline-block mb-0">Invoice List</h4>
                     </div>
                     <div class="card-body">
                         <div class="employee-office-table">
@@ -20,20 +20,29 @@
                                         <tr>
                                             <th>S.no</th>
                                             <th>User Name</th>
-                                            <th>File</th>
-                                            <th>Actions</th>
+                                            <th>Company Name</th>
+                                            <th>Company National Id</th>
+                                            <th>Company Address</th>
+                                            <th>Tax Registration Number</th>
+                                            <th>Type Of Business</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($third_dummy as $key => $third_data)
+                                        @forelse($invoice_list as $key => $invoice)
                                         <tr>
 
                                             <td>{{$key+1}}</td>
-                                            <td>{{ ucfirst($third_data['user']['name']) }}</td>
-                                            <td>{{ ucfirst($third_data->file) }}</td>
+                                            <td>{{ ucfirst($invoice['user']['name']) }}</td>
+                                            <td>{{ ucfirst($invoice['company_name']) }}</td>
+                                            <td>{{ $invoice['company_national_id'] }}</td>
+                                            <td>{{ ucfirst($invoice['company_address']) }}</td>
+                                            <td>{{ $invoice['tax_registration_number'] }}</td>
+                                            <td>{{ ucfirst($invoice['type_of_business']) }}</td>
                                             <td>
                                                 <div class="action_block">
-                                                    <a style="cursor: pointer;" class="btn btn-lg btn-primary notify_model" data_list_id="{{ $third_data['id'] }}" data_user_id="{{ $third_data['user']['id']}}"> <i class="fa fa-bell-o" aria-hidden="true"></i></a>
+                                                    <a style="cursor: pointer;" class="notify_model" data_list_id="{{ $invoice['id'] }}" data_user_id="{{ $invoice['user']['id']}}"> <i class="fa fa-bell-o" aria-hidden="true"></i></a>
+                                                    <a href="{{ url('invoice-list/view/'.$invoice['id']) }}" ><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                 </div>
                                             </td>
 
@@ -58,9 +67,9 @@
                                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                                                     <button type="submit" class="btn btn-primary">Send</button>
                                                                 </div>
-                                                                <input type="hidden" name="id" id="list_id" value="">
-                                                                <input type="hidden" name="user_id" id="userId" value="">
-                                                                <input type="hidden" name="type" value="ThirdDummy">
+                                                                <input type="hidden" name="id" id="list_id" value="{{ $invoice['id'] }}">
+                                                                <input type="hidden" name="user_id" id="userId" value="{{ $invoice['user']['id'] }}">
+                                                                <input type="hidden" name="type" value="Invoice">
                                                                 @csrf
                                                             </form>
                                                         </div>
@@ -79,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    {{ $third_dummy->links() }}
+                    {{ $invoice_list->links() }}
                 </div>
             </div>
         </div>

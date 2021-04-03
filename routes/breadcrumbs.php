@@ -139,3 +139,27 @@ Breadcrumbs::for('forth-dummy', function ($trail) {
     $trail->push('Forth Dummy', route('forth-dummy'));
 });
 
+// Content
+Breadcrumbs::for('content', function ($trail) {
+    $trail->parent('home');
+    $trail->push('content', url('content'));
+});
+
+// Add Content
+Breadcrumbs::for('add-content', function ($trail) {
+    $trail->parent('content');
+    $trail->push('Add content', url('add-content'));
+});
+Breadcrumbs::for('edit-content', function ($trail) {
+    $trail->parent('content');
+    $trail->push('Edit content', url('add-content'));
+});
+
+
+
+// Invoice -list
+Breadcrumbs::for('invoice-list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Invoice List', url('invoice-list'));
+});
+

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+ 
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@index')->name('home');
@@ -81,3 +82,13 @@ Route::any('/third-dummy','NewController@third_dummy')->name('third-dummy');
 //===============> Forth-Dummy <====================//
 Route::any('/forth-dummy','NewController@forth_dummy')->name('forth-dummy');
 //===============> Forth-Dummy <====================//
+
+Route::any('/content','ContentController@content');
+Route::any('/add-content','ContentController@add');
+Route::any('/edit-content/{id}','ContentController@add');
+
+//===================Invoices==========================
+Route::any('/invoice-list','InvoiceController@index');
+Route::any('/invoice-list/view/{id}','InvoiceController@view');
+
+//===================Invoices==========================
