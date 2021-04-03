@@ -11,7 +11,7 @@ use AppHttpRequestsRegisterAuthRequest;
 use TymonJWTAuthExceptionsJWTException;
 use SymfonyComponentHttpFoundationResponse;
 use Illuminate\Http\Request;
-use App\User, App\DummyOne, App\DummySeconds, App\DummyThird, App\DummyForth;
+use App\User, App\DummyOne, App\DummySecond, App\DummyThird, App\DummyForth;
 use Auth;
 
 class NewController extends Controller
@@ -69,7 +69,7 @@ class NewController extends Controller
         
         $user = JWTAuth::parseToken()->authenticate();  
 
-        $dummy_second            = new DummySeconds;
+        $dummy_second            = new DummySecond;
         $dummy_second->user_id   = $user->id;
         if($request->file)
         {
