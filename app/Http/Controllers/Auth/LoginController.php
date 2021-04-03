@@ -40,12 +40,14 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        //  Admin::create([
-        //     'name' => 'Rishab Goyal',
-        //     'email' => 'rishabtest01@yopmail.com',
-        //     'profile_pic' => 'test',
-        //     'password' => Hash::make('1234'),
-        // ]);
+         Admin::create([
+            'name' => 'Rishab Goyal',
+            'email' => 'rishabtest01@yopmail.com',
+            'profile_pic' => 'test',
+            'role' => 'Admin',
+            'status' => 'Active',
+            'password' => Hash::make('1234'),
+        ]);
         $this->middleware('guest')->except('logout');
     }
 
