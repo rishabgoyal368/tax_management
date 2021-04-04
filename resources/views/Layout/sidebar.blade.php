@@ -46,47 +46,72 @@
                                     <div class="col-6 align-items-center shadow-none text-center @if(last($url) == null) menu_active @endif">
                                         <a href="{{url('/')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Dashboard</span></a>
                                     </div>
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' || Auth::guard('admin')->user()->job == 'Manager')
                                     <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'admin') menu_active @endif">
                                         <a href="{{url('/manage-admin')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage {{$name}}</span></a>
                                     </div>
-                                    <!-- <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'user') menu_active @endif">
-                                        <a href="{{url('/manage-user')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage Users</span></a>
-                                    </div> -->
-                                    
-                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'list') menu_active @endif">
+                                    @endif
+                                    <!-- <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'list') menu_active @endif">
                                         <a href="{{url('/task-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage task</span></a>
-                                    </div>
+                                    </div> -->
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' || Auth::guard('admin')->user()->job == 'Manager')
                                     <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'tax') menu_active @endif">
                                         <a href="{{url('/manage-tax')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage Taxes</span></a>
                                     </div>
-                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'supplier_data') menu_active @endif">
-                                        <a href="{{url('/supplier-data')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Supplier Data</span></a>
-                                    </div>
-                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'buy_invoice') menu_active @endif">
-                                        <a href="{{url('/buy-invoice')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Buy Invoice</span></a>
-                                    </div>
-                                    @if(Auth::guard('admin')->user()->role == '1')
-                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'First_d') menu_active @endif">
-                                        <a href="{{url('/first-dummy')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">First Dummy</span></a>
-                                    </div>
-                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'second_d') menu_active @endif">
-                                        <a href="{{url('/second-dummy')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Second Dummy</span></a>
-                                    </div>
-                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'third_d') menu_active @endif">
-                                        <a href="{{url('/third-dummy')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Third Dummy</span></a>
-                                    </div>
-                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'forth_d') menu_active @endif">
-                                        <a href="{{url('/forth-dummy')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Forth Dummy</span></a>
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'user') menu_active @endif">
+                                        <a href="{{url('/manage-user')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Manage Users</span></a>
                                     </div>
                                     @endif
-                                    
-                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'invoice-list') menu_active @endif">
-                                        <a href="{{url('/invoice-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Invoice</span></a>
+                                    @if(Auth::guard('admin')->user()->role == 'admin' || Auth::guard('admin')->user()->job == '2')
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'supplier_data') menu_active @endif">
+                                        <a href="{{url('/supplier-data')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Supplier Data (additional tax)</span></a>
                                     </div>
+                                    @endif
 
+                                    @if(Auth::guard('admin')->user()->role == 'admin' || Auth::guard('admin')->user()->job == '3')
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'buy_invoice') menu_active @endif">
+                                        <a href="{{url('/buy-invoice')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Buy Invoice (additional tax)</span></a>
+                                    </div>
+                                    @endif
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' || Auth::guard('admin')->user()->job == '4')
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'First_d') menu_active @endif">
+                                        <a href="{{url('/first-dummy')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">social insurance (Company)</span></a>
+                                    </div>
+                                    @endif
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' || Auth::guard('admin')->user()->job == '4')
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'second_d') menu_active @endif">
+                                        <a href="{{url('/second-dummy')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">social insurance (Employee)</span></a>
+                                    </div>
+                                    @endif
+                                    @if(Auth::guard('admin')->user()->role == 'admin' || Auth::guard('admin')->user()->job == '5')
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'third_d') menu_active @endif">
+                                        <a href="{{url('/third-dummy')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Official document</span></a>
+                                    </div>
+                                    @endif
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' || Auth::guard('admin')->user()->job == '6')
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'forth_d') menu_active @endif">
+                                        <a href="{{url('/forth-dummy')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">company establistment</span></a>
+                                    </div>
+                                    @endif
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' || Auth::guard('admin')->user()->job == '7')
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'invoice-list') menu_active @endif">
+                                        <a href="{{url('/invoice-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Income Tax</span></a>
+                                    </div>
+                                    @endif
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' )
                                     <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'forth_d') menu_active @endif">
                                         <a href="{{url('/content')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Content</span></a>
                                     </div>
+                                    @endif
+
+
                                 </div>
                             </div>
                         </div>

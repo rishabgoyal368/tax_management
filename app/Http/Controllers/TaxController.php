@@ -49,18 +49,18 @@ class TaxController extends Controller
             $this->validate($request, [
                 'name' =>  'required',
                 'status' => 'required',
-                'image' => $request['id'] ? 'nullable|mimes:jpeg,jpg,png,gif|max:10000' : 'required|mimes:jpeg,jpg,png,gif|max:10000',
+                // 'image' => $request['id'] ? 'nullable|mimes:jpeg,jpg,png,gif|max:10000' : 'required|mimes:jpeg,jpg,png,gif|max:10000',
             ]);
             $request['parent_id'] = $request['parent_id'] ?: '0';
-            if ($request->image) {
-                $fileName = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('uploads'), $fileName);
-                $request['logo'] = $fileName;
-            }
-            else{
-                $tax  = Tax::where('id',$request['id'])->first();
-                $request['logo'] = $tax->getAttributes()['image'];
-            }
+            // if ($request->image) {
+            //     $fileName = time() . '.' . $request->image->extension();
+            //     $request->image->move(public_path('uploads'), $fileName);
+            //     $request['logo'] = $fileName;
+            // }
+            // else{
+            //     $tax  = Tax::where('id',$request['id'])->first();
+            //     $request['logo'] = $tax->getAttributes()['image'];
+            // }
             // return $request;
             $user =  tax::addEdit($request);
             if ($request['id']) {

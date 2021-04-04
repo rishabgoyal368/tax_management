@@ -1,5 +1,5 @@
 @extends('Layout.app')
-@section('title','Invoice List')
+@section('title','Income Tax List')
 @section('content')
 <!-- Sidebar -->
 @include('Layout.sidebar')
@@ -10,7 +10,7 @@
             <div class="company-doc">
                 <div class="card ctm-border-radius shadow-sm grow">
                 <div class="card-header">
-                        <h4 class="card-title d-inline-block mb-0">Invoice List</h4>
+                        <h4 class="card-title d-inline-block mb-0">Income Tax List</h4>
                     </div>
                     <div class="card-body">
                         <div class="employee-office-table">

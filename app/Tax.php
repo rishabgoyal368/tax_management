@@ -23,7 +23,7 @@ class Tax extends Model
             [
                 'name' => @$data['name'] ?: null,
                 'parent_id' => @$data['parent_id'] ?: '0',
-                'image' => @$data['logo'] ?: null,
+                'image' => @$data['logo'] ?: '0',
                 'status' => @$data['status'] ?: null,
             ]
         );

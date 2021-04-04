@@ -160,6 +160,6 @@ Breadcrumbs::for('edit-content', function ($trail) {
 // Invoice -list
 Breadcrumbs::for('invoice-list', function ($trail) {
     $trail->parent('home');
-    $trail->push('Invoice List', url('invoice-list'));
+    $trail->push('Income Tax', url('invoice-list'));
 });
 

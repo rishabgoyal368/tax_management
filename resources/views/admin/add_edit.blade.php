@@ -71,7 +71,7 @@
                                     <option @if((@$user->job ) == 'Manager') selected @endif value="Manager">Manager</option>
                                     @endif
                                     @foreach($officer as $officer_name)
-                                    <option @if((@$user->job ) == $officer_name->name) selected @endif value="{{$officer_name->name}}">{{$officer_name->name}}</option>
+                                    <option @if((@$user->job ) == $officer_name->name) selected @endif value="{{$officer_name->parent_id}}">{{$officer_name->name}}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('job'))

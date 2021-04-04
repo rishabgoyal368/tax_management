@@ -29,32 +29,20 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-12 form-group">
-                                <select class="form-control " name="parent_id">
-                                    <option value="default" selected disabled>Select Sub Menu</option>
-                                    @foreach($taxes as $value)
-                                    <option value="{{$value['id']}}" @if(@$task['parent_id']==$value['id']) selected @endif>{{$value['name']}}</option>
-                                    @endforeach
+                            <div class="col-md-12 form-group" >
+                                <select class="form-control " name="parent_id" required>
+                                    <option value="default" selected disabled>Select Permission</option>
+                                    <!-- <option value="1" @if(@$task->parent_id == '1') selected @endif >Manage Users</option> -->
+                                    <option value="2" @if(@$task->parent_id == '2') selected @endif >Supplier Data</option>
+                                    <option value="3" @if(@$task->parent_id == '3') selected @endif >Buy Invoice</option>
+                                    <option value="4" @if(@$task->parent_id == '4') selected @endif >social insurance</option>
+                                    <option value="5" @if(@$task->parent_id == '5') selected @endif >Official document</option>
+                                    <option value="6" @if(@$task->parent_id == '6') selected @endif >Company establistment</option>
+                                    <option value="7" @if(@$task->parent_id == '7') selected @endif >Income Tax</option>
+                                    <option value="8" @if(@$task->parent_id == '8') selected @endif >Content</option>
                                 </select>
-                                @if ($errors->has('name'))
-                                <span class="error" role="alert">
-                                    <strong>{{ $errors->first('name') }}</strong>
-                                </span>
-                                @endif
                             </div>
 
-
-                            <div class="col-md-12 form-group">
-                                <input type="file" name="image" id="image" class="form-control" {{ @$task['id'] ? '' : 'required' }} >
-                                @isset($task['image'])
-                                <a href="{{$value['image']}}" target="_blank">{{$value->getAttributes()['image']}}</a>
-                                @endisset
-                                @if ($errors->has('image'))
-                                <span class="error" role="alert">
-                                    <strong>{{ $errors->first('image') }}</strong>
-                                </span>
-                                @endif
-                            </div>
 
 
                             <div class="col-md-12 form-group mb-0">

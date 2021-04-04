@@ -137,7 +137,7 @@ class AdminController extends Controller
     public function addAdmin(Request $request, $id = null)
     {
         $admin = Auth::guard('admin')->user();
-        $officer = Tax::select('id','name')->where('parent_id','0')->get();
+        $officer = Tax::get();
         switch ($admin['role']) {
             case 0:
                 # finanical manager
@@ -189,7 +189,7 @@ class AdminController extends Controller
             $request['role'] = $role;
             $request['job'] = $job;
             $request['password'] = $request['id'] ? $oldAdmin['password'] : Hash::make($request['password']);
-            $user =  Admin::addEdit($request);
+             $user =  Admin::addEdit($request);
             return redirect('/manage-admin')->with(['success' => $userLabel . $msz . ' successfully']);
         }
     }
