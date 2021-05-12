@@ -42,16 +42,20 @@ Route::group(['middleware' => 'token_auth','namespace' => 'Api'], function () {
    //Buy-invoice
     Route::post('/buy-invoice/add','TaxController@buy_invoice_add');
 
-    //Dummy-one
+    //salary-taxes
     Route::post('/salary-taxes/add','NewController@salary_tax_add');
-    //Dummy-second
+   
+    //company-estalishment
     Route::post('/company-estalishment/add','NewController@company_establishment_add');
 
-    //Dummy-third
-    Route::post('/third-dummy/add','NewController@third_dummy_add');
+    //add-deduct-taxes
+    Route::post('/add-deduct-taxes/add','NewController@add_deduct_taxes_add');
 
-    //Dummy-forth
-    Route::post('/forth-dummy/add','NewController@forth_dummy_add');
+    //salary2-taxes
+    Route::post('/salary2-taxes/add','NewController@salary2_taxes_add');
+
+    //salary2-taxes
+    Route::post('/financial-lists/add','NewController@financial_list_add');
 
    //------------------Invoice--------------------------
     Route::post('/invoice/add','InvoiceController@add_invoice');
