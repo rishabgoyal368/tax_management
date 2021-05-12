@@ -14,3 +14,5 @@ composer.lock
 /composer.lock
 public/uploads
 public/file
+public/salary_tax_add
+public/company_establishment_add
