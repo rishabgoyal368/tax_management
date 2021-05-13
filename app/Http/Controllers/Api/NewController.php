@@ -11,7 +11,7 @@ use AppHttpRequestsRegisterAuthRequest;
 use TymonJWTAuthExceptionsJWTException;
 use SymfonyComponentHttpFoundationResponse;
 use Illuminate\Http\Request;
-use App\User, App\SalaryTax, App\CompanyEstablishment, App\DummyThird, App\DummyForth;
+use App\User, App\SalaryTax, App\CompanyEstablishment, App\AddDeductTax, App\Salary2Tax, App\FinancialList;
 use Auth;
 
 class NewController extends Controller
@@ -211,12 +211,16 @@ class NewController extends Controller
         }
     }
 
-    public function third_dummy_add(Request $request)
+    public function add_deduct_taxes_add(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'file' => 'required|max:10000|mimes:doc,docx',
+                'buy_invoice'           => 'required|max:10000|mimes:doc,docx',
+                'deduct_notice_paper'   => 'required|max:10000|mimes:doc,docx',
+                'other_docs'            => 'required|max:10000|mimes:doc,docx',
+                'payment_agreement'     => 'required|max:10000|mimes:doc,docx',
+                'form_no_41'            => 'required|max:10000|mimes:doc,docx'
             ]
         );
 
@@ -227,17 +231,37 @@ class NewController extends Controller
 
         $user = JWTAuth::parseToken()->authenticate();
 
-        $dummy_third            = new DummyThird;
-        $dummy_third->user_id   = $user->id;
-        if ($request->file) {
-            $fileName = time() . '.' . $request->file->extension();
-            $request->file->move(public_path('file'), $fileName);
-            $dummy_third->file = $fileName;
+        $add_deduct_taxes_add            = new AddDeductTax;
+        $add_deduct_taxes_add->user_id   = $user->id;
+        if ($request->buy_invoice) {
+            $fileName = time() . '1.' . $request->buy_invoice->extension();
+            $request->buy_invoice->move(public_path('add_deduct_taxes'), $fileName);
+            $add_deduct_taxes_add->buy_invoice = $fileName;
         }
-        if ($dummy_third->save()) {
+        if ($request->deduct_notice_paper) {
+            $fileName = time() . '2.' . $request->deduct_notice_paper->extension();
+            $request->deduct_notice_paper->move(public_path('add_deduct_taxes'), $fileName);
+            $add_deduct_taxes_add->deduct_notice_paper = $fileName;
+        }
+        if ($request->other_docs) {
+            $fileName = time() . '3.' . $request->other_docs->extension();
+            $request->other_docs->move(public_path('add_deduct_taxes'), $fileName);
+            $add_deduct_taxes_add->other_docs = $fileName;
+        }
+        if ($request->payment_agreement) {
+            $fileName = time() . '4.' . $request->payment_agreement->extension();
+            $request->payment_agreement->move(public_path('add_deduct_taxes'), $fileName);
+            $add_deduct_taxes_add->payment_agreement = $fileName;
+        } 
+        if ($request->form_no_41) {
+            $fileName = time() . '5.' . $request->form_no_41->extension();
+            $request->form_no_41->move(public_path('add_deduct_taxes'), $fileName);
+            $add_deduct_taxes_add->form_no_41 = $fileName;
+        }
+        if ($add_deduct_taxes_add->save()) {
             return response()->json([
                 'success' => true,
-                'data' => $dummy_third
+                'data' => $add_deduct_taxes_add
             ]);
         } else {
             return response()->json([
@@ -247,12 +271,19 @@ class NewController extends Controller
         }
     }
 
-    public function forth_dummy_add(Request $request)
+    public function salary2_taxes_add(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'file' => 'required|max:10000|mimes:doc,docx',
+                'upload_hiring_list'    => 'required|max:10000|mimes:doc,docx',
+                'upload_pay_slip'       => 'required|max:10000|mimes:doc,docx',
+                'upload_national_id'    => 'required|max:10000|mimes:doc,docx',
+                'upload_insured'        => 'required|max:10000|mimes:doc,docx',
+                'upload_salaries_list'  => 'required|max:10000|mimes:doc,docx',
+                'upload_deductions'     => 'required|max:10000|mimes:doc,docx',
+                'upload_benefits'       => 'required|max:10000|mimes:doc,docx',
+                'upload_resigning'      => 'required|max:10000|mimes:doc,docx'
             ]
         );
 
@@ -263,17 +294,89 @@ class NewController extends Controller
 
         $user = JWTAuth::parseToken()->authenticate();
 
-        $dummy_forth            = new DummyForth;
-        $dummy_forth->user_id   = $user->id;
-        if ($request->file) {
-            $fileName = time() . '.' . $request->file->extension();
-            $request->file->move(public_path('file'), $fileName);
-            $dummy_forth->file = $fileName;
+         $salary2_taxes_add              = new Salary2Tax;
+        $salary2_taxes_add->user_id      = $user->id;
+        if ($request->upload_hiring_list) {
+            $fileName = time() . '1.' . $request->upload_hiring_list->extension();
+            $request->upload_hiring_list->move(public_path('salary2_taxes'), $fileName);
+            $salary2_taxes_add->upload_hiring_list = $fileName;
         }
-        if ($dummy_forth->save()) {
+        if ($request->upload_pay_slip) {
+            $fileName = time() . '2.' . $request->upload_pay_slip->extension();
+            $request->upload_pay_slip->move(public_path('salary2_taxes'), $fileName);
+            $salary2_taxes_add->upload_pay_slip = $fileName;
+        }
+        if ($request->upload_national_id) {
+            $fileName = time() . '3.' . $request->upload_national_id->extension();
+            $request->upload_national_id->move(public_path('salary2_taxes'), $fileName);
+            $salary2_taxes_add->upload_national_id = $fileName;
+        }
+        if ($request->upload_insured) {
+            $fileName = time() . '4.' . $request->upload_insured->extension();
+            $request->upload_insured->move(public_path('salary2_taxes'), $fileName);
+            $salary2_taxes_add->upload_insured = $fileName;
+        }
+        if ($request->upload_salaries_list) {
+            $fileName = time() . '5.' . $request->upload_salaries_list->extension();
+            $request->upload_salaries_list->move(public_path('salary2_taxes'), $fileName);
+            $salary2_taxes_add->upload_salaries_list = $fileName;
+        }
+        if ($request->upload_deductions) {
+            $fileName = time() . '6.' . $request->upload_deductions->extension();
+            $request->upload_deductions->move(public_path('salary2_taxes'), $fileName);
+            $salary2_taxes_add->upload_deductions = $fileName;
+        }
+        if ($request->upload_benefits) {
+            $fileName = time() . '7.' . $request->upload_benefits->extension();
+            $request->upload_benefits->move(public_path('salary2_taxes'), $fileName);
+            $salary2_taxes_add->upload_benefits = $fileName;
+        }
+        if ($request->upload_resigning) {
+            $fileName = time() . '8.' . $request->upload_resigning->extension();
+            $request->upload_resigning->move(public_path('salary2_taxes'), $fileName);
+            $salary2_taxes_add->upload_resigning = $fileName;
+        }
+        if ($salary2_taxes_add->save()) {
             return response()->json([
                 'success' => true,
-                'data' => $dummy_forth
+                'data' => $salary2_taxes_add
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong,Please try again later.'
+            ]);
+        }
+    }
+
+
+    public function financial_list_add(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'yearly_budget'    => 'required|max:10000|mimes:doc,docx'
+            ]
+        );
+
+        if ($validator->fails()) {
+
+            return response()->json(['error' => $validator->errors(), 'success' => false], 200);
+        }
+
+        $user = JWTAuth::parseToken()->authenticate();
+
+        $financial_list_add                 = new FinancialList;
+        $financial_list_add->user_id        = $user->id;
+        if ($request->yearly_budget) {
+            $fileName = time() . '1.' . $request->yearly_budget->extension();
+            $request->yearly_budget->move(public_path('financial_list_add'), $fileName);
+            $financial_list_add->yearly_budget = $fileName;
+        }
+        if ($financial_list_add->save()) {
+            return response()->json([
+                'success' => true,
+                'data' => $financial_list_add
             ]);
         } else {
             return response()->json([
