@@ -92,3 +92,34 @@ Route::any('/invoice-list','InvoiceController@index');
 Route::any('/invoice-list/view/{id}','InvoiceController@view');
 
 //===================Invoices==========================
+
+
+//==================== Salary Tax =========================
+Route::any('/salary-tax-list','NewController@salary_tax_list');
+Route::any('salary-tax-list/view/{id}','NewController@salary_tax_list_view');
+
+
+//=================== company-establisment-list ================
+
+
+Route::any('/company-establisment-list','NewController@company_establisment_list');
+Route::any('company-establisment-list/view/{id}','NewController@company_establisment_list_view');
+
+
+//=================  =====================================
+
+Route::any('/add-deduct-tax-list','NewController@add_deduct_Tax_list');
+Route::any('add-deduct-tax-list/view/{id}','NewController@add_deduct_Tax_view');
+
+
+//======================= =============================
+
+Route::any('/salary2-tax-list','NewController@salary2_tax_list');
+
+Route::any('salary2-tax-list/view/{id}','NewController@salary2_tax_list_view');
+
+
+// //======================= =============================
+
+Route::any('/financial-list','NewController@financial_list');
+Route::any('financial-list/view/{id}','NewController@financial_list_view');

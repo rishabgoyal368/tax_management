@@ -10,4 +10,8 @@ class FinancialList extends Model
 		'user_id',
         'yearly_budget'
     ];
+
+    public function user(){
+    	return $this->hasOne('App\User','id','user_id');
+    }
 }

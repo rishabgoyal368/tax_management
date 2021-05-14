@@ -163,3 +163,29 @@ Breadcrumbs::for('invoice-list', function ($trail) {
     $trail->push('Income Tax', url('invoice-list'));
 });
 
+
+Breadcrumbs::for('salary-tax-list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Salary Tax', url('salary-tax-list'));
+});
+
+Breadcrumbs::for('company-establisment-list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Company Establisment List', url('company-establisment-list'));
+});
+
+Breadcrumbs::for('add-deduct-tax-list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Add Deduct Tax List', url('add-deduct-tax-list'));
+});
+
+
+Breadcrumbs::for('salary2-tax-list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Salary2 Tax List', url('salary2-tax-list'));
+});
+
+Breadcrumbs::for('financial-list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Financial List', url('financial-list'));
+});
