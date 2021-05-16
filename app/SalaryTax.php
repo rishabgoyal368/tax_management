@@ -22,5 +22,8 @@ class SalaryTax extends Model
         'construction_certificate',
         'industrial_certificate'
     ];
-           
+          
+    public function user(){
+        return $this->hasOne('App\User','id','user_id');
+    } 
 }

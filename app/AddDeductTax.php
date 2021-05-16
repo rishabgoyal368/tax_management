@@ -15,4 +15,8 @@ class AddDeductTax extends Model
             'form_no_41'
 
     ];
+
+    public function user(){
+    	return $this->hasOne('App\User','id','user_id');
+    }
 }

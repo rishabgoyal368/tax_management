@@ -144,6 +144,12 @@ class JwtAuthController extends Controller
         }
         else{
             $user = JWTAuth::parseToken()->authenticate();
+            $user_id = $user->id;
+            $email = $request->email;
+            $check_email_exists = User::where('id','!=',$user_id)->where('email', $email)->get()->toArray();
+        if (!empty($check_email_exists)) {
+            return response()->json(['error' => 'Email already exists.'], 200);
+        }
             $user->email = $request->email;
             $user->phone_number = $request->phone_number;
             $user->name = $request->name;

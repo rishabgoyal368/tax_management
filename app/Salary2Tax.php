@@ -18,4 +18,8 @@ class Salary2Tax extends Model
         'upload_resigning'
 
     ];
+
+    public function user(){
+        return $this->hasOne('App\User','id','user_id');
+    }
 }

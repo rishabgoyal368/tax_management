@@ -110,6 +110,37 @@
                                         <a href="{{url('/content')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Content</span></a>
                                     </div>
                                     @endif
+<!-- ==============================================//new================================================== -->
+                                    @if(Auth::guard('admin')->user()->role == 'admin' )
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'salary_tax') menu_active @endif">
+                                        <a href="{{url('/salary-tax-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Salary Tax</span></a>
+                                    </div>
+                                    @endif
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' )
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'company-establisment-list') menu_active @endif">
+                                        <a href="{{url('/company-establisment-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Company Estalishment</span></a>
+                                    </div>
+                                    @endif
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' )
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'add-deduct-tax-list') menu_active @endif">
+                                        <a href="{{url('/add-deduct-tax-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Add Deduct Tax</span></a>
+                                    </div>
+                                    @endif
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' )
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'salary2-tax-list') menu_active @endif">
+                                        <a href="{{url('/salary2-tax-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Salary 2 Tax</span></a>
+                                    </div>
+                                    @endif
+
+                                    @if(Auth::guard('admin')->user()->role == 'admin' )
+                                    <div class="col-6 align-items-center shadow-none text-center  @if(last($url) == 'financial-list') menu_active @endif">
+                                        <a href="{{url('/financial-list')}}" class="text-dark p-4 second-slider-btn ctm-border-right ctm-border-top"><span class="lnr lnr-users pr-0 pb-lg-2 font-23"></span><span class="">Financial List</span></a>
+                                    </div>
+                                    @endif
+<!-- ==============================================//new================================================== -->
 
 
                                 </div>

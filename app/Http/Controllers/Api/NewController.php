@@ -22,18 +22,18 @@ class NewController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-            'upload_photo_of_tax'       => 'required|max:10000|mimes:doc,docx',
-            'company_contract'          => 'required|max:10000|mimes:doc,docx',
-            'national_id'               => 'required|max:10000|mimes:doc,docx',
-            'financial_budget'          => 'required|max:10000|mimes:doc,docx',
-            'import_export_certificates'=> 'required|max:10000|mimes:doc,docx',
-            'other_docs'                => 'required|max:10000|mimes:doc,docx',
-            'commercial_certificate'    => 'required|max:10000|mimes:doc,docx',
-            'additional_tax'            => 'required|max:10000|mimes:doc,docx',
-            'office_lease_contract'     => 'required|max:10000|mimes:doc,docx',
-            'social_insurance'          => 'required|max:10000|mimes:doc,docx',
-            'construction_certificate'  => 'required|max:10000|mimes:doc,docx',
-            'industrial_certificate'    =>'required|max:10000|mimes:doc,docx'
+            'upload_photo_of_tax'       => 'required',
+            'company_contract'          => 'required',
+            'national_id'               => 'required',
+            'financial_budget'          => 'required',
+            'import_export_certificates'=> 'required',
+            'other_docs'                => 'required',
+            'commercial_certificate'    => 'required',
+            'additional_tax'            => 'required',
+            'office_lease_contract'     => 'required',
+            'social_insurance'          => 'required',
+            'construction_certificate'  => 'required',
+            'industrial_certificate'    =>'required'
             ]
         );
 
@@ -126,16 +126,16 @@ class NewController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'stock_partnership'     => 'required|max:10000|mimes:doc,docx',
-                'partnerships_co'       => 'required|max:10000|mimes:doc,docx',
-                'one_person_co'         => 'required|max:10000|mimes:doc,docx',
-                'manufacturers'         => 'required|max:10000|mimes:doc,docx',
-                'adjust'                => 'required|max:10000|mimes:doc,docx',
-                'joint_stock_companies' => 'required|max:10000|mimes:doc,docx',
-                'limited_liability'     => 'required|max:10000|mimes:doc,docx',
-                'sole_company'          => 'required|max:10000|mimes:doc,docx',
-                'branches'              => 'required|max:10000|mimes:doc,docx',
-                'separation_of_exit'    => 'required|max:10000|mimes:doc,docx'
+                'stock_partnership'     => 'required',
+                'partnerships_co'       => 'required',
+                'one_person_co'         => 'required',
+                'manufacturers'         => 'required',
+                'adjust'                => 'required',
+                'joint_stock_companies' => 'required',
+                'limited_liability'     => 'required',
+                'sole_company'          => 'required',
+                'branches'              => 'required',
+                'separation_of_exit'    => 'required'
             ]
         );
 
@@ -216,11 +216,11 @@ class NewController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'buy_invoice'           => 'required|max:10000|mimes:doc,docx',
-                'deduct_notice_paper'   => 'required|max:10000|mimes:doc,docx',
-                'other_docs'            => 'required|max:10000|mimes:doc,docx',
-                'payment_agreement'     => 'required|max:10000|mimes:doc,docx',
-                'form_no_41'            => 'required|max:10000|mimes:doc,docx'
+                'buy_invoice'           => 'required',
+                'deduct_notice_paper'   => 'required',
+                'other_docs'            => 'required',
+                'payment_agreement'     => 'required',
+                'form_no_41'            => 'required'
             ]
         );
 
@@ -276,14 +276,14 @@ class NewController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'upload_hiring_list'    => 'required|max:10000|mimes:doc,docx',
-                'upload_pay_slip'       => 'required|max:10000|mimes:doc,docx',
-                'upload_national_id'    => 'required|max:10000|mimes:doc,docx',
-                'upload_insured'        => 'required|max:10000|mimes:doc,docx',
-                'upload_salaries_list'  => 'required|max:10000|mimes:doc,docx',
-                'upload_deductions'     => 'required|max:10000|mimes:doc,docx',
-                'upload_benefits'       => 'required|max:10000|mimes:doc,docx',
-                'upload_resigning'      => 'required|max:10000|mimes:doc,docx'
+                'upload_hiring_list'    => 'required',
+                'upload_pay_slip'       => 'required',
+                'upload_national_id'    => 'required',
+                'upload_insured'        => 'required',
+                'upload_salaries_list'  => 'required',
+                'upload_deductions'     => 'required',
+                'upload_benefits'       => 'required',
+                'upload_resigning'      => 'required'
             ]
         );
 
@@ -355,7 +355,7 @@ class NewController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'yearly_budget'    => 'required|max:10000|mimes:doc,docx'
+                'yearly_budget'    => 'required'
             ]
         );
 

@@ -146,8 +146,8 @@ class TaxController extends Controller
 
         if($data['type'] == 'SupplierData'){
             return redirect('/supplier-data')->with(['success' => 'Message sent sccessfully']);
-        }elseif($data['type'] == 'FirstDummy'){
-            return redirect('/first-dummy')->with(['success' => 'Message sent sccessfully']);
+        }elseif($data['type'] == 'salary_tax'){
+            return redirect('/salary-tax-list')->with(['success' => 'Message sent sccessfully']);
         }elseif($data['type'] == 'SecondDummy'){
             return redirect('/second-dummy')->with(['success' => 'Message sent sccessfully']);
         }elseif($data['type'] == 'ThirdDummy'){
